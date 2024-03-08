@@ -1,0 +1,19 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-color-primary: #FFFFFF;
+  --bg-color-secondary: #48735F;
+  --bg-color-login: #5F967C;
+  
+  --text-color-primary: #2F4A3D;
+}
