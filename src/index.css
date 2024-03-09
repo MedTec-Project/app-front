@@ -1,7 +1,9 @@
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "PT Sans Caption";
 }
 html{
   width: 100%;
@@ -16,4 +18,11 @@ html{
   --bg-color-login: #5F967C;
   
   --text-color-primary: #2F4A3D;
+  --text-color-secondary: #5CB1FF;
+}
+
+.pt-sans caption-regular {
+  font-family: "PT Sans Caption", sans-serif;
+  font-weight: 900;
+  font-style: normal;
 }
