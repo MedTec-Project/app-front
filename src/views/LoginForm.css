@@ -149,14 +149,12 @@
     overflow: hidden;
     z-index: 2;
     position: relative;
-    width: 100px;
-    height: 36px;
+    width: 300px;
+    height: 30px;
     margin: 0 auto;
     background: transparent;
-    color: #fff;
     text-transform: uppercase;
     font-size: 15px;
-    cursor: pointer;
   }
   
   .img-btn:after{
@@ -167,7 +165,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    border: 2px solid #fff;
+    border: 2px solid black;
     border-radius: 30px;
   }
   
@@ -225,6 +223,7 @@
     margin-bottom: -30px;
     color: var(--text-color-primary);
     z-index: 3;
+    font-size: 13px;
   }
 
   .singin-social-media{
@@ -236,5 +235,43 @@
     color: black;
     width: 229px;
     height: 105px;
+    gap: 10px;
+    padding-top: 25px;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .loginCad{
+    color: var(--text-color-secondary);
+    cursor: pointer;
+  }
+
+  .form h2{
+    color: var(--text-color-primary);
+  }
+
+  .sign-in-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    gap: 30px;
+  }
+
+  .forgot-pass{
+    color: var(--text-color-primary);
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 90px;
+    margin-top: -25px;
+    font-size: 13px;
+  }
+
+  .m-up, .m-in{
+    font-size: 13px;
+    color: var(--text-color-primary);
+    margin-top: -20px;
   }
 }
