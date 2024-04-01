@@ -4,14 +4,14 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Login from "./views/LoginForm.jsx";
+import Login from "../src/views/Login/LoginForm.jsx"
 import "./index.css";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>inicio /</div>,
+    element: <div>Inicio /</div>,
   },
   {
     path: "/Login",
