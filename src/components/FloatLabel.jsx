@@ -1,4 +1,4 @@
-import './FloatLabel.css';
+import './FloatLabel.scss';
 
 export default function FloatLabel({ label, name, type, value, onChange }) {
     return (
