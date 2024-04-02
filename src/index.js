@@ -4,9 +4,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Login from "../src/views/Login/LoginForm.jsx"
-import "./index.css";
-
+import "./index.scss";
+import LoginForm from "./views/login/LoginForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +14,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Login",
-    element: <Login />
+    element: <LoginForm />
   }
 ]);
 

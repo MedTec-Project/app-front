@@ -1,4 +1,4 @@
-import './SubmitButton.css';
+import './SubmitButton.scss';
 
 export default function SubmitButton({ label, onClick }) {
     return (

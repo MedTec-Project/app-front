@@ -1,8 +1,8 @@
 import React from 'react';
-import './LoginForm.css'
+import './LoginForm.scss'
 import { useState, useEffect } from 'react';
-import FloatLabel from '../components/FloatLabel';
-import SubmitButton from '../components/SubmitButton';
+import FloatLabel from '../../components/FloatLabel';
+import SubmitButton from '../../components/SubmitButton';
 import { FaFacebookSquare, FaApple } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 
