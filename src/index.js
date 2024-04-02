@@ -10,7 +10,7 @@ import LoginForm from "./views/login/LoginForm.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>inicio /</div>,
+    element: <div>Inicio /</div>,
   },
   {
     path: "/Login",
