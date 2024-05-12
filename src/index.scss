@@ -1,4 +1,5 @@
-
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans+Caption:wght@400;700&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -13,12 +14,10 @@ html{
 }
 
 :root {
-  --bg-color-primary: #FFFFFF;
-  --bg-color-secondary: #48735F;
-  --bg-color-login: #5F967C;
-  
-  --text-color-primary: #2F4A3D;
-  --text-color-secondary: #5CB1FF;
+  --primary: #FFFFFF;
+  --normal: #48735F;
+  --dark: #2F4A3D;
+  --light: #5F967C;
 }
 
 .pt-sans caption-regular {

@@ -6,11 +6,12 @@ import {
 } from "react-router-dom";
 import "./index.scss";
 import LoginForm from "./views/login/LoginForm.jsx";
+import Test from "./views/Test.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Inicio /</div>,
+    element: <Test />
   },
   {
     path: "/Login",
