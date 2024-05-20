@@ -24,7 +24,16 @@ export default function MultiSelectInput(props) {
     <div className="multi-select-container" style={{ width: props.width }}>
       {props.label && <label>{props.label}</label>}
       <div className="multi-select" onClick={toggleDropdown}>
-        <span className="multi-select-content">Selecione as opções</span>
+        <span className="multi-select-content">
+          {selectedOptions.length > 0
+            ? props.options.find(
+                (option) => option.value === selectedOptions[0]
+              ).text +
+              (selectedOptions.length > 1
+                ? " e mais " + (selectedOptions.length - 1)
+                : "")
+            : "Selecione uma ou mais opções"}
+        </span>
         <div className="multi-select-icon">
           <i className="fas fa-chevron-down"></i>
         </div>
