@@ -3,25 +3,37 @@ import './LoginForm.scss'
 import { useState, useEffect } from 'react';
 import FloatLabel from '../../components/FloatLabel';
 import SubmitButton from '../../components/SubmitButton';
-import { FaFacebookSquare, FaApple } from 'react-icons/fa';
+import { FaFacebookSquare, FaApple, FaEye,FaEyeSlash  } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 
 export default function LoginForm() {
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     var isSingin = true;
 
-
     const alterLoginRegister = () => {
-        console.log(isSingin)
         const contElement = document.querySelector('.cont');
         if (contElement) {
             contElement.classList.toggle('s-signup', isSingin);
-            isSingin = !isSingin; // Alternando o valor de register após alterar a classe
+            isSingin = !isSingin;
         }
     };
+
+    const submitLogin = () => {
+        localStorage.setItem('user', email);
+        console.log('submit login', email, senha);
+        if (!email || !senha) {
+            
+            return;
+        }
+    }
+
+    const clickShowPassword = () => {
+        setShowPassword(!showPassword);
+    }
 
     return (
         <div id="container-login">
@@ -30,10 +42,12 @@ export default function LoginForm() {
                     <h2>LOGIN</h2>
                     <div className='sign-in-content'>
                         <FloatLabel label="Email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <FloatLabel label="Senha" name="senha" type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
+                        <FloatLabel label="Senha" name="senha" type={showPassword ? 'text' : 'password'} value={senha} onChange={(e) => setSenha(e.target.value)} />
+                        {showPassword ? <FaEye className='eye' size={20} color='black' onClick={clickShowPassword} /> : 
+                                        <FaEyeSlash className='eye' size={20} color='black' onClick={clickShowPassword} />}
                         <div className="forgot-pass"><a>Esqueci minha senha</a></div>
                         <span className="m-up">Não possui uma conta? <a className='loginCad' onClick={alterLoginRegister}>Cadastre-se</a></span>
-                        <SubmitButton label="Login" onClick={() => console.log('Login')} />
+                        <SubmitButton label="Login" onClick={submitLogin} />
                     </div>
                 </div>
                 <div className="sub-cont">
