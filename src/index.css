@@ -1,0 +1,44 @@
+:root {
+  --var-bg-nav-primary: #ffffff;
+  --var-bg-nav-hover:	#ffffff;
+  --bg-color-primary: #FFFFFF;
+  --bg-color-secondary: #48735F;
+  --bg-color-login: #5F967C;
+  --text-color-primary: #2F4A3D;
+  --text-color-secondary: #5CB1FF;
+}
+
+.pt-sans caption-regular {
+  font-family: "PT Sans Caption", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PT Sans Caption";
+}
+
+html,body{
+  height: 100%;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
