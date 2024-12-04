@@ -15,7 +15,7 @@ header {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 30px;
+        gap: 100px;
     }
 
     nav a{
@@ -24,11 +24,17 @@ header {
     }
 
     .left, .right {
-        width: 150px;
+        width: 350px;
         display: flex;
     }
 
     .right{
-        justify-content: flex-end;
+        padding-right: 20px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .left{
+        padding-left: 20px;
     }
 }

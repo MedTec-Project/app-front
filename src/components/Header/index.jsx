@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import './styles.css'
-import logo from "../../assets/images/logo.png";
-import LogoutButton from '../Logout';
 import { useContext } from 'react';
 import { AuthContext } from '../../auth/Context';
+import SearchInput from '../SearchInput';
+import { FaRegUser } from "react-icons/fa";
 
 export default function Header() {
 
@@ -18,7 +18,7 @@ export default function Header() {
                     <Link to="/agendamentos">Agendamentos</Link>
                     <Link to="/calendario">Calendário</Link>
                 </div>
-                <div className="right">right</div>
+                <div className="right"><SearchInput/><FaRegUser color='white' size={30}/></div>
                 {/* <Link to="/"><img src={logo} alt="Logo" className="header-logo" /></Link>
                 <ul>
                     <Link to="/">
