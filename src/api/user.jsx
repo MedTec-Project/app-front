@@ -1,13 +1,11 @@
 import api from './api';
 
 export const getUsers = async () => {
-  const response = await api.get('/api/v1/users');
-  return response.data;
+ 
 };
 
 export const getAllUsers = async () => {
-  const response = await api.get('/api/v1/user');
-  return response;
+ 
 }
 
 export const getContext = async () => {
@@ -16,8 +14,8 @@ export const getContext = async () => {
 };
 
 export const createUser = async (user) => {
-  const response = await api.post('/api/v1/user', user);
-  return response.data;
+  const response = await api.post('/api/cadastrar', user);
+  return response;
 };
 
 export const updateUser = async (id, user) => {
@@ -31,14 +29,6 @@ export const deleteUser = async (id) => {
 
 export const loginUser = async (email, senha) => {
   const body = { email, senha };
-  const response = await api.post('/api/login', body, {
-      headers: { 'Content-Type': 'application/json' },
-  });
+  const response = await api.post('/api/login', body)
   return response;
 };
-
-export const getUserBreeds = async (id) => {
-  const response = await api.get(`/api/v1/user/${id}/breeds`);
-  console.log(response)
-  return response;
-}

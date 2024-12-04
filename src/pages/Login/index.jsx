@@ -8,6 +8,7 @@ import { FcGoogle } from "react-icons/fc";
 import {loginUser, createUser} from '../../api/user';
 import { AuthContext } from '../../auth/Context';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const { login } = useContext(AuthContext);
@@ -18,16 +19,14 @@ export default function Login() {
     const [telefone, setTelefone] = useState('');
 
     const [isLoading, setIsLoading] = useState(false);
-
+    const navigate = useNavigate();
     var isSingin = true;
 
-
     const alterLoginRegister = () => {
-        console.log(isSingin)
         const contElement = document.querySelector('.cont');
         if (contElement) {
             contElement.classList.toggle('s-signup', isSingin);
-            isSingin = !isSingin; // Alternando o valor de register após alterar a classe
+            isSingin = !isSingin;
         }
     };
 
@@ -38,22 +37,23 @@ export default function Login() {
         setTelefone('');
     }
 
-    async function logar() {
+    const logar = async () => {
         try {
             setIsLoading(true);
             const response = await loginUser(email, senha)
-            if(response.token){
-                login(response.token);
+            if(response){
+                navigate('/')
+                login(response);
+                limparFormulario();
             }
         } catch (error) {
-            toast(error);
+            toast(error.response.data.mensagem);
         } finally {
             setIsLoading(false);
         }
-        limparFormulario();
     }
 
-    async function criarConta() {
+    const criarConta = async () => {
         const user = {
             nome: nome,
             email: email,
@@ -63,13 +63,16 @@ export default function Login() {
         try {
             setIsLoading(true);
             const response = await createUser(user);
-            console.log(response);
+             if(response.status === 201){
+                toast('Usuário cadastrado com sucesso!')
+                logar()
+             }
         } catch (error) {
             console.log(error)
+            toast(error)
         } finally {
             setIsLoading(false);
         }
-
     }
 
     return (
