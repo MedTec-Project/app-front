@@ -6,7 +6,6 @@ export default function Medice(){
     return(
         <div>
         Medicamentos
-        <button onClick={() => setAbrirModal(true)}>AAAA</button>
         <MediceForm show={abrirModal} handleClose={() => setAbrirModal(false)} />
         </div>
     )
