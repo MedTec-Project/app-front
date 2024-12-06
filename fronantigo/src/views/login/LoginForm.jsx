@@ -5,11 +5,13 @@ import FloatLabel from '../../components/FloatLabel';
 import SubmitButton from '../../components/SubmitButton';
 import { FaFacebookSquare, FaApple } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
+import  UserService  from '../../service/UserService';
 
 export default function LoginForm() {
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     var isSingin = true;
 
@@ -23,6 +25,23 @@ export default function LoginForm() {
         }
     };
 
+    async function logar(){
+        const user = {
+            email: email,
+            senha: senha
+        }
+        try {
+            setIsLoading(true);
+            const response =  await UserService().login(user);
+            console.log(response);
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setIsLoading(false);
+        }
+        
+    }
+
     return (
         <div id="container-login">
             <div className='cont'>
@@ -33,7 +52,7 @@ export default function LoginForm() {
                         <FloatLabel label="Senha" name="senha" type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
                         <div className="forgot-pass"><a>Esqueci minha senha</a></div>
                         <span className="m-up">Não possui uma conta? <a className='loginCad' onClick={alterLoginRegister}>Cadastre-se</a></span>
-                        <SubmitButton label="Login" onClick={() => console.log('Login')} />
+                        <SubmitButton label="Login" onClick={logar} />
                     </div>
                 </div>
                 <div className="sub-cont">
