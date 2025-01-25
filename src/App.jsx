@@ -7,7 +7,7 @@ import Layout from './components/Layout/index';
 import Profile from './pages/Profile';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Medice from './pages/Medice/Medice';
+import Medications from './pages/Medications/Medications';
 
 function App() {
 
@@ -26,7 +26,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path='/medicamentos' element={<Medice />} />
+            <Route path='/medicamentos' element={<Medications />} />
         </Route>
         {user ? '' : <Route path="/login" element={<Login />} />}
       </Routes>
