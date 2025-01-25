@@ -41,9 +41,9 @@ export default function Login() {
         try {
             setIsLoading(true);
             const response = await loginUser(email, senha)
-            if(response){
+            if(response && response.data) {
                 navigate('/')
-                login(response);
+                login(response.data.mensagem);
                 limparFormulario();
             }
         } catch (error) {
