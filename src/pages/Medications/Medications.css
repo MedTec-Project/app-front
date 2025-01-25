@@ -1,0 +1,218 @@
+
+
+.medications-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 90vh;
+}
+
+
+.medications-filter {
+    margin-bottom: 1.5rem;
+
+}
+
+
+.medications-filter-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    color: var(--bg-color-secondary);
+    border: 1px solid var(--text-color-primary);
+    background-color: var(--bg-color-primary);
+    height: 50rem;
+    width: 30rem;
+    margin-right: 1rem;
+    margin-left: 4rem;
+    border-radius: 8px;
+    margin-top: 3rem;
+    font-family: "Inter", sans-serif;
+}
+
+.medications-filter-container h1 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--bg-color-header-primary);
+}
+
+.medications-filter-container h1:after {
+    content: "";
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 1rem;
+    border-radius: 50%;
+}
+
+.medications-container h2 {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+}
+
+.medications-filter-container input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin-right: 1rem;
+    border-radius: 5px;
+    border: 1px solid #8C8C8C;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+
+.medications-filter-checkboxm, .medications-filter-checkbox label {
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+
+
+
+
+input[type="checkbox"]:checked {
+    background-color: var(--bg-color-secondary);
+}
+
+.medications-filter-checkbox {
+    margin-bottom: 0.5rem;
+}
+
+
+.medications-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 90vh;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+
+.medications-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: row;
+    width: 25rem;
+}
+
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 3rem;
+    border-bottom: 1px solid #E0E0E0;
+    background-color: #F9F9F9;
+    cursor: pointer;
+    width: 100%;
+    border-top-left-radius: 80px;
+    border-top-right-radius: 144px;
+}
+.tab-item:first-child {
+    z-index: 1;
+}
+.tab-item:last-child {
+    transform: translateX(-30px) translateY(-5px);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.favorite-icon {
+    margin-left: 0.5rem;
+}
+
+.tab-item:hover {
+    background-color: #E0E0E0;
+}
+
+.tab-item h3 {
+    font-size: 1.1rem;
+    color: #454545;
+}
+
+.tab-item.selected {
+    background-color: #EDEDED;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    flex: 1;
+
+}
+
+.medications-list-container {
+    background-color: #F9F9F9;
+    max-width: 1100px;
+    height: 100%;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+    border-top-right-radius: 30px;
+    min-height: 110vh;
+    padding: 1rem 3rem;
+}
+
+.inputs-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.search-input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    background-color: var(--bg-color-primary);
+    border: 1px solid var(--bg-color-secondary);
+    border-radius: 15px;
+}
+
+.search-input-container input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    width: 80%;
+    padding: 0.5rem;
+    font-size: 1rem;
+
+}
+
+.search-input-container input::placeholder {
+    color: var(--bg-color-secondary);
+}
+
+.search-input-container img {
+    margin-left: 1rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.sort-input-container {
+    height: 40px;
+    width: 150px;
+    margin-left: 1rem;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
