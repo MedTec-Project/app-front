@@ -1,7 +1,7 @@
 header {
     width: 100%;
     height: 80px;
-    background-color: var(--bg-color-header-primary);
+    background-color: var(--color-light);
     
     nav{
         height: 100%;

@@ -105,7 +105,7 @@
     width: 100%;
 }
 .medication-button button {
-    background-color: var(--bg-color-secondary);
+    background-color: var(--color-regular);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -126,7 +126,7 @@
 }
 
 .medication-button button:hover {
-    background-color: var(--bg-color-login);
+    background-color: var(--color-light);
     transition: 0.3s;
 }
 

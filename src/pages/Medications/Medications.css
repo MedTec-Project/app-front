@@ -20,9 +20,9 @@
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
-    color: var(--bg-color-secondary);
-    border: 1px solid var(--text-color-primary);
-    background-color: var(--bg-color-primary);
+    color: var(--color-regular);
+    border: 1px solid var(--color-secondary);
+    background-color: var(--color-primary);
     height: 50rem;
     width: 30rem;
     margin-right: 1rem;
@@ -35,7 +35,7 @@
 .medications-filter-container h1 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid var(--bg-color-header-primary);
+    border-bottom: 1px solid var(--color-light);
 }
 
 .medications-filter-container h1:after {
@@ -74,7 +74,7 @@
 
 
 input[type="checkbox"]:checked {
-    background-color: var(--bg-color-secondary);
+    background-color: var(--color-regular);
 }
 
 .medications-filter-checkbox {
@@ -176,8 +176,8 @@ input[type="checkbox"]:checked {
     flex-direction: row;
     align-items: center;
     width: 100%;
-    background-color: var(--bg-color-primary);
-    border: 1px solid var(--bg-color-secondary);
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-regular);
     border-radius: 15px;
 }
 
@@ -192,7 +192,7 @@ input[type="checkbox"]:checked {
 }
 
 .search-input-container input::placeholder {
-    color: var(--bg-color-secondary);
+    color: var(--color-regular);
 }
 
 .search-input-container img {
