@@ -12,7 +12,8 @@
     width: 900px;
     height: 550px;
     background: #fff;
-    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(102, 101, 101, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
+    border-radius: 10px;
   }
   
   .form{
@@ -227,7 +228,7 @@
     height: 100%;
 
     p{
-      margin-bottom: -30px;
+      margin-bottom: -40px;
       color: var(--color-secondary);
       z-index: 3;
       font-size: 13px;
@@ -240,7 +241,7 @@
     align-items: center;
     background-color: var(--color-primary);
     color: black;
-    width: 229px;
+    width: 200px;
     height: 105px;
     gap: 10px;
     padding-top: 25px;
