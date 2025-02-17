@@ -35,6 +35,12 @@ header {
     }
 
     .left{
-        padding-left: 20px;
+        padding-left: 30px;
+        padding-top: 10px;
     }
+}
+
+.logo-header {
+    width: 3.5rem;
+    height: 3rem;
 }
