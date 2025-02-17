@@ -24,7 +24,7 @@ export default function Home() {
           <button><img src={nurseIcon} alt='nurse' className='home-nav-icon'/></button>
         </Link>
         <Link to='/'>
-          <button style={{width: '6rem', height: '5rem', transform: 'translateY(-1rem)'}}><img src={homeFigma} alt='home' className='home-nav-icon'/></button>
+          <button><img src={homeFigma} alt='home' className='home-nav-icon'/></button>
         </Link>
         <Link to='/'>
           <button><img src={pillIcon} alt='ill' className='home-nav-icon'/></button>
