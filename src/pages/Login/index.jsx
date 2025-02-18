@@ -41,9 +41,9 @@ export default function Login() {
         try {
             setIsLoading(true);
             const response = await loginUser(email, senha)
-            if(response){
+            if(response && response.data) {
                 navigate('/')
-                login(response);
+                login(response.data.mensagem);
                 limparFormulario();
             }
         } catch (error) {
@@ -94,10 +94,10 @@ export default function Login() {
                         <div className="img-text">
                             <p>Faça login facilmente!</p>
                             <div className='singin-social-media'>
-                                <a style={{ paddingTop: 8 + 'px' }}><FaFacebookSquare size={40}
+                                <a style={{ paddingTop: 8 + 'px' }}><FaFacebookSquare size={30}
                                     color='blue' /></a>
-                                <a style={{ paddingTop: 8 + 'px' }}><FcGoogle size={40} /></a>
-                                <a><FaApple size={40} /></a></div>
+                                <a style={{ paddingTop: 8 + 'px' }}><FcGoogle size={30} /></a>
+                                <a><FaApple size={30} /></a></div>
                         </div>
                     </div>
                     <div className="form sign-up">
