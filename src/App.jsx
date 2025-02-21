@@ -7,8 +7,8 @@ import Layout from './components/Layout/index';
 import Profile from './pages/Profile';
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Medications from './pages/Medications/Medications';
 import Medicine from "./pages/Medicine/Show/Medicine.jsx";
+import ResetPassword from './pages/Forgot_Password/index.jsx';
 
 function App() {
 
@@ -27,10 +27,11 @@ function App() {
                 <Route element={<Layout/>}>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/profile" element={<Profile/>}/>
-                    <Route path='/medicamentos' element={<Medications/>}/>
+                    <Route path='/medicamentos/:id' element={<Medicine/>}/>
                     <Route path='/medicamentos/:id' element={<Medicine/>}/>
                 </Route>
-                {user ? '' : <Route path="/login" element={<Login/>}/>}
+                <Route path="/login" element={<Login/>}/>
+                <Route path='/resetpassword' element={<ResetPassword/>}/>
             </Routes>
             <ToastContainer
                 position="bottom-center"
