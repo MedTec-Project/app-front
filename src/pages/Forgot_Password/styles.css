@@ -97,3 +97,17 @@
     text-decoration: underline;
 }
 
+.Link {
+    width: 80px;
+    height: 20px;
+    border-radius: 7px;
+    background-color: rgb(190, 188, 188);
+    color: white;
+    display: flex;
+    font-size: 13px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    text-decoration: none;
+    margin-left: 180px;
+}

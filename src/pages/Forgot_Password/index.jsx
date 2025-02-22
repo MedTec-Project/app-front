@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css'
 import FloatLabel from '../../components/FloatLabel';
 import SubmitButton from '../../components/SubmitButton';
@@ -34,7 +35,7 @@ export default function ResetPassword() {
                 <p>Enviaremos a você por e-mail um link que poderá redefinir sua senha se você tiver problemas para fazer login.</p>
                 <FloatLabel label="E-mail" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <SubmitButton label="ENVIAR" onClick={handleResetPassword} isLoading={isLoading} />
-                <a className="cancel-link" href="/login">Cancelar</a>
+                <Link className='Link' to="/login">Cancelar</Link>
             </div>
         </div>
     </div>

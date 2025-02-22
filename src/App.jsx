@@ -9,6 +9,7 @@ import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Medicine from "./pages/Medicine/Show/Medicine.jsx";
 import ResetPassword from './pages/Forgot_Password/index.jsx';
+import Medications from './pages/Medications/Medications';
 
 function App() {
 
@@ -27,10 +28,10 @@ function App() {
                 <Route element={<Layout/>}>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/profile" element={<Profile/>}/>
-                    <Route path='/medicamentos/:id' element={<Medicine/>}/>
+                    <Route path='/medicamentos' element={<Medications/>}/>
                     <Route path='/medicamentos/:id' element={<Medicine/>}/>
                 </Route>
-                <Route path="/login" element={<Login/>}/>
+                {user ? '' : <Route path="/login" element={<Login/>}/>}
                 <Route path='/resetpassword' element={<ResetPassword/>}/>
             </Routes>
             <ToastContainer
