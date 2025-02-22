@@ -8,8 +8,9 @@ import Profile from './pages/Profile';
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Medicine from "./pages/Medicine/Show/Medicine.jsx";
-import ResetPassword from './pages/Forgot_Password/index.jsx';
+import ResetPassword from './pages/ForgotPassword/index.jsx';
 import Medications from './pages/Medications/Medications';
+import Entry from './pages/Entry/index.jsx'
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
                 </Route>
                 {user ? '' : <Route path="/login" element={<Login/>}/>}
                 <Route path='/resetpassword' element={<ResetPassword/>}/>
+                <Route path='/entry' element={<Entry/>}/>
             </Routes>
             <ToastContainer
                 position="bottom-center"
