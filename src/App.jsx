@@ -8,9 +8,9 @@ import Profile from './pages/Profile';
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Medicine from "./pages/Medicine/Show/Medicine.jsx";
-import ResetPassword from './pages/ForgotPassword/index.jsx';
+import ResetPassword from './pages/ForgotPassword/ForgotPassword.jsx';
 import Medications from './pages/Medications/Medications';
-import Entry from './pages/Entry/index.jsx'
+import Entry from './pages/Entry/Entry.jsx'
 
 function App() {
 

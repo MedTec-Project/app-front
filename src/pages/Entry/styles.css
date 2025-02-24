@@ -1,0 +1,50 @@
+.entry-screen {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--color-light);
+}
+
+.entry-screen h2 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+    margin-top: 20px;
+}
+
+.entry-screen-card {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.card-option-paciente {
+    width: 478px;
+    height: 506px;
+    background-color: rgb(255, 255, 255);
+    margin: 30px;
+    border-radius: 30px;
+    text-align: center;
+    padding-top: 50px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.card-option-paciente h1 {
+    font-size: 50px;
+    color: #B0B0B0;
+}
+
+.entry-text {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 9.5vh;
+}
+
+.img-option-paciente img{
+    width: 300px;
+    height: 300px;
+    margin-top: 30px;
+}
