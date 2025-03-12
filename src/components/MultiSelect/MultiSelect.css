@@ -1,0 +1,77 @@
+.multi-select-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-secondary);
+    border-radius: 15px;
+    justify-content: space-between;
+}
+
+.multi-select-box {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.multi-select-box span {
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.multi-select-arrow {
+    width: 12px;
+    transition: transform 0.3s ease;
+}
+
+.multi-select-arrow.rotate {
+    transform: rotate(180deg);
+}
+
+.multi-select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    margin: 5px 0;
+    padding: 0;
+    z-index: 10;
+}
+
+.multi-select-option {
+    padding: 0 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s ease;
+}
+
+.multi-select-option:hover {
+    background-color: #ddd;
+}
+
+.multi-select-option.selected {
+
+}
+
+.multi-select-option input {
+    margin-right: 8px;
+    width: 15px;
+}
+
+.multi-select-container {
+    font-size: 0.8rem;
+}

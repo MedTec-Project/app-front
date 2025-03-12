@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "PT Sans Caption";
+  font-family: "Inter", sans-serif;
 }
 html{
   margin: 0;
@@ -18,6 +18,9 @@ html{
   --color-light: #5F967C;
   --color-hover: #7CC4A2;
   --color-weak: #95EDC4;
+  --color-success: #16BF5A;
+  --color-danger: #CB0808;
+  --color-warning: #ECCD2C;
   
   --text-color-secondary: #5CB1FF;
 

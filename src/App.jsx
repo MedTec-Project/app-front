@@ -4,7 +4,6 @@ import Login from './pages/Login';
 import {AuthProvider} from './auth/Context';
 import React, {useEffect} from 'react';
 import Layout from './components/Layout/index';
-import Profile from './pages/Profile';
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Medications from './pages/Medications/Medications';
@@ -26,7 +25,6 @@ function App() {
             <Routes>
                 <Route element={<Layout/>}>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
                     <Route path='/medicamentos' element={<Medications/>}/>
                     <Route path='/medicamentos/:id' element={<Medicine/>}/>
                 </Route>

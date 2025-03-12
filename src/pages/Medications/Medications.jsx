@@ -6,6 +6,8 @@ import search from "../../assets/icons/search.png";
 import paracetamol from "../../assets/images/paracetamol.png";
 import MedicationCard from "../../components/MedicationCard/MedicationCard.jsx";
 import Select from "../../components/Select/Select.jsx";
+import ModalRegister from "../../components/ModalRegister/ModalRegister.jsx";
+import ModalRegisterMedicine from "./ModalRegisterMedicine/ModalRegisterMedicine.jsx";
 
 export default function Medications() {
     const [medications, setMedications] = useState([
@@ -21,7 +23,7 @@ export default function Medications() {
         { id: "type", label: "Tipo" },
         { id: "pills", label: "Comprimidos" }
     ]);
-
+    const [isOpen, setIsOpen] = useState(false);
     const [sort, setSort] = useState(sortOptions[0]);
     const [filters, setFilters] = useState({
         brands: {
@@ -57,10 +59,23 @@ export default function Medications() {
         setSort(sortOptions.find(option => option.id === e.target.value));
     };
 
+    const handleOpenModal = () => {
+        setIsOpen(true);
+    };
+    const handleClose = () => {
+        setIsOpen(false);
+    };
 
+    const handleSubmit = (medicamento) => {
+        console.log(medicamento);
+    }
+    const handleClean = () => {
+        console.log("limpar")
+    }
 
     return (
         <div className="medications-container">
+            <ModalRegisterMedicine isOpen={isOpen} handleClose={handleClose} handleSubmit={handleSubmit} handleClean={handleClean} />
             <div className="medications-filter-container">
                 <h2>Filtros</h2>
                 <FilterSection title="Marca" options={brandOptions} category="brands" onChange={handleFilterChange}/>
@@ -92,6 +107,7 @@ export default function Medications() {
                                 med={med}
                                 selected={selected}
                                 setSelected={setSelected}
+                                handleOpenModal={handleOpenModal}
                             />
                         ))}
                     </div>

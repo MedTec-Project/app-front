@@ -3,7 +3,7 @@ import heart from "../../assets/icons/favorito.png";
 import calendar from "../../assets/icons/calendar.png";
 import {useNavigate} from "react-router-dom";
 
-export default function MedicationCard({med, selected, setSelected}) {
+export default function MedicationCard({med, selected, setSelected, handleOpenModal}) {
 
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ export default function MedicationCard({med, selected, setSelected}) {
 
     const handleClickAgenda = (e) => {
         e.stopPropagation();
-        console.log("Agendar")
+        handleOpenModal();
     }
     return (
         <div
