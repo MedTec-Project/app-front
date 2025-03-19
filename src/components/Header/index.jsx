@@ -15,7 +15,7 @@ export default function Header() {
                 <div className="left">left</div>
                 <div className="mid">
                     <Link to="/medicamentos">Medicamentos</Link>
-                    <Link to="/agendamentos">Agendamentos</Link>
+                    <Link to="/agendamento">Agendamentos</Link>
                     <Link to="/calendario">Calendário</Link>
                 </div>
                 <div className="right"><SearchInput/><FaRegUser color='white' size={30}/></div>
