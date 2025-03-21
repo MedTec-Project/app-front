@@ -2,24 +2,29 @@ import { useState } from "react";
 import "./MultiSelect.css";
 import arrow from "../../assets/icons/arrow-down.png";
 
-export default function MultiSelect({ options, placeholder, onSelect }) {
+export default function MultiSelect({ options, placeholder, onSelect, label, required }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleSelect = (option) => {
-        // Verifica se a opção já foi selecionada
         const newSelectedOptions = selectedOptions.includes(option)
-            ? selectedOptions.filter((item) => item !== option) // Remove se já estiver selecionada
-            : [...selectedOptions, option]; // Adiciona se não estiver selecionada
+            ? selectedOptions.filter((item) => item !== option)
+            : [...selectedOptions, option];
 
         setSelectedOptions(newSelectedOptions);
 
-        // Passa as opções selecionadas para o callback onSelect, se fornecido
         if (onSelect) onSelect(newSelectedOptions);
     };
 
     return (
         <div className="multi-select-container">
+            {label && (
+                <label className="multi-select-label">
+                    {label}
+                    {required && <span style={{ color: 'red', marginLeft: '4px' }}>*</span>}
+                </label>
+            )}
+
             <div
                 className="multi-select-box"
                 onClick={() => setIsOpen(!isOpen)}

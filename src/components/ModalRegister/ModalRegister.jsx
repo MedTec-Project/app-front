@@ -4,11 +4,11 @@ import {AiOutlineClose} from "react-icons/ai";
 import {useState} from "react";
 import {TbCheck, TbTrashOff} from "react-icons/tb";
 
-export default function ModalRegister({ isOpen, handleClose, handleSubmit, handleClean, labelSubmit, labelCancel, children }) {
+export default function ModalRegister({ isOpen, handleClose, handleSubmit, handleClean, labelSubmit, labelCancel, children, width, height }) {
 
     return (
         <div className="modal-overlay" style={{display: isOpen ? "block" : "none"}}>
-            <div className="modal-register">
+            <div className="modal-register" style={{ width: width ? width : "90rem", height: height ? height : "40rem" }}>
                 <div className="modal-register-content">
                     <div className="modal-register-header">
                         <div className="modal-register-title">

@@ -14,9 +14,9 @@ export default function Login() {
     const { login } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [nome, setNome] = useState('');
-    const [telefone, setTelefone] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
 
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -32,15 +32,15 @@ export default function Login() {
 
     const limparFormulario = () => {
         setEmail('');
-        setSenha('');
-        setNome('');
-        setTelefone('');
+        setPassword('');
+        setName('');
+        setPhone('');
     }
 
     const logar = async () => {
         try {
             setIsLoading(true);
-            const response = await loginUser(email, senha)
+            const response = await loginUser(email, password)
             if(response && response.data) {
                 navigate('/')
                 login(response.data.mensagem);
@@ -55,10 +55,10 @@ export default function Login() {
 
     const criarConta = async () => {
         const user = {
-            nome: nome,
+            name: name,
             email: email,
-            telefone: telefone,
-            senha: senha
+            phone: phone,
+            password: password
         }
         try {
             setIsLoading(true);
@@ -82,8 +82,8 @@ export default function Login() {
                     <h2>LOGIN</h2>
                     <div className='sign-in-content'>
                         <FloatLabel label="Email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <FloatLabel label="Senha" name="senha" type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
-                        <div className="forgot-pass"><a>Esqueci minha senha</a></div>
+                        <FloatLabel label="Senha" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <div className="forgot-pass"><a>Esqueci minha Senha</a></div>
                         <span className="m-up">Não possui uma conta? <a className='loginCad' onClick={alterLoginRegister}>Cadastre-se</a></span>
                         <SubmitButton label="Login" onClick={logar} />
                     </div>
@@ -103,10 +103,10 @@ export default function Login() {
                     <div className="form sign-up">
                         <h2>Sign Up</h2>
                         <div className='sign-in-content'>
-                            <FloatLabel label="Nome" name="nome" type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
+                            <FloatLabel label="Nome" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                             <FloatLabel label="Email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <FloatLabel label="Telefone" name="telefone" type="phone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
-                            <FloatLabel label="Senha" name="senha" type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
+                            <FloatLabel label="Telefone" name="phone" type="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                            <FloatLabel label="Senha" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             <span className="m-up">Já possui uma conta? <a className='loginCad' onClick={alterLoginRegister}>Login</a></span>
                             <SubmitButton label="Criar" onClick={criarConta} />
                         </div>

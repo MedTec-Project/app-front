@@ -68,8 +68,8 @@
 }
 
 .multi-select-option input {
-    margin-right: 8px;
-    width: 15px;
+    margin-right: 8px !important;
+    width: 15px !important;
 }
 
 .multi-select-container {

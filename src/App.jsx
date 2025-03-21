@@ -7,7 +7,7 @@ import Layout from './components/Layout/index';
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Medications from './pages/Medications/Medications';
-import Medicine from "./pages/Medicine/Show/Medicine.jsx";
+import Medicine from "./pages/Medications/Show/Medicine.jsx";
 
 function App() {
 
