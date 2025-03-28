@@ -14,12 +14,13 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
     const [symptoms, setSymptoms] = useState([]);
     const [dosage, setDosage] = useState(0.0);
     const [description, setDescription] = useState("");
-    const [medicineCategory, setMedicineCategory] = useState(null);
+    const [medicineCategory, setMedicineCategory] = useState(1);
     const [imageBase64, setImageBase64] = useState(null);
     const [registrationNumber, setRegistrationNumber] = useState("");
-    const [dosageType, setDosageType] = useState(null);
-    const [pharmaceuticalForm, setPharmaceuticalForm] = useState(null);
+    const [dosageType, setDosageType] = useState(1);
+    const [pharmaceuticalForm, setPharmaceuticalForm] = useState(1);
     const [previewImage, setPreviewImage] = useState(null);
+    const [content, setContent] = useState(null);
 
     const [symptomsOptions, setSymptomsOptions] = useState([]);
 
@@ -99,7 +100,8 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
             imageBase64,
             registrationNumber,
             dosageType,
-            pharmaceuticalForm
+            pharmaceuticalForm,
+            content
         };
 
         medicine.symptoms = medicine.symptoms.map(symptom => {
@@ -112,22 +114,43 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
     };
 
     return (
-        <ModalRegister isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit} handleClean={handleClean} labelSubmit={"Cadastrar"} labelCancel={"Excluir"} height={"50rem"}>
+        <ModalRegister isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit} handleClean={handleClean} width={"80rem"} labelSubmit={"Cadastrar"} labelCancel={"Excluir"} height={"50rem"}>
             <div className="form-group">
-                <TextInput label="Nome" required={true} placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
-            </div>
-            <div className="form-group">
-                <TextInput label="Dosagem" required={true} placeholder="Dosagem" value={dosage} onChange={(e) => setDosage(parseFloat(e.target.value))} />
+                <TextInput label="Nome" required={true} value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="dosageType">Tipo de Dosagem</label>
-                <Select options={dosageTypeOptions} required={true} placeholder="Tipo de Dosagem" onSelect={(e) => setDosageType(e.id)} />
+                <Select options={dosageTypeOptions} required={true}  onSelect={(e) => setDosageType(e.id)} />
+            </div>
+            <div className="form-group input-numeric">
+                <TextInput label="Dosagem" required={true} value={dosage} onChange={(e) => setDosage(parseFloat(e.target.value))} />
             </div>
             <div className="form-group">
-                <TextInput label="Fabricante" placeholder="Fabricante" value={brand} onChange={(e) => setBrand(e.target.value)} />
+                <label htmlFor="categoria">Categoria</label>
+                <Select options={medicineCategoryOptions} required={true} onSelect={(e) => setMedicineCategory(e.id)} />
             </div>
             <div className="form-group">
-                <TextInput label="Nr. Registro" placeholder="Nr. Registro" value={registrationNumber} onChange={(e) => setRegistrationNumber(e.target.value)} />
+                <label htmlFor="form">Forma Farmaceutica</label>
+                <Select options={pharmaceuticalFormOptions} required={true} onSelect={(e) => setPharmaceuticalForm(e.id)} />
+            </div>
+            <div className="form-group input-numeric">
+                <TextInput label="Conteúdo" placeholder="Quantidade" value={content} onChange={(e) => setContent(parseFloat(e.target.value))} />
+            </div>
+            <div className="form-group">
+                <TextInput label="Fabricante" value={brand} onChange={(e) => setBrand(e.target.value)} />
+            </div>
+            <div className="form-group" style={{ maxWidth: "20rem" }}>
+                <label htmlFor="sintomas">Sintomas</label>
+                <MultiSelect options={symptomsOptions} onSelect={(selectedSymptoms) => setSymptoms(selectedSymptoms)} />
+            </div>
+            <div className="form-group input-numeric">
+                <TextInput label="Nr. Registro" value={registrationNumber} onChange={(e) => setRegistrationNumber(e.target.value)} />
+            </div>
+            <div className="form-group" style={{ gridColumn: "span 2", gridRow: "span 2" }}>
+                <div className="text-input-container">
+                    <label htmlFor="description">Descrição</label>
+                    <textarea value={description} placeholder="Escreva as observações..." onChange={(e) => setDescription(e.target.value)} />
+                </div>
             </div>
             <div className="form-group image">
                 <input type="file" id="imageUpload" accept="image/*" style={{ display: "none" }} onChange={imageHandler} />
@@ -137,24 +160,6 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
                 </button>
                 <div className="image-container">
                     {previewImage && <img src={previewImage} alt="Imagem do medicamento" />}
-                </div>
-            </div>
-            <div className="form-group">
-                <label htmlFor="categoria">Categoria</label>
-                <Select options={medicineCategoryOptions} placeholder="Categoria" required={true} onSelect={(e) => setMedicineCategory(e.id)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="form">Forma Farmaceutica</label>
-                <Select options={pharmaceuticalFormOptions} placeholder="Forma Farmaceutica" required={true} onSelect={(e) => setPharmaceuticalForm(e.id)} />
-            </div>
-            <div className="form-group" style={{ maxWidth: "20rem" }}>
-                <label htmlFor="sintomas">Sintomas</label>
-                <MultiSelect options={symptomsOptions} placeholder="Sintomas" onSelect={(selectedSymptoms) => setSymptoms(selectedSymptoms)} />
-            </div>
-            <div className="form-group">
-                <div className="text-input-container">
-                    <label htmlFor="description">Descrição</label>
-                    <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
             </div>
         </ModalRegister>

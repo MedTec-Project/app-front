@@ -74,14 +74,7 @@ export default function Medications() {
     useEffect(() => {
         getMedicines().then((data) => {
             if (data) {
-                const medicines = data.map((medicine) => ({
-                    id: medicine.oid,
-                    name: medicine.name,
-                    type: medicine.medicineCategoryName,
-                    pills: medicine.dosage,
-                    image: medicine.imagePath
-                }));
-                setMedications(medicines);
+                setMedications(data);
             }
         });
     }, []);

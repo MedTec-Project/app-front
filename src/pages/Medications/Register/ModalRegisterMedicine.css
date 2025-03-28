@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    gap: 4rem 7rem;
+    gap: 3rem 5rem;
 }
 
 .modal-register-form {
@@ -19,11 +19,11 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: center;
 }
 
 textarea {
     resize: none;
+    height: 12rem;
 }
 
 .form-group label {
@@ -71,4 +71,8 @@ textarea {
 .modal-register-form input {
     width: 20rem;
     height: 2.8rem;
+}
+
+.input-numeric input {
+    width: 10rem;
 }
