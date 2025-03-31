@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 *{
   margin: 0;
@@ -11,14 +12,18 @@ html{
 }
 
 :root {
-  --bg-color-primary: #FFFFFF;
-  --bg-color-secondary: #48735F;
-  --bg-color-login: #5F967C;
+  --color-primary: #FFFFFF;
+  --color-secondary: #2F4A3D;
+  --color-regular: #48735F;
+  --color-light: #5F967C;
+  --color-hover: #7CC4A2;
+  --color-weak: #95EDC4;
   
-  --text-color-primary: #2F4A3D;
   --text-color-secondary: #5CB1FF;
 
-  --bg-color-header-primary: #5F967C;
+
+    --font-primary: "JetBrains Mono", monospace;
+
 }
 
 .pt-sans caption-regular {
