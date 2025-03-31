@@ -7,6 +7,7 @@ import Layout from './components/Layout/index';
 import Profile from './pages/Profile';
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Agendamento from './pages/Agendamento/agendamento';
 import Medicine from "./pages/Medicine/Show/Medicine.jsx";
 import ResetPassword from './pages/Forgot_Password/index.jsx';
 import Medications from './pages/Medications/Medications';
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path='/medicamentos' element={<Medications/>}/>
                     <Route path='/medicamentos/:id' element={<Medicine/>}/>
+                      <Route path='/agendamento' element={<Agendamento />} />
                 </Route>
                 {user ? '' : <Route path="/login" element={<Login/>}/>}
                 <Route path='/resetpassword' element={<ResetPassword/>}/>
