@@ -7,10 +7,10 @@ const PrivateRoute = () => {
   const { token } = useContext(AuthContext);
 
   if (token === null) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
-  return token ? <Outlet /> : <Navigate to="/login" />;
+  return token ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoute;
