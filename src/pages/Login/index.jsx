@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './LoginForm.scss'
 import { useState, useContext } from 'react';
 import FloatLabel from '../../components/FloatLabel';
@@ -83,7 +84,9 @@ export default function Login() {
                     <div className='sign-in-content'>
                         <FloatLabel label="Email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         <FloatLabel label="Senha" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        <div className="forgot-pass"><a>Esqueci minha Senha</a></div>
+                        <div className="forgot-pass">
+                            <Link to="/resetpassword">Esqueci minha senha</Link>
+                        </div>
                         <span className="m-up">Não possui uma conta? <a className='loginCad' onClick={alterLoginRegister}>Cadastre-se</a></span>
                         <SubmitButton label="Login" onClick={logar} />
                     </div>

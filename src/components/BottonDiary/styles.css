@@ -1,0 +1,19 @@
+.botton-all{
+    position: fixed;
+    top: 80%;
+    left: 80%;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    border-radius: 100%;
+}
+.botton-all:hover{
+    transition: all 0.3s ease;
+    transform: scale(1.1);  
+}
+.botton{
+    width: 70px;
+    height: 70px;
+    color: #48735F;
+    cursor: pointer;
+}

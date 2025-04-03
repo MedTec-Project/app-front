@@ -13,7 +13,7 @@ export default function Header() {
                 <div className="left"><img src={Logo_MedTec} alt='logo_medtec' className='logo-header'/></div>
                 <div className="mid">
                     <Link to="/medicamentos">Medicamentos</Link>
-                    <Link to="/agendamentos">Agendamentos</Link>
+                    <Link to="/agendamento">Agendamentos</Link>
                     <Link to="/calendario">Calendário</Link>
                 </div>
                 <div className="right">
