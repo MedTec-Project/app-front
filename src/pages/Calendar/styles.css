@@ -1,18 +1,40 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(240, 240, 240);  /* Cor de fundo para toda a tela */
+}
 .div-main{
-    background-color: aqua;
     display: flex;
 }
 .div-left{
-    background-color: red;
-    width: 400px;
-    padding: 30px;
+    width: 300px;
 }
-.block{
-    margin-top: 20px;
-    background-color: white;
-    height: 250px;
-    width: 320px;
-    border-radius: 20px;
+.position-blo{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 300px;
+}
+.block-cat{  
+    background-color: rgb(252, 252, 252);
+    height: 248px;
+    width: 90%;
+    margin-top: 53px;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(219, 219, 219);
+}
+.block-inf{
+  background-color: rgb(252, 252, 252);
+  height: 496px;
+  width: 90%;
+  margin-top: 20px;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(219, 219, 219);
 }
 .blo-tittle{
     height: 50px;
@@ -111,8 +133,99 @@
   color: rgb(22, 22, 22);
 }
 
+
+
+
 .div-right{
-    background-color: rgb(255, 0, 234);
-    width: 70%;
-    height: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.div-rig-calendar{
+  height: 100%;
+  width: 100%;
+  padding: 50px;
+}
+.but-tit{
+  border-width: 0px;
+  margin: 5px;
+  font-size: 25px;
+  height: 40px;
+  width: 40px;
+  font-weight: 400;
+  border-radius: 100%;
+  color: rgb(120, 158, 120);
+}
+.tittle{
+  text-decoration: none;
+  color: rgb(120, 158, 120);
+  font-size: 22px;
+}
+.rig.blo-calendar{
+  display: grid;
+  max-width: 60%;
+}
+
+.cal-main {
+  opacity: 1;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: scroll;
+  border-radius: 20px;
+}
+
+.cal-main::-webkit-scrollbar {
+  background-color: white;
+  height: 10px;
+  width: 0px;
+}
+
+.cal-main::-webkit-scrollbar-thumb {
+  background-color: rgb(145, 173, 145);
+  border-radius: 10px;
+}
+
+.cal-main::-webkit-scrollbar-vertical {
+  width: 0px;
+}
+
+.cal-main::-webkit-scrollbar-horizontal {
+  height: 10px;
+  background-color: white;
+}
+
+
+.rig-day-of-week,
+.rig-date-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: 60px;
+  font-size: 23px;
+}
+.rig-day-of-week > * {
+  font-size: 0.7em;
+  font-weight: 550;
+  width: 220px;
+  color: rgb(92, 139, 92);
+  letter-spacing: 0.1em;
+  font-variant: small-caps;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rig-date-grid{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: white;
+  height: 650px;
+}
+.but-dat{
+  background-color: white;
+  height: 120px;
+  width: 220px;
+  border-style: solid;
+  border-width: 0.1vw;
+  border-left: 0;
+  border-top: 0;
+  border-color: rgb(233, 233, 233);
 }

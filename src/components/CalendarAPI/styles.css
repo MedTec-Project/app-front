@@ -1,0 +1,74 @@
+.fc .fc-toolbar-title {
+    font-size: 2em;  /* Tamanho da fonte do título da barra de ferramentas */
+    color: #608562;  /* Cor do título */
+  }
+  .fc-button-primary{
+    background-color: red;
+  }
+  .fc-daygrid-day-number {
+    font-weight: bold;  /* Deixar os números dos dias mais destacados */
+  }
+  
+  .fc-daygrid-day {
+    background-color: #f9f9f9;  /* Cor de fundo dos dias */
+  }
+  
+  .fc-daygrid-day:hover {
+    background-color: #f3f3f3;  /* Cor de fundo quando o dia é sobrevoado */
+  }
+  
+  .fc-button-primary {
+    background-color: #464c6d; /* Cor do botão principal (mês, semana, dia) */
+    color: white;
+  }
+  
+  .fc-button-primary:hover {
+    background-color: #cf0000; /* Cor do botão ao passar o mouse */
+  }
+  .fc-col-header-cell-cushion{
+    color: #585858;
+    text-decoration: none;
+  }
+  .fc-daygrid-day-number{
+    color: #585858;
+    text-decoration: none;
+  }
+  #fc-dom-86{
+    color: #6f8a6f;
+    margin-left: 5px;
+    font-size: 25px;
+  }
+  .fc-prev-button.fc-button.fc-button-primary{
+    margin: 5px;
+    background-color: #608562;
+    border-style: none;
+  }
+  .fc-next-button.fc-button.fc-button-primary{
+    margin: 5px;
+    background-color: #608562;
+    border-style: none;
+  }
+  .fc-today-button.fc-button.fc-button-primary{
+    display: none;
+  }
+  .fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active{
+    margin: 5px;
+    width: 80px;
+    background-color: #608562;
+    border-style: none;
+  }
+  .fc-timeGridWeek-button.fc-button.fc-button-primary{
+    margin: 5px;
+    width: 80px;
+    background-color: #608562;
+    border-style: none;
+  }
+  .fc-timeGridDay-button.fc-button.fc-button-primary{
+    margin: 5px;
+    width: 80px;
+    background-color: #608562;
+    border-style: none;
+  }
+  .fc .fc-daygrid-day-frame{
+    height: 100%;
+  }

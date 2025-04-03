@@ -7,7 +7,6 @@ import Layout from './components/Layout/index';
 import Profile from './pages/Profile';
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Medice from './pages/Medice/Medice';
 import Calendar from './pages/Calendar';
 import Medicine from "./pages/Medicine/Show/Medicine.jsx";
 import ResetPassword from './pages/Forgot_Password/index.jsx';
