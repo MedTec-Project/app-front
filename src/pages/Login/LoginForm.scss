@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: var(--color-light);
+    background-color: var(--bg-color-login);
 
 .cont{
     overflow: hidden;
@@ -12,8 +12,7 @@
     width: 900px;
     height: 550px;
     background: #fff;
-    box-shadow: 0 19px 38px rgba(102, 101, 101, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-    border-radius: 10px;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
   
   .form{
@@ -26,7 +25,7 @@
     transition: transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
     h2{
-      color: var(--color-secondary);
+      color: var(--text-color-primary);
     }
   }
   
@@ -228,8 +227,8 @@
     height: 100%;
 
     p{
-      margin-bottom: -40px;
-      color: var(--color-secondary);
+      margin-bottom: -30px;
+      color: var(--text-color-primary);
       z-index: 3;
       font-size: 13px;
     }
@@ -239,9 +238,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-primary);
+    background-color: var(--bg-color-primary);
     color: black;
-    width: 200px;
+    width: 229px;
     height: 105px;
     gap: 10px;
     padding-top: 25px;
@@ -250,6 +249,7 @@
   }
 
   .loginCad{
+    color: var(--text-color-secondary);
     cursor: pointer;
   }
 
@@ -263,7 +263,7 @@
   }
 
   .forgot-pass{
-    color: var(--color-secondary);
+    color: var(--text-color-primary);
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -274,7 +274,7 @@
 
   .m-up, .m-in{
     font-size: 13px;
-    color: var(--color-secondary);
+    color: var(--text-color-primary);
     margin-top: -20px;
   }
 }

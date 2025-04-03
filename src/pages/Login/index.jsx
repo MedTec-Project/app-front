@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './LoginForm.scss'
 import { useState, useContext } from 'react';
 import FloatLabel from '../../components/FloatLabel';
@@ -42,9 +41,9 @@ export default function Login() {
         try {
             setIsLoading(true);
             const response = await loginUser(email, senha)
-            if(response && response.data) {
+            if(response){
                 navigate('/')
-                login(response.data.mensagem);
+                login(response);
                 limparFormulario();
             }
         } catch (error) {
@@ -84,9 +83,7 @@ export default function Login() {
                     <div className='sign-in-content'>
                         <FloatLabel label="Email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         <FloatLabel label="Senha" name="senha" type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
-                        <div className="forgot-pass">
-                            <Link to="/resetpassword">Esqueci minha senha</Link>
-                        </div>
+                        <div className="forgot-pass"><a>Esqueci minha senha</a></div>
                         <span className="m-up">Não possui uma conta? <a className='loginCad' onClick={alterLoginRegister}>Cadastre-se</a></span>
                         <SubmitButton label="Login" onClick={logar} />
                     </div>
@@ -97,10 +94,10 @@ export default function Login() {
                         <div className="img-text">
                             <p>Faça login facilmente!</p>
                             <div className='singin-social-media'>
-                                <a style={{ paddingTop: 8 + 'px' }}><FaFacebookSquare size={30}
+                                <a style={{ paddingTop: 8 + 'px' }}><FaFacebookSquare size={40}
                                     color='blue' /></a>
-                                <a style={{ paddingTop: 8 + 'px' }}><FcGoogle size={30} /></a>
-                                <a><FaApple size={30} /></a></div>
+                                <a style={{ paddingTop: 8 + 'px' }}><FcGoogle size={40} /></a>
+                                <a><FaApple size={40} /></a></div>
                         </div>
                     </div>
                     <div className="form sign-up">

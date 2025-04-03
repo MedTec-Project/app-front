@@ -1,7 +1,7 @@
 header {
     width: 100%;
     height: 80px;
-    background-color: var(--color-light);
+    background-color: var(--bg-color-header-primary);
     
     nav{
         height: 100%;
@@ -35,12 +35,6 @@ header {
     }
 
     .left{
-        padding-left: 30px;
-        padding-top: 10px;
+        padding-left: 20px;
     }
-}
-
-.logo-header {
-    width: 3.5rem;
-    height: 3rem;
 }

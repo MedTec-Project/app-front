@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    background-color: var(--color-light);
+    background-color: var(--bg-color-login);
 
 .cont{
     overflow: hidden;
@@ -25,7 +25,7 @@
     transition: transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
     h2{
-      color: var(--color-secondary);
+      color: var(--text-color-primary);
     }
   }
   
@@ -228,7 +228,7 @@
 
     p{
       margin-bottom: -30px;
-      color: var(--color-secondary);
+      color: var(--text-color-primary);
       z-index: 3;
       font-size: 13px;
     }
@@ -238,7 +238,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-primary);
+    background-color: var(--bg-color-primary);
     color: black;
     width: 229px;
     height: 105px;
@@ -263,7 +263,7 @@
   }
 
   .forgot-pass{
-    color: var(--color-secondary);
+    color: var(--text-color-primary);
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -274,7 +274,7 @@
 
   .m-up, .m-in{
     font-size: 13px;
-    color: var(--color-secondary);
+    color: var(--text-color-primary);
     margin-top: -20px;
   }
 }

@@ -5,13 +5,13 @@
 
     label {
         font-size: 18px;
-        color: var(--color-secondary);
+        color: var(--text-color-primary);
     }
 
     input{
         background-color: transparent;
         border: 0;
-        border-bottom: 1px solid var(--color-regular);
+        border-bottom: 1px solid var(--bg-color-secondary);
         outline: none;
     
         font-size: 15px;
