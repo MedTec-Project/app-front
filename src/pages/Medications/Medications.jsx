@@ -7,6 +7,7 @@ import MedicationCard from "../../components/MedicationCard/MedicationCard.jsx";
 import Select from "../../components/Select/Select.jsx";
 import ModalRegisterMedicine from "./Register/ModalRegisterMedicine.jsx";
 import {getMedicines, saveMedication} from "../../api/medication.jsx";
+import {toast} from "react-toastify";
 
 export default function Medications() {
     const [medications, setMedications] = useState([]);
@@ -64,7 +65,21 @@ export default function Medications() {
 
     const handleSubmit = (medicamento) => {
         setMedication(medicamento);
-        saveMedication(medicamento);
+        saveMedication(medicamento).then((data) => {
+            if (data) {
+                toast.success("Medicamento cadastrado com sucesso!");
+                handleClose();
+            }
+        }).catch((error) => {
+           if (error && error.response && error.response.data) {
+               if (error.response.data.mensagem instanceof Array) {
+                   var mensagem = error.response.data.mensagem.join(", ");
+                   toast.error(mensagem);
+               } else {
+                   toast.error(error.response.data.mensagem);
+               }
+           }
+        });
     }
 
     const handleClean = () => {
