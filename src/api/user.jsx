@@ -14,7 +14,7 @@ export const getContext = async () => {
 };
 
 export const createUser = async (user) => {
-  const response = await api.post('/api/cadastrar', user);
+  const response = await api.post('/api/register', user);
   return response;
 };
 
@@ -27,8 +27,8 @@ export const deleteUser = async (id) => {
   return api.delete(`/api/v1/user/${id}`);
 };
 
-export const loginUser = async (email, senha) => {
-  const body = { email, senha };
+export const loginUser = async (email, password) => {
+  const body = { email, password };
   const response = await api.post('/api/login', body)
   return response;
 };
