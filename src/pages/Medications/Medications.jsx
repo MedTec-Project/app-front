@@ -8,6 +8,7 @@ import Select from "../../components/Select/Select.jsx";
 import ModalRegisterMedicine from "./Register/ModalRegisterMedicine.jsx";
 import {getMedicines, saveMedication} from "../../api/medication.jsx";
 import {toast} from "react-toastify";
+import ModalRegisterScheduling from "../Agendamento/Register/ModalRegisterScheduling.jsx";
 
 export default function Medications() {
     const [medications, setMedications] = useState([]);
@@ -21,6 +22,7 @@ export default function Medications() {
         {id: "pills", label: "Comprimidos"}
     ]);
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenSchedulingModal, setIsOpenSchedulingModal] = useState(false);
     const [sort, setSort] = useState(sortOptions[0]);
     const [filters, setFilters] = useState({
         brands: {
@@ -57,8 +59,9 @@ export default function Medications() {
     };
 
     const handleOpenModal = () => {
-        setIsOpen(true);
+        setIsOpenSchedulingModal(true);
     };
+
     const handleClose = () => {
         setIsOpen(false);
     };
@@ -96,6 +99,8 @@ export default function Medications() {
 
     return (
         <div className="medications-container">
+            <ModalRegisterScheduling isOpen={isOpenSchedulingModal} handleClose={handleClose} handleSubmit={handleSubmit}
+                                     handleClean={handleClean}/>
             <ModalRegisterMedicine isOpen={isOpen} handleClose={handleClose} handleSubmit={handleSubmit}
                                    handleClean={handleClean}/>
             <div className="medications-filter-container">
