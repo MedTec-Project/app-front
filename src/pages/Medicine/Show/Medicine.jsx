@@ -91,39 +91,45 @@ export default function Medicine() {
 
             <div className="medicine-details">
                 <h2>Detalhes do Medicamento</h2>
-                <h3>{medication.name}</h3>
-                <p>
-                    {medication.details}
-                </p>
-                <ul>
-                    <li>Conteúdo: {medication.content}</li>
-                    <li>Categoria: {medication.category}</li>
-                    <li>Fabricante: {medication.manufacturer}</li>
-                    <li>Tipo: {medication.type}</li>
-                    <li>Uso: {medication.usageType}</li>
-                </ul>
+                <div className="medicine-details-container">
+                    <div className="medicine-details-content">
+                        <h3>{medication.name}</h3>
+                        <p>
+                            {medication.details}
+                        </p>
+                        <ul>
+                            <li>Conteúdo: {medication.content}</li>
+                            <li>Categoria: {medication.category}</li>
+                            <li>Fabricante: {medication.manufacturer}</li>
+                            <li>Tipo: {medication.type}</li>
+                            <li>Uso: {medication.usageType}</li>
+                        </ul>
 
-                <h3>Serve para os Sintomas:</h3>
-                <ul>
-                    {medication.symptoms.map((symptom, index) => (
-                        <li key={index}>{symptom}</li>
-                    ))}
-                </ul>
+                        <h4>Serve para os Sintomas:</h4>
+                        <ul>
+                            {medication.symptoms.map((symptom, index) => (
+                                <li key={index}>{symptom}</li>
+                            ))}
+                        </ul>
+                    </div>
 
-                <h3>Modo de uso:</h3>
-                <h4>Crianças:</h4>
-                <ul>
-                    {medication.usage.children.map((child, index) => (
-                        <li key={index}>{child}</li>
-                    ))}
-                </ul>
+                    <div className="medicine-details-content">
+                        <h3>Modo de uso:</h3>
+                        <h4>Crianças:</h4>
+                        <ul>
+                            {medication.usage.children.map((child, index) => (
+                                <li key={index}>{child}</li>
+                            ))}
+                        </ul>
 
-                <h4>Adultos:</h4>
-                <ul>
-                    {medication.usage.adults.map((adult, index) => (
-                        <li key={index}>{adult}</li>
-                    ))}
-                </ul>
+                        <h4>Adultos:</h4>
+                        <ul>
+                            {medication.usage.adults.map((adult, index) => (
+                                <li key={index}>{adult}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     );

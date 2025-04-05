@@ -1,6 +1,5 @@
 .medicine-container {
     font-family: "PT Sans Caption", sans-serif;
-    padding: 7rem;
     width: 100%;
     margin-top: 5rem;
 }
@@ -9,7 +8,7 @@
     display: flex;
     align-items: flex-start;
     gap: 40px;
-    margin-bottom: 5rem;
+    padding: 7rem 7rem 0 7rem;
 }
 
 .medicine-image-section {
@@ -70,6 +69,7 @@
     padding: 2rem;
     margin-left: 3rem;
 }
+
 .medicine-info h1 {
     font-size: 50px;
     font-weight: bold;
@@ -188,46 +188,62 @@
 
 .page-dot {
     display: inline-block;
-    width: 40px; /* Largura da linha */
-    height: 4px; /* Espessura da linha */
-    background-color: #d3d3d3; /* Cor padrão das linhas */
-    border-radius: 2px; /* Borda arredondada para suavizar */
+    width: 40px;
+    height: 4px;
+    background-color: #d3d3d3;
+    border-radius: 2px;
     transition: background-color 0.3s ease-in-out;
 }
 
 .page-dot.active {
     background-color: var(--color-secondary);
 }
+
 .medicine-details {
     margin-top: 30px;
-    padding: 20px;
-    background: #f5f5f5;
-    border-left: 5px solid #2e7d32;
+    padding: 20px 5rem;
 }
 
 .medicine-details h2 {
-    background: #2e7d32;
+    background: var(--color-secondary);
     color: white;
-    padding: 10px;
     font-size: 20px;
+    font-family: "PT Sans Caption", sans-serif;
+
+    padding: 10px 10px 10px 6rem;
 }
 
 .medicine-details h3 {
-    font-size: 18px;
+    font-size: 25px;
     margin-top: 20px;
-    color: #2e3d49;
+    font-family: "PT Sans Caption", sans-serif;
+    color: var(--color-secondary);
+    font-weight: bold;
 }
 
 .medicine-details ul {
     margin-left: 20px;
+    font-size: 18px;
+    font-family: "PT Sans Caption", sans-serif;
+
 }
 
 .medicine-details li {
     margin-bottom: 5px;
+    font-family: "PT Sans Caption", sans-serif;
+
 }
 
 .medicine-details h4 {
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 15px;
     color: #333;
+    font-family: "PT Sans Caption", sans-serif;
+}
+
+.medicine-details-container {
+    padding: 30px;
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
 }
