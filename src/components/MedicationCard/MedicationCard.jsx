@@ -3,7 +3,7 @@ import heart from "../../assets/icons/favorito.png";
 import calendar from "../../assets/icons/calendar.png";
 import {useNavigate} from "react-router-dom";
 
-export default function MedicationCard({med, selected, setSelected}) {
+export default function MedicationCard({med, selected, setSelected, handleOpenModal}) {
 
     const navigate = useNavigate();
 
@@ -18,17 +18,17 @@ export default function MedicationCard({med, selected, setSelected}) {
 
     const handleClickAgenda = (e) => {
         e.stopPropagation();
-        console.log("Agendar")
+        handleOpenModal();
     }
     return (
         <div
-            key={med.id}
-            className={`medication-card ${selected === med.id ? "selected" : ""}`}
+            key={med.oid}
+            className={`medication-card ${selected === med.oid ? "selected" : ""}`}
             onClick={handleClickCard}
         >
             <div className="medication-image-container">
                 <div className="medication-image">
-                    <img src={med.image} alt={med.name}/>
+                    <img src={`data:image/jpeg;base64,${med.imageBase64}`} alt={med.name} />
                 </div>
                 <div className="medication-favorite" onClick={handleClickFavorite}>
                     <img src={heart} alt="Favorito"/>
@@ -36,11 +36,11 @@ export default function MedicationCard({med, selected, setSelected}) {
             </div>
             <div className="medication-infos">
                 <div className="medication-type-tag">
-                    <span className={`tag ${med.type.toLowerCase()}`}>{med.type}</span>
+                    <span className="tag" style={{backgroundColor: med.medicineCategoryColor}}>{med.medicineCategoryName}</span>
                 </div>
                 <div className="medication-info">
-                    <h3>{med.name}</h3>
-                    <p>{med.pills} Comprimidos</p>
+                    <h3>{med.name} {med.dosage}{med.dosageTypeName}</h3>
+                    <p> {med.content} {med.pharmaceuticalFormName}</p>
                 </div>
                 <div className="medication-button" onClick={handleClickAgenda}>
                     <button>Agendar <img src={calendar} alt="Agendar"/></button>

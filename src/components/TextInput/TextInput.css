@@ -1,0 +1,26 @@
+.text-input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-input-container label {
+    font-size: 1rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.text-input-container input {
+    border-radius: 13px;
+    border: 2px solid var(--color-secondary);
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-regular);
+}
+
+.text-input-container textarea {
+    border-radius: 13px;
+    border: 2px solid var(--color-secondary);
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-regular);
+}
