@@ -6,6 +6,11 @@ export default function Calendar() {
     return (
         <div className='div-main'>
             <div className='div-left'>
+            <div className='position-blo'>
+                    <div className='pos-event'>
+                        <button className='but-event'>CRIAR EVENTO</button>
+                    </div>
+                </div>
                 <div className='position-blo'>
                     <div className='block-cat'>
                         <div className='blo-tittle'>
