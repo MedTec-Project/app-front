@@ -29,7 +29,7 @@ function App() {
                 <Route element={<Layout/>}>
                     <Route path="/" element={<Home/>}/>
                     <Route path='/medicamentos' element={<Medications/>}/>
-                    <Route path='/medicamentos/:id' element={<Medicine/>}/>
+                    <Route path='/medicamentos/:oid' element={<Medicine/>}/>
                     <Route path='/calendario' element={<Calendar />} />
                     <Route path='/agendamento' element={<Agendamento />} />
                 </Route>

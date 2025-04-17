@@ -114,7 +114,7 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
     };
 
     return (
-        <ModalRegister isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit} handleClean={handleClean} width={"80rem"} labelSubmit={"Cadastrar"} labelCancel={"Excluir"} height={"50rem"}>
+        <ModalRegister title={"Cadastrar Medicamento"} isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit} handleClean={handleClean} width={"80rem"} labelSubmit={"Cadastrar"} labelCancel={"Excluir"} height={"50rem"}>
             <div className="form-group">
                 <TextInput label="Nome" required={true} value={name} onChange={(e) => setName(e.target.value)} />
             </div>

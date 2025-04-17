@@ -6,6 +6,7 @@ import TextInput from "../../../components/TextInput/TextInput.jsx";
 import Select from "../../../components/Select/Select.jsx";
 import MultiSelect from "../../../components/MultiSelect/MultiSelect.jsx";
 import { getSymptoms } from "../../../api/symptom";
+import MedicineInput from "../../Medications/Input/MedicineInput.jsx";
 
 export default function ModalRegisterScheduling({ isOpen, handleClose, handleSubmit, handleClean }) {
      const [medicine, setMedicine] = useState(null);
@@ -64,52 +65,9 @@ export default function ModalRegisterScheduling({ isOpen, handleClose, handleSub
     };
 
     return (
-        <ModalRegister isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit} handleClean={handleClean} width={"80rem"} labelSubmit={"Cadastrar"} labelCancel={"Limpar"} height={"50rem"}>
-            <div className="form-group">
-                <TextInput label="Nome" required={true} value={name} onChange={(e) => setName(e.target.value)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="reminder">Lembrete</label>
-                <TextInput label="Lembrete" value={reminder} onChange={(e) => setReminder(e.target.value)} />
-            </div>
-            <div className="form-group">
-                <TextInput label="Data Inicial" value={initialDate} onChange={(e) => setInitialDate(e.target.value)} />
-            </div>
-            <div className="form-group">
-                <TextInput label="Data Final" value={finalDate} onChange={(e) => setFinalDate(e.target.value)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="form">Forma Farmaceutica</label>
-                <Select options={pharmaceuticalFormOptions} required={true} onSelect={(e) => setPharmaceuticalForm(e.id)} />
-            </div>
-            <div className="form-group input-numeric">
-                <TextInput label="Conteúdo" placeholder="Quantidade" value={content} onChange={(e) => setContent(parseFloat(e.target.value))} />
-            </div>
-            <div className="form-group">
-                <TextInput label="Fabricante" value={brand} onChange={(e) => setBrand(e.target.value)} />
-            </div>
-            <div className="form-group" style={{ maxWidth: "20rem" }}>
-                <label htmlFor="sintomas">Sintomas</label>
-                <MultiSelect options={symptomsOptions} onSelect={(selectedSymptoms) => setSymptoms(selectedSymptoms)} />
-            </div>
-            <div className="form-group input-numeric">
-                <TextInput label="Nr. Registro" value={registrationNumber} onChange={(e) => setRegistrationNumber(e.target.value)} />
-            </div>
+        <ModalRegister title={"Agendar Medicamento"} isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit} handleClean={handleClean} width={"80rem"} labelSubmit={"Agendar"} labelCancel={"Limpar"} height={"50rem"}>
             <div className="form-group" style={{ gridColumn: "span 2", gridRow: "span 2" }}>
-                <div className="text-input-container">
-                    <label htmlFor="description">Descrição</label>
-                    <textarea value={description} placeholder="Escreva as observações..." onChange={(e) => setDescription(e.target.value)} />
-                </div>
-            </div>
-            <div className="form-group image">
-                <input type="file" id="imageUpload" accept="image/*" style={{ display: "none" }} onChange={imageHandler} />
-                <button type="button" className="upload-btn" onClick={() => document.getElementById("imageUpload").click()}>
-                    <span>Imagem</span>
-                    <GoPaperclip style={{ marginLeft: "1rem", fontSize: "1.6rem" }} />
-                </button>
-                <div className="image-container">
-                    {previewImage && <img src={previewImage} alt="Imagem do medicamento" />}
-                </div>
+                <MedicineInput name="medicine" label="Medicamento" required={true} value={medicine} onChange={(e) => setMedicine(e.target.value)} />
             </div>
         </ModalRegister>
     );

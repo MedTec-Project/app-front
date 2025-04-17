@@ -21,7 +21,7 @@ export default function Medications() {
         {id: "type", label: "Tipo"},
         {id: "pills", label: "Comprimidos"}
     ]);
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpenMedicineModal, setIsOpenMedicineModal] = useState(false);
     const [isOpenSchedulingModal, setIsOpenSchedulingModal] = useState(false);
     const [sort, setSort] = useState(sortOptions[0]);
     const [filters, setFilters] = useState({
@@ -58,20 +58,21 @@ export default function Medications() {
         setSort(sortOptions.find(option => option.id === e.target.value));
     };
 
-    const handleOpenModal = () => {
-        setIsOpenSchedulingModal(true);
+    const handleOpenModalMedicine = () => {
+        setIsOpenMedicineModal(true);
     };
 
-    const handleClose = () => {
-        setIsOpen(false);
+    const handleCloseMedicine = () => {
+        setIsOpenMedicineModal(false);
     };
 
-    const handleSubmit = (medicamento) => {
+    const handleSaveMedication = (medicamento) => {
         setMedication(medicamento);
         saveMedication(medicamento).then((data) => {
             if (data) {
                 toast.success("Medicamento cadastrado com sucesso!");
-                handleClose();
+                handleCloseMedicine();
+                fetchMedicines();
             }
         }).catch((error) => {
            if (error && error.response && error.response.data) {
@@ -90,18 +91,31 @@ export default function Medications() {
     }
 
     useEffect(() => {
-        getMedicines().then((data) => {
-            if (data) {
-                setMedications(data);
-            }
-        });
+        fetchMedicines();
     }, []);
+
+    const fetchMedicines = async () => {
+        const medicines = await getMedicines();
+        setMedications(medicines);
+    };
+
+    const handleOpenModalScheduling = () => {
+        setIsOpenSchedulingModal(true);
+    };
+
+    const handleCloseScheduling = () => {
+        setIsOpenSchedulingModal(false);
+    };
+
+    const handleSaveScheduling = (medicamento) => {
+        return;
+    }
 
     return (
         <div className="medications-container">
-            <ModalRegisterScheduling isOpen={isOpenSchedulingModal} handleClose={handleClose} handleSubmit={handleSubmit}
-                                     handleClean={handleClean}/>
-            <ModalRegisterMedicine isOpen={isOpen} handleClose={handleClose} handleSubmit={handleSubmit}
+            <ModalRegisterScheduling isOpen={isOpenSchedulingModal} handleClose={handleCloseScheduling} handleSubmit={handleSaveScheduling}
+                                     handleClean={handleClean} />
+            <ModalRegisterMedicine isOpen={isOpenMedicineModal} handleClose={handleCloseMedicine} handleSubmit={handleSaveMedication}
                                    handleClean={handleClean}/>
             <div className="medications-filter-container">
                 <h2>Filtros</h2>
@@ -119,7 +133,7 @@ export default function Medications() {
                         </div>
                     </div>
                     <div className="medications-add-button">
-                        <button className="add-btn" onClick={handleOpenModal}>
+                        <button className="add-btn" onClick={handleOpenModalMedicine}>
                             <span>Adicionar Medicamento</span>
                         </button>
                     </div>
@@ -137,11 +151,11 @@ export default function Medications() {
                     <div className="grid-container">
                         {medications.map((med) => (
                             <MedicationCard
-                                key={med.id}
+                                key={med.oid}
                                 med={med}
                                 selected={selected}
                                 setSelected={setSelected}
-                                handleOpenModal={handleOpenModal}
+                                handleOpenModal={handleOpenModalMedicine}
                             />
                         ))}
                     </div>

@@ -4,7 +4,7 @@ import {AiOutlineClose} from "react-icons/ai";
 import {useState} from "react";
 import {TbCheck, TbTrashOff} from "react-icons/tb";
 
-export default function ModalRegister({ isOpen, handleClose, handleSubmit, handleClean, labelSubmit, labelCancel, children, width, height }) {
+export default function ModalRegister({ title, isOpen, handleClose, handleSubmit, handleClean, labelSubmit, labelCancel, children, width, height }) {
 
     return (
         <div className="modal-overlay" style={{display: isOpen ? "block" : "none"}}>
@@ -12,7 +12,7 @@ export default function ModalRegister({ isOpen, handleClose, handleSubmit, handl
                 <div className="modal-register-content">
                     <div className="modal-register-header">
                         <div className="modal-register-title">
-                                <h2>Cadastrar Medicamento</h2>
+                                <h2>{title}</h2>
                         </div>
                         <button className="close-btn" onClick={handleClose}>
                             <AiOutlineClose />
