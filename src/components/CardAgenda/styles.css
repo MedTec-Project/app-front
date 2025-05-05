@@ -1,0 +1,122 @@
+.card{
+    height: 390px;
+    width: 300px;
+    background: linear-gradient(#FAFAFA 55%, #FAFAFA, #b9d1c7, #a2b3ab);
+    margin: 30px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #48735F;
+}
+.card:hover{
+  transform: scale(1.1);
+  transform: translateY(-10px);
+  transition-duration: 0.4s;
+  box-shadow: -1px 0px 10px 2px rgba(0, 0, 0, 0.2);
+  
+}
+
+.horario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 27px;
+    width: 160px;
+    background-color: #48735F;
+    color: #50866d;
+    color: #FFFFFF;
+    border-radius: 0px 0px 10px 10px;
+    font-size: 13px;
+}
+.remedio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 230px;
+    width: 100%;
+}
+.remed-img{
+    background-repeat: no-repeat;
+    height: 190px;
+    width: 130px;
+}
+.texto{
+    text-align: center;
+}
+.switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+  }
+  
+  .switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 30px;
+    font-size: 12px;
+    background-color: #ccc;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #fcfcfc;
+  }
+  
+  .switch.on {
+    background-color: #48735F;
+  }
+  
+  .switch.off {
+    background-color: #ccc;
+  }
+  
+  .slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  .slider-on {
+    transform: translateX(30px);
+  }
+  .slider-off {
+    transform: translateX(0);
+  }
+  .txt {
+    background: -webkit-linear-gradient(right, #48735F, #7b998b, rgb(133, 138, 136));
+    background-size: 800% 100%;
+    animation-name: txt; 
+    animation-duration: 10s;
+    animation-delay: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    
+  }
+  @keyframes txt {
+    0% {        
+        background-position-x: 500%;
+    }
+    100% {
+        background-position: 0%;
+    }
+  }
+
+
+  /*@keyframes txt {
+    0% {transform: translateY(-0.5px);}
+    50% {transform: translateY(0.5px);}
+    100% {transform: translateY(0px);}
+  }*/

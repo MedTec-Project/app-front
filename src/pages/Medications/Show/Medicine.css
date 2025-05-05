@@ -1,0 +1,249 @@
+.medicine-container {
+    font-family: "PT Sans Caption", sans-serif;
+    width: 100%;
+    margin-top: 5rem;
+}
+
+.medicine-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 7rem 7rem 0 7rem;
+}
+
+.medicine-image-section {
+    position: relative;
+    border: 3px solid var(--color-secondary);
+    border-radius: 20px;
+    background: #fff;
+    width: 35rem;
+    height: 30rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.medicine-image img {
+    width: 300px;
+    height: auto;
+}
+
+.medicine-arrow-container img {
+    width: 17px;
+}
+
+.medicine-arrow-container button {
+    background: none;
+    border: none;
+}
+
+.medicine-btn-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+.medicine-btn-container button {
+    background: none;
+    border: 1px solid var(--color-light);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.medicine-btn-container button:first-child {
+    margin-right: 10px;
+}
+
+.medicine-btn-container img {
+    width: 20px;
+}
+
+.medicine-info {
+    padding: 2rem;
+    margin-left: 3rem;
+}
+
+.medicine-info h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: var(--color-secondary);
+}
+
+
+.medicine-code {
+    color: rgba(72, 115, 95, 0.44);
+    font-size: 19px;
+    margin: 5px 0 15px;
+    text-align: right;
+    font-weight: bold;
+    transform: translateY(-40px);
+}
+
+.schedule-btn {
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-light);
+    color: var(--color-light);
+    padding: 15px 15px;
+    border-radius: 13px;
+    cursor: pointer;
+    font-size: 20px;
+    width: 23rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.schedule-btn img {
+    width: 35px;
+    margin-left: 10px;
+}
+
+.similar-medicines {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.similar-list-title {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.similar-list-title h3 {
+    font-family: "PT Sans Caption", sans-serif;
+    margin-top: 30px;
+    font-size: 18px;
+    color: #999999;
+    text-align: left;
+    margin-left: 5rem;
+}
+
+.similar-list {
+    display: flex;
+    gap: 20px;
+}
+
+.similar-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background-color: #E9E9E9;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 12rem;
+    height: 15rem;
+    gap: 1.5rem;
+    color: #686767;
+    font-family: "PT Sans Caption", sans-serif;
+    font-weight: 500;
+}
+
+.similar-item img {
+    width: 70px;
+    border-radius: 8px;
+}
+
+.similar-list-carrousel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.similar-list-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+}
+
+.similar-list-arrow button {
+    background: none;
+    border: none;
+}
+
+.similar-list-arrow img {
+    width: 20px;
+}
+
+.similar-list-carrousel-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 2rem;
+}
+
+.page-dot {
+    display: inline-block;
+    width: 40px;
+    height: 4px;
+    background-color: #d3d3d3;
+    border-radius: 2px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.page-dot.active {
+    background-color: var(--color-secondary);
+}
+
+.medicine-details {
+    margin-top: 30px;
+    padding: 20px 5rem;
+}
+
+.medicine-details h2 {
+    background: var(--color-secondary);
+    color: white;
+    font-size: 20px;
+    font-family: "PT Sans Caption", sans-serif;
+
+    padding: 10px 10px 10px 6rem;
+}
+
+.medicine-details h3 {
+    font-size: 25px;
+    margin-top: 20px;
+    font-family: "PT Sans Caption", sans-serif;
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.medicine-details ul {
+    margin-left: 20px;
+    font-size: 18px;
+    font-family: "PT Sans Caption", sans-serif;
+
+}
+
+.medicine-details li {
+    margin-bottom: 5px;
+    font-family: "PT Sans Caption", sans-serif;
+
+}
+
+.medicine-details h4 {
+    font-size: 18px;
+    margin-top: 15px;
+    color: #333;
+    font-family: "PT Sans Caption", sans-serif;
+}
+
+.medicine-details-container {
+    padding: 30px;
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
+}
