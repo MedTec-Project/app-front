@@ -1,13 +1,93 @@
+import {useEffect, useState} from "react";
 import './styles.css';
 import { RiCheckboxFill } from "react-icons/ri";
 import CalendarAPI from '../../components/CalendarAPI/CalendarAPI';
+import ModalEventos from '../../components/modalEventos/ModalEventos';
 
 export default function Calendar() {
+
+        const [event, setEvent] = useState(null);
+        const [tab, setTab] = useState(1);
+        const [selected, setSelected] = useState(null);
+        const [sortOptions, setSortOptions] = useState([
+            {id: "none", label: "Ordenar"},
+            {id: "name", label: "Nome"},
+            {id: "type", label: "Tipo"},
+            {id: "pills", label: "Comprimidos"}
+        ]);
+        const [isOpen, setIsOpen] = useState(false);
+        const [sort, setSort] = useState(sortOptions[0]);
+        const [filters, setFilters] = useState({
+            brands: {
+                catarinense: false,
+                nissei: false
+            },
+            types: {
+                analgesico: false,
+                antiInflamatorio: false,
+                antialergico: false
+            }
+        });
+        const brandOptions = [
+            {id: "catarinense", label: "Catarinense", checked: filters.brands.catarinense},
+            {id: "nissei", label: "Nissei", checked: filters.brands.nissei}
+        ];
+        const typeOptions = [
+            {id: "analgesico", label: "Analgésico", checked: filters.types.analgesico},
+            {id: "antiInflamatorio", label: "Anti-inflamatório", checked: filters.types.antiInflamatorio},
+            {id: "antialergico", label: "Antialérgico", checked: filters.types.antialergico}
+        ];
+        const handleFilterChange = (category, id) => {
+            setFilters(prevFilters => ({
+                ...prevFilters,
+                [category]: {
+                    ...prevFilters[category],
+                    [id]: !prevFilters[category][id]
+                }
+            }));
+        };
+    
+        const handleSortChange = (e) => {
+            setSort(sortOptions.find(option => option.id === e.target.value));
+        };
+    
+        const handleOpenModal = () => {
+            setIsOpen(true);
+        };
+        const handleClose = () => {
+            setIsOpen(false);
+        };
+    
+        const handleSubmit = (medicamento) => {
+            setEvent(medicamento);
+            saveEvent(medicamento).then((data) => {
+                if (data) {
+                    toast.success("Medicamento cadastrado com sucesso!");
+                    handleClose();
+                }
+            }).catch((error) => {
+               if (error && error.response && error.response.data) {
+                   if (error.response.data.mensagem instanceof Array) {
+                       var mensagem = error.response.data.mensagem.join(", ");
+                       toast.error(mensagem);
+                   } else {
+                       toast.error(error.response.data.mensagem);
+                   }
+               }
+            });
+        }
+    
+        const handleClean = () => {
+            console.log("limpar")
+        }
+
     return (
         <div className='div-main'>
+            <ModalEventos isOpen={isOpen} handleClose={handleClose} handleSubmit={handleSubmit}
+                                               handleClean={handleClean}/>
             <div className='div-left'>
             <div className='position-blo'>
-                    <div className='pos-event'>
+                    <div className='pos-event' onClick={handleOpenModal}>
                         <button className='but-event'>CRIAR EVENTO</button>
                     </div>
                 </div>
