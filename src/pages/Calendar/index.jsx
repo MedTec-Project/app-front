@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import './styles.css';
 import { RiCheckboxFill } from "react-icons/ri";
 import CalendarAPI from '../../components/CalendarAPI/CalendarAPI';
-import ModalEventos from '../../components/modalEventos/ModalEventos';
+import ModalEventos from '../../components/modalEventos/Eventos/ModalRegisterEventos';
 
 export default function Calendar() {
 

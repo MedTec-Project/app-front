@@ -1,13 +1,11 @@
-import "./ModalRegisterMedicine.css";
+import "./ModalRegisterEventos.css";
 import { GoPaperclip } from "react-icons/go";
 import { useEffect, useState } from "react";
-import ModalRegister from "../../../components/ModalRegister/ModalRegister.jsx";
 import TextInput from "../../../components/TextInput/TextInput.jsx";
-import Select from "../../../components/Select/Select.jsx";
-import MultiSelect from "../../../components/MultiSelect/MultiSelect.jsx";
 import { getSymptoms } from "../../../api/symptom";
+import ModalRegister from "../../ModalRegister/ModalRegister.jsx";
 
-export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmit, handleClean }) {
+export default function ModalRegisterEventos({ isOpen, handleClose, handleSubmit, handleClean }) {
     const [name, setName] = useState("");
     const [brand, setBrand] = useState("");
     const [type] = useState("");
@@ -58,7 +56,7 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
     ]);
 
     const [dosageTypeOptions] = useState([
-        { id: 1, label: "Miligramas (MG)" },
+        { id: 1, label: "" },
         { id: 2, label: "Gramas (G)" },
         { id: 3, label: "Microgramas (MCG)" },
         { id: 4, label: "Mililitros (ML)" },
@@ -118,49 +116,18 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
             <div className="form-group">
                 <TextInput label="Nome" required={true} value={name} onChange={(e) => setName(e.target.value)} />
             </div>
-            <div className="form-group">
-                <label htmlFor="dosageType">Tipo de Dosagem</label>
-                <Select options={dosageTypeOptions} required={true}  onSelect={(e) => setDosageType(e.id)} />
-            </div>
-            <div className="form-group input-numeric">
-                <TextInput label="Dosagem" required={true} value={dosage} onChange={(e) => setDosage(parseFloat(e.target.value))} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="categoria">Categoria</label>
-                <Select options={medicineCategoryOptions} required={true} onSelect={(e) => setMedicineCategory(e.id)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="form">Forma Farmaceutica</label>
-                <Select options={pharmaceuticalFormOptions} required={true} onSelect={(e) => setPharmaceuticalForm(e.id)} />
-            </div>
-            <div className="form-group input-numeric">
-                <TextInput label="Conteúdo" placeholder="Quantidade" value={content} onChange={(e) => setContent(parseFloat(e.target.value))} />
-            </div>
-            <div className="form-group">
-                <TextInput label="Fabricante" value={brand} onChange={(e) => setBrand(e.target.value)} />
-            </div>
-            <div className="form-group" style={{ maxWidth: "20rem" }}>
-                <label htmlFor="sintomas">Sintomas</label>
-                <MultiSelect options={symptomsOptions} onSelect={(selectedSymptoms) => setSymptoms(selectedSymptoms)} />
-            </div>
-            <div className="form-group input-numeric">
-                <TextInput label="Nr. Registro" value={registrationNumber} onChange={(e) => setRegistrationNumber(e.target.value)} />
-            </div>
             <div className="form-group" style={{ gridColumn: "span 2", gridRow: "span 2" }}>
                 <div className="text-input-container">
                     <label htmlFor="description">Descrição</label>
-                    <textarea value={description} placeholder="Escreva as observações..." onChange={(e) => setDescription(e.target.value)} />
+                    <textarea value={description} placeholder="Escreva uma descrição..." onChange={(e) => setDescription(e.target.value)} />
                 </div>
             </div>
             <div className="form-group image">
-                <input type="file" id="imageUpload" accept="image/*" style={{ display: "none" }} onChange={imageHandler} />
-                <button type="button" className="upload-btn" onClick={() => document.getElementById("imageUpload").click()}>
-                    <span>Imagem</span>
+                <input type="file" id="documentUpload" accept="image/*" style={{ display: "none" }} onChange={imageHandler} />
+                <button type="button" className="upload-btn" onClick={() => document.getElementById("documentUpload").click()}>
+                    <span>Anexar Documento:</span>
                     <GoPaperclip style={{ marginLeft: "1rem", fontSize: "1.6rem" }} />
                 </button>
-                <div className="image-container">
-                    {previewImage && <img src={previewImage} alt="Imagem do medicamento" />}
-                </div>
             </div>
         </ModalRegister>
     );
