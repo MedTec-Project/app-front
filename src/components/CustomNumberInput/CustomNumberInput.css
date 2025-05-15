@@ -1,0 +1,93 @@
+/* Estilo do contêiner do input */
+.custom-input-container {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-input-container label {
+    font-size: 1rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.custom-number-input-container {
+    position: relative; /* Necessário para posicionar as setas dentro do input */
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo do input number */
+.custom-number-input-container {
+    font-size: 1.2rem;
+    border-radius: 13px;
+    border: 2px solid var(--color-secondary);
+    color: var(--color-regular);
+    width: 100%;
+    text-align: center;
+    padding: 1rem 40px 1rem 1rem;
+}
+
+.custom-number-input {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0;
+    border: none;
+    outline: none;
+    --webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    background-color: transparent;
+}
+
+.custom-arrow-container {
+    position: absolute;
+    right: 10px; /* Posiciona as setas à direita dentro do input */
+    top: 50%;
+    transform: translateY(-50%); /* Alinha as setas verticalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.custom-arrow-button {
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    margin: 2px 0;
+}
+
+.custom-arrow-button:disabled {
+    cursor: not-allowed;
+}
+
+.custom-arrow-button:hover {
+    background-color: transparent;
+}
+
+/* Para o Chrome, Edge, Safari */
+.custom-number-input::-webkit-outer-spin-button,
+.custom-number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Para o Firefox */
+.custom-number-input-container input {
+    -moz-appearance: textfield !important;
+    appearance: none; /* Para navegadores modernos como Chrome */
+}
+
+
+.custom-arrow-icon {
+    width: 18px; /* Tamanho do ícone */
+    height: 18px;
+    pointer-events: none; /* Impede que o ícone interaja com o clique diretamente */
+}
+
+/* Foco no input */
+.custom-number-input:focus {
+    border-color: #007bff;
+    outline: none;
+}

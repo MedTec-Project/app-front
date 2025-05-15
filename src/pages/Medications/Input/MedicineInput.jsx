@@ -20,7 +20,7 @@ export default function MedicineInput({ name, label, required, value }) {
         setMedications(medicines);
         setMedicationsFiltered(medicines);
     };
-
+                                                      
     const onChange = (e) => {
         const value = e.target.value;
         setMedicationsFiltered(medications.filter((medication) => medication.name.toLowerCase().includes(value.toLowerCase())));

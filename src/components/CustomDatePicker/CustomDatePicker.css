@@ -1,0 +1,58 @@
+/* Estilo para o DatePicker */
+.react-datepicker {
+    font-family: 'Montserrat', sans-serif !important;
+}
+.react-datepicker__input-container input {
+    border-radius: 13px;
+    border: 2px solid var(--color-secondary);
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-regular);
+}
+
+/* Estilo para o botão de hoje */
+.react-datepicker__today-button {
+    background-color: var(--color-secondary);
+    color: white;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+.react-datepicker__current-month {
+    color: var(--color-secondary);
+    text-transform: capitalize;
+    font-weight: lighter;
+}
+
+/* Estilo para os dias selecionados */
+.react-datepicker__day--selected {
+    background-color: var(--color-secondary);
+    color: white !important;
+}
+.react-datepicker__day--disabled {
+    color: rgba(72, 115, 95, 0.49) !important;
+}
+
+.react-datepicker__navigation-icon::before {
+    border-color: rgba(47, 74, 61, 0.62) !important;
+    border-width: 1px 1px 0 0 !important;
+    border-radius: 2px !important;
+}
+
+.react-datepicker__week {
+    display: flex;
+    gap: 0.5rem;
+    color: var(--color-secondary);
+}
+
+.react-datepicker__day {
+    color: var(--color-secondary);
+}
+
+.react-datepicker__day-names {
+    text-transform: capitalize;
+}
+
+.react-datepicker__day-name {
+    color: rgba(72, 115, 95, 0.49) !important;
+}
