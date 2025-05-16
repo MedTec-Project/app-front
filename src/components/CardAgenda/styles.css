@@ -1,4 +1,4 @@
-.card{
+.card-scheduling {
     height: 390px;
     width: 300px;
     background: linear-gradient(#FAFAFA 55%, #FAFAFA, #b9d1c7, #a2b3ab);
@@ -9,8 +9,9 @@
     border-style: solid;
     border-width: 2px;
     border-color: #48735F;
+    flex-direction: column;
 }
-.card:hover{
+.card-scheduling:hover{
   transform: scale(1.1);
   transform: translateY(-10px);
   transition-duration: 0.4s;
@@ -49,7 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 5px;
+    margin-top: 20px;
   }
   
   .switch {

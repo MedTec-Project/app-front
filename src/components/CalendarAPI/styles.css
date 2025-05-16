@@ -1,29 +1,31 @@
-.fc .fc-toolbar-title {
-    font-size: 2em;  /* Tamanho da fonte do título da barra de ferramentas */
-    color: #608562;  /* Cor do título */
+.fc.fc-toolbar-title {
+    font-size: 2em;
+    font-weight: 550;
+    text-transform: uppercase;
+    color: #608562;
   }
   .fc-button-primary{
     background-color: red;
   }
   .fc-daygrid-day-number {
-    font-weight: bold;  /* Deixar os números dos dias mais destacados */
+    font-weight: bold;
   }
   
   .fc-daygrid-day {
-    background-color: #f9f9f9;  /* Cor de fundo dos dias */
+    background-color: #f9f9f9;
   }
   
   .fc-daygrid-day:hover {
-    background-color: #f3f3f3;  /* Cor de fundo quando o dia é sobrevoado */
+    background-color: #f3f3f3;
   }
   
   .fc-button-primary {
-    background-color: #464c6d; /* Cor do botão principal (mês, semana, dia) */
+    background-color: #464c6d;
     color: white;
   }
   
   .fc-button-primary:hover {
-    background-color: #cf0000; /* Cor do botão ao passar o mouse */
+    background-color: #cf0000;
   }
   .fc-col-header-cell-cushion{
     color: #585858;
@@ -56,12 +58,16 @@
     width: 80px;
     background-color: #608562;
     border-style: none;
+    font-weight: 500;
+    letter-spacing: 1px;
   }
   .fc-timeGridWeek-button.fc-button.fc-button-primary{
     margin: 5px;
     width: 80px;
     background-color: #608562;
     border-style: none;
+    font-weight: 500;
+    letter-spacing: 1px;
   }
   .fc-timeGridDay-button.fc-button.fc-button-primary{
     margin: 5px;
@@ -71,4 +77,24 @@
   }
   .fc .fc-daygrid-day-frame{
     height: 100%;
+  }
+  .fc-timeGridWeek-button.fc-button.fc-button-primary.fc-button-active {
+    background-color: #608562;
+  }
+  .fc-dayGridMonth-button.fc-button.fc-button-primary{
+    background-color: #608562;
+    margin: 5px;
+    border-style: none;
+  }
+  .fc-timeGridDay-button.fc-button.fc-button-primary.fc-button-active{
+    background-color: #608562;  
+  }  
+  .fc-timeGridDay-button.fc-button.fc-button-primary{
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  .fc-button-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

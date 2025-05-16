@@ -12,7 +12,7 @@ export default function CardAgenda() {
   };
 
   return (
-    <div className="card">
+    <div className="card-scheduling">
       <div className="horario">
         <a>20/02/2024 - 09:00H</a>
       </div>
@@ -36,7 +36,7 @@ export default function CardAgenda() {
       <div className="switch-container">
         <div className={`switch ${isOn ? "on" : "off"}`} onClick={toggleSwitch}
           style={{
-            width: isOn ? "210px" : "210px",
+            width: isOn ? "230px" : "230px",
             height: "44px",
             borderStyle: "solid",
             borderWidth: isOn ? "0px" : "2px",
@@ -56,8 +56,8 @@ export default function CardAgenda() {
               borderRadius: isOn ? "30px" : "50%",
               color: isOn ? "#FAFAFA" : "#48735F",
               backgroundColor: isOn ? "#48735F" : "#FAFAFA",
-              top: isOn ? "4px" : "1.5px" ,
-              left: isOn ? "140px" : "2px",
+              top: isOn ? "4px" : "2px" ,
+              left: isOn ? "160px" : "2px",
               transition: "transform 0.10s ease",
             }} />
             
