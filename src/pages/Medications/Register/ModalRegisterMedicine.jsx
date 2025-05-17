@@ -115,10 +115,11 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
 
     return (
         <ModalRegister title={"Cadastrar Medicamento"} isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit} handleClean={handleClean} width={"80rem"} labelSubmit={"Cadastrar"} labelCancel={"Excluir"} height={"50rem"}>
-            <div className="form-group">
+           <div className="modal-register-medicine">
+            <div className="form-group modal-register-medicine-input">
                 <TextInput label="Nome" required={true} value={name} onChange={(e) => setName(e.target.value)} />
             </div>
-            <div className="form-group">
+            <div className="form-group modal-register-medicine-input">
                 <label htmlFor="dosageType">Tipo de Dosagem</label>
                 <Select options={dosageTypeOptions} required={true}  onSelect={(e) => setDosageType(e.id)} />
             </div>
@@ -162,6 +163,7 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
                     {previewImage && <img src={previewImage} alt="Imagem do medicamento" />}
                 </div>
             </div>
+               </div>
         </ModalRegister>
     );
 }

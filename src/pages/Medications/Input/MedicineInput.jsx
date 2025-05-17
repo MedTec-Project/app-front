@@ -39,11 +39,11 @@ export default function MedicineInput({ name, label, required, value }) {
             <div className="medication-input-label">
                 <label htmlFor={name}>{label}</label>
             </div>
-            <div className="medication-input">
-                <input type="text" name={name} value={value} onChange={onChange} onFocus={handleFocus} onBlur={handleBlur} required={required}/>
+            <div className="medication-input" style={{ width: "100%", height: "100%" }}>
+                <input type="text" name={name} value={value} onChange={onChange} onFocus={handleFocus} onBlur={handleBlur} required={required} style={{width: "100%", height: "100%"}}/>
                 { isFocused && (
-                    <div className="medication-input-options-container">
-                        <div className="medication-input-options">
+                        <div className="medication-input-options-container">
+                        <div className="medication-input-options" style={{width: "100%", height: "100%"}}>
                         {medicationsFiltered.map((medication) => (
                             <div key={medication.oid} className="medication-input-option">
                                 <img src={`data:image/jpeg;base64,${medication.imageBase64}`} alt={medication.name}/>

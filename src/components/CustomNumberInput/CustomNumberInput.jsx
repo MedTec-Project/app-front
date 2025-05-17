@@ -49,7 +49,7 @@ const CustomNumberInput = ({
     }, [value]);
 
     return (
-        <div className="custom-input-container">
+        <div className="custom-input-container" >
             {label && <label>{label}</label>}
             <div className="custom-number-input-container" onClick={focusInput}>
                 <input

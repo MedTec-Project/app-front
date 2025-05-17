@@ -70,58 +70,50 @@ export default function ModalRegisterScheduling({isOpen, handleClose, handleSubm
         <ModalRegister title={"Agendar Medicamento"} isOpen={isOpen} handleClose={handleClose}
                        handleSubmit={handleFormSubmit} handleClean={handleClean} width={"80rem"} labelSubmit={"Agendar"}
                        labelCancel={"Limpar"} height={"50rem"}>
-            <div>
-                <div className="form-group">
-                    <MedicineInput name="medicine" label="Medicamento" required={true} value={medicine}
+            <div className="modal-register-schedule">
+                <div className="form-group" style={{gridColumn: "span 2"}}>
+                    <MedicineInput width={"30rem"} name="medicine" label="Medicamento" required={true} value={medicine}
                                    onChange={(e) => setMedicine(e.target.value)}/>
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{gridColumn: "span 2"}}>
                     <TextInput label="Lembrete" value={reminder} onChange={(e) => setReminder(e.target.value)}/>
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{gridColumn: "span 2"}}>
                     <label htmlFor="doctor">Médico Responsável</label>
                     <Select options={doctorOptions} placeholder={"Selecione um médico..."}
                             onSelect={(e) => setDoctor(e.id)}/>
                 </div>
-            </div>
-            <div>
-                <div>
-                    <div className="form-group">
-                        <label htmlFor="doctor">Data de Início</label>
-                        <CustomDatepicker value={initialDate} onChange={(e) => setInitialDate(e)}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="doctor">Data de Término</label>
-                        <CustomDatepicker showMonthYearDropdown={true} showYearDropdown={true} selected={finalDate}
-                                          onChange={(e) => setFinalDate(e)}/>
-                    </div>
+                <div className="form-group" style={{gridColumn: "span 2"}}>
+                    <label htmlFor="doctor">Data de Início</label>
+                    <CustomDatepicker value={initialDate} onChange={(e) => setInitialDate(e)}/>
                 </div>
-                <div>
-                    <div className="form-group">
-                        <label htmlFor="horaInicio">Hora de Início</label>
-                        <CustomTimepicker value={initialDate} onChange={(e) => setInitialDate(e)}/>
-                    </div>
-                    <div className="form-group">
-                        <CustomNumberInput
-                            value={interval}
-                            onChange={(e) => changeInterval(e)}
-                            min={0}
-                            max={100}
-                            step={1}
-                            label="Quantidade"
-                            required={true}
-                            incrementSvg={IncrementSvg}
-                            decrementSvg={DecrementSvg}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="proxHora">Proximo horário</label>
-                        <CustomTimepicker value={nextHour} disabled={true}/>
-                    </div>
+                <div className="form-group">
+                    <label htmlFor="doctor">Data de Término</label>
+                    <CustomDatepicker showMonthYearDropdown={true} showYearDropdown={true} selected={finalDate}
+                                      onChange={(e) => setFinalDate(e)}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="horaInicio">Hora de Início</label>
+                    <CustomTimepicker value={initialDate} onChange={(e) => setInitialDate(e)}/>
+                </div>
+                <div className="form-group" style={{gridColumn: "span 2"}}>
+                    <CustomNumberInput
+                        value={interval}
+                        onChange={(e) => changeInterval(e)}
+                        min={0}
+                        max={100}
+                        step={1}
+                        label="Quantidade"
+                        required={true}
+                        incrementSvg={IncrementSvg}
+                        decrementSvg={DecrementSvg}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="proxHora">Proximo horário</label>
+                    <CustomTimepicker value={nextHour} disabled={true}/>
                 </div>
             </div>
-
-
         </ModalRegister>
     );
 }

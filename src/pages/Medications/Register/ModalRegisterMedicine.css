@@ -1,4 +1,4 @@
-.modal-register-form form {
+.modal-register-medicine {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
@@ -68,11 +68,11 @@ textarea {
     height: 2.8rem;
 }
 
-.modal-register-form input {
-    width: 20rem;
+.modal-register-medicine-input {
     height: 2.8rem;
 }
 
 .input-numeric input {
     width: 10rem;
 }
+
