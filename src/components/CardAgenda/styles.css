@@ -10,6 +10,7 @@
     border-width: 2px;
     border-color: #48735F;
     flex-direction: column;
+    cursor: pointer;
 }
 .card-scheduling:hover{
   transform: scale(1.1);
@@ -114,10 +115,17 @@
         background-position: 0%;
     }
   }
+  .card-scheduling {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+  }
 
+  .card-scheduling.inactive-card {
+    opacity: 0.6;
+  }
 
-  /*@keyframes txt {
-    0% {transform: translateY(-0.5px);}
-    50% {transform: translateY(0.5px);}
-    100% {transform: translateY(0px);}
-  }*/
+  .card-scheduling.card-animating {
+    opacity: 0;
+    transform: scale(0.8);
+  }

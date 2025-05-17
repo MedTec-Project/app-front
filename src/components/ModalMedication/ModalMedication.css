@@ -1,0 +1,39 @@
+.mod-medication{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 50%;
+    z-index: 2;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+}
+.mod-tittle{
+    display: flex;
+}
+.mod-cnt-tit{
+    width: 320px;
+    height: 30px;
+    margin: 20px;
+    border-style: solid;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-width: 1;
+    border-color: rgb(102, 131, 102);
+}
+.close-btn {
+    margin-left: auto;
+    width: 5rem;
+    height: 3rem;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 28px;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    color: white;
+    border: none;
+}
