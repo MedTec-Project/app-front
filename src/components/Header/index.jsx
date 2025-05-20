@@ -3,7 +3,7 @@ import './styles.css'
 import SearchInput from '../SearchInput';
 import { FaRegUser } from "react-icons/fa";
 import Logo_MedTec from '../../assets/images/logo-medtec.png';
-import Dropdown from '../Dropdown/Dropdown';
+// import Dropdown from '../Dropdown/Dropdown';
 
 
 export default function Header() {
@@ -18,7 +18,7 @@ export default function Header() {
                 </div>
                 <div className="right">
                     <SearchInput/>
-                    <Dropdown/>
+                    {/*<Dropdown/>*/}
                 </div>
             </nav>
         </header>

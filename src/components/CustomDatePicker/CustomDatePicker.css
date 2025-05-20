@@ -56,3 +56,7 @@
 .react-datepicker__day-name {
     color: rgba(72, 115, 95, 0.49) !important;
 }
+
+.react-datepicker__close-icon {
+    display: none !important;
+}
