@@ -147,7 +147,7 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
             <div className="form-group input-numeric">
                 <TextInput label="Nr. Registro" value={registrationNumber} onChange={(e) => setRegistrationNumber(e.target.value)} />
             </div>
-            <div className="form-group" style={{ gridColumn: "span 2", gridRow: "span 2" }}>
+            <div className="form-group" style={{ gridColumn: "span 2", gridRow: "span 2", marginBottom: "0" }}>
                 <div className="text-input-container">
                     <label htmlFor="description">Descrição</label>
                     <textarea value={description} placeholder="Escreva as observações..." onChange={(e) => setDescription(e.target.value)} />

@@ -1,11 +1,11 @@
 import { IoIosSearch } from "react-icons/io";
 import CardAgenda from "../../components/CardAgenda/cardAgenda";
 import BottonDiary from "../../components/BottonDiary/bottonDiary";
-import "./styles.css"
+import "./Schedule.css"
 import ModalRegisterScheduling from "./Register/ModalRegisterScheduling.jsx";
 import {useState} from "react";
 
-export default function Agendamento(){
+export default function Schedule(){
 
     const [isOpenSchedulingModal, setIsOpenSchedulingModal] = useState(false);
 
@@ -17,8 +17,8 @@ export default function Agendamento(){
         setIsOpenSchedulingModal(false);
     };
 
-    const handleSaveScheduling = (medicamento) => {
-        return;
+    const handleSaveScheduling = (schedule) => {
+        console.log(schedule);
     }
 
     const handleClean = () => {
