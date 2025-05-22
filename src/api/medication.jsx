@@ -10,3 +10,9 @@ export const getMedicines = async (name, oidManufacturer, medicineCategory) => {
   const response = await api.get(apiUrl);
   return response.data;
 };
+
+export const getMedication = async (oid) => {
+  const apiUrl = `/api/medicine/${oid}`;
+  const response = await api.get(apiUrl);
+  return response.data;
+};

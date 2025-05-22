@@ -47,7 +47,7 @@ export default function CardAgenda() {
             cursor: "pointer",
             userSelect: "none",
           }}>
-        <span className="txt" style={{color: isOn ? "#fcfcfc" : "#48735F", padding: "20px", marginLeft: isOn ? "-20px" : "20px", fontWeight: "800", fontSize: "11px", zIndex: isOn ? "-10" : "100"}}>CLIQUE PARA CONFIRMAR</span>
+        <span className="txt" style={{color: isOn ? "#fcfcfc" : "#48735F", padding: "20px", marginLeft: isOn ? "-20px" : "20px", fontWeight: "800", fontSize: "11px", zIndex: isOn ? "-10" : "1"}}>CLIQUE PARA CONFIRMAR</span>
           
           <FaCircleCheck className={`slider ${isOn ? "slider-on" : "slider-off"}`}
             style={{

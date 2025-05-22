@@ -114,11 +114,12 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
     };
 
     return (
-        <ModalRegister isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit} handleClean={handleClean} width={"80rem"} labelSubmit={"Cadastrar"} labelCancel={"Excluir"} height={"50rem"}>
-            <div className="form-group">
+        <ModalRegister title={"Cadastrar Medicamento"} isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit} handleClean={handleClean} width={"80rem"} labelSubmit={"Cadastrar"} labelCancel={"Excluir"} height={"50rem"}>
+           <div className="modal-register-medicine">
+            <div className="form-group modal-register-medicine-input">
                 <TextInput label="Nome" required={true} value={name} onChange={(e) => setName(e.target.value)} />
             </div>
-            <div className="form-group">
+            <div className="form-group modal-register-medicine-input">
                 <label htmlFor="dosageType">Tipo de Dosagem</label>
                 <Select options={dosageTypeOptions} required={true}  onSelect={(e) => setDosageType(e.id)} />
             </div>
@@ -146,7 +147,7 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
             <div className="form-group input-numeric">
                 <TextInput label="Nr. Registro" value={registrationNumber} onChange={(e) => setRegistrationNumber(e.target.value)} />
             </div>
-            <div className="form-group" style={{ gridColumn: "span 2", gridRow: "span 2" }}>
+            <div className="form-group" style={{ gridColumn: "span 2", gridRow: "span 2", marginBottom: "0" }}>
                 <div className="text-input-container">
                     <label htmlFor="description">Descrição</label>
                     <textarea value={description} placeholder="Escreva as observações..." onChange={(e) => setDescription(e.target.value)} />
@@ -158,10 +159,11 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
                     <span>Imagem</span>
                     <GoPaperclip style={{ marginLeft: "1rem", fontSize: "1.6rem" }} />
                 </button>
-                <div className="image-container">
+                <div className="medicine-image-container">
                     {previewImage && <img src={previewImage} alt="Imagem do medicamento" />}
                 </div>
             </div>
+               </div>
         </ModalRegister>
     );
 }

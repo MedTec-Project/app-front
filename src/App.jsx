@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Medications from './pages/Medications/Medications';
 import Medicine from "./pages/Medications/Show/Medicine.jsx";
 import Calendar from './pages/Calendar';
-import Agendamento from './pages/Agendamento/agendamento';
+import Schedule from './pages/Agendamento/Schedule.jsx';
 import ResetPassword from './pages/Forgot_Password/index.jsx';
 
 function App() {
@@ -29,9 +29,9 @@ function App() {
                 <Route element={<Layout/>}>
                     <Route path="/" element={<Home/>}/>
                     <Route path='/medicamentos' element={<Medications/>}/>
-                    <Route path='/medicamentos/:id' element={<Medicine/>}/>
+                    <Route path='/medicamentos/:oid' element={<Medicine/>}/>
                     <Route path='/calendario' element={<Calendar />} />
-                    <Route path='/agendamento' element={<Agendamento />} />
+                    <Route path='/agendamento' element={<Schedule />} />
                 </Route>
                 {user ? '' : <Route path="/login" element={<Login/>}/>}
                 <Route path='/resetpassword' element={<ResetPassword/>}/>

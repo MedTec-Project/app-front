@@ -13,7 +13,7 @@ export default function Select({ options, placeholder, onSelect }) {
     };
 
     return (
-        <div className="select-container">
+        <div className="select-container" style={{width: "100%", height: "100%"}}>
             <div
                 className="select-box"
                 onClick={() => setIsOpen(!isOpen)}
