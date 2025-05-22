@@ -4,6 +4,8 @@ import BottonDiary from "../../components/BottonDiary/bottonDiary";
 import "./Schedule.css"
 import ModalRegisterScheduling from "./Register/ModalRegisterScheduling.jsx";
 import {useState} from "react";
+import {toast} from "react-toastify";
+import {saveSchedule} from "../../api/schedule.jsx";
 
 export default function Schedule(){
 
@@ -18,7 +20,21 @@ export default function Schedule(){
     };
 
     const handleSaveScheduling = (schedule) => {
-        console.log(schedule);
+        saveSchedule(schedule).then((data) => {
+            if (data) {
+                toast.success("Agendamento cadastrado com sucesso!");
+                handleCloseScheduling();
+            }
+        }).catch((error) => {
+            if (error && error.response && error.response.data) {
+                if (error.response.data.mensagem instanceof Array) {
+                    var mensagem = error.response.data.mensagem.join(", ");
+                    toast.error(mensagem);
+                } else {
+                    toast.error(error.response.data.mensagem);
+                }
+            }
+        });
     }
 
     const handleClean = () => {

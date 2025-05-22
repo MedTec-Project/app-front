@@ -55,7 +55,7 @@ export default function ModalRegisterScheduling({isOpen, handleClose, handleSubm
             <div className="modal-register-schedule">
                 <div className="left-side">
                     <div className="form-group">
-                        <MedicineInput width={"30rem"} name="medicine" label="Medicamento:" required={true} value={oidMedicine} />
+                        <MedicineInput width={"30rem"} name="medicine" label="Medicamento:" required={true} value={oidMedicine} setValue={setOidMedicine}/>
 
                     </div>
                     <div className="form-group">
