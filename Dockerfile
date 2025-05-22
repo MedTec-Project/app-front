@@ -1,11 +1,12 @@
-FROM node:14.17.0
+FROM node:18-bullseye
 
 WORKDIR /app
+
 COPY package.json package-lock.json ./
 RUN npm install
+
 COPY . .
-RUN npm run build
 
-EXPOSE 3000
-CMD ["npm", "run", "start"]
+EXPOSE 5173
 
+CMD ["npm", "run", "dev"]

@@ -1,0 +1,59 @@
+.medication-input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.medication-input-container label {
+    font-size: 1rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.medication-input-container input {
+    border-radius: 13px;
+    border: 2px solid var(--color-secondary);
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-regular);
+}
+
+.medication-input-options-container {
+    position: relative;
+}
+
+.medication-input-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 20rem;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-regular);
+    border-radius: 13px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 1rem;
+}
+
+
+.medication-input-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 13px;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-regular);
+}
+
+.medication-input-option:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+.medication-input-option img {
+    width: 3rem;
+    height: 3rem;
+}

@@ -8,12 +8,12 @@ export default function MedicationCard({med, selected, setSelected, handleOpenMo
     const navigate = useNavigate();
 
     const handleClickCard = () => {
-        navigate(`/medicamentos/${med.id}`)
+        navigate(`/medicamentos/${med.oid}`)
     }
 
      const handleClickFavorite = (e) => {
         e.stopPropagation();
-        setSelected(med.id)
+        setSelected(med.oid)
     }
 
     const handleClickAgenda = (e) => {

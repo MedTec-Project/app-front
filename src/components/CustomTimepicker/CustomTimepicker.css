@@ -1,0 +1,52 @@
+.custom-input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-number-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.custom-number-input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+.custom-arrow-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.custom-arrow-button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+.custom-arrow-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.custom-number-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.custom-arrow-icon {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
