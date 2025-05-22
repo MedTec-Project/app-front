@@ -50,8 +50,8 @@ export default function ModalRegisterScheduling({isOpen, handleClose, handleSubm
 
     return (
         <ModalRegister title={"Agendar Medicamento"} isOpen={isOpen} handleClose={handleClose}
-                       handleSubmit={handleFormSubmit} handleClean={handleClean} width={"70rem"} labelSubmit={"Agendar"}
-                       labelCancel={"Limpar"} height={"40rem"}>
+                       handleSubmit={handleFormSubmit} handleClean={handleClean} width={"60rem"} labelSubmit={"Agendar"}
+                       labelCancel={"Limpar"} height={"35rem"}>
             <div className="modal-register-schedule">
                 <div className="left-side">
                     <div className="form-group">
