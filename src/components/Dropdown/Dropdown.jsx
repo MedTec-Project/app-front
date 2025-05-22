@@ -4,9 +4,9 @@ import './Dropdown.css';
 import Perfil from '../../assets/images/Perfil.png';
 import Pacientes from '../../assets/images/Pacientes.png';
 import Favoritos from '../../assets/images/favoritos.png';
-import Historico from '../../assets/images/historico.png';
-import Configuracoes from '../../assets/images/configuracoes.png';
-import Sair from '../../assets/images/sair.png';
+import Historico from '../../assets/images/Historico.png';
+import Configuracoes from '../../assets/images/Configuracoes.png';
+import Sair from '../../assets/images/Sair.png';
 import {AuthContext} from "../../auth/Context.jsx";
 import {useNavigate} from "react-router-dom";
 

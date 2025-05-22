@@ -2,7 +2,7 @@ import "./MedicineInput.css";
 import {useEffect, useState} from "react";
 import {getMedicines} from "../../../api/medication.jsx";
 
-export default function MedicineInput({ name, label, required, value }) {
+export default function MedicineInput({ name, label, required, value, setValue }) {
     const [isFocused, setIsFocused] = useState(true);
     const [medications, setMedications] = useState([]);
     const [medicationsFiltered, setMedicationsFiltered] = useState([]);
@@ -18,6 +18,7 @@ export default function MedicineInput({ name, label, required, value }) {
             if (medicationsFiltered.length > 0) {
                 setMedication(medicationsFiltered[0]);
                 setNameMedication(medicationsFiltered[0].name);
+                setValue(medicationsFiltered[0].oid);
             } else {
                 setMedication(null);
                 setNameMedication("");
@@ -44,7 +45,7 @@ export default function MedicineInput({ name, label, required, value }) {
 
     const onSelect = (medicationTarget) => {
         setMedication(medicationTarget);
-        value = medicationTarget.oid;
+        setValue(medicationTarget.oid);
         setNameMedication(medicationTarget.name);
         setIsFocused(false);
     }

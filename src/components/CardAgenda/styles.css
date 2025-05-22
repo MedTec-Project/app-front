@@ -1,4 +1,4 @@
-.card{
+.card-scheduling {
     height: 390px;
     width: 300px;
     background: linear-gradient(#FAFAFA 55%, #FAFAFA, #b9d1c7, #a2b3ab);
@@ -9,8 +9,10 @@
     border-style: solid;
     border-width: 2px;
     border-color: #48735F;
+    flex-direction: column;
+    cursor: pointer;
 }
-.card:hover{
+.card-scheduling:hover{
   transform: scale(1.1);
   transform: translateY(-10px);
   transition-duration: 0.4s;
@@ -49,7 +51,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 5px;
+    margin-top: 20px;
   }
   
   .switch {
@@ -113,10 +115,17 @@
         background-position: 0%;
     }
   }
+  .card-scheduling {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+  }
 
+  .card-scheduling.inactive-card {
+    opacity: 0.6;
+  }
 
-  /*@keyframes txt {
-    0% {transform: translateY(-0.5px);}
-    50% {transform: translateY(0.5px);}
-    100% {transform: translateY(0px);}
-  }*/
+  .card-scheduling.card-animating {
+    opacity: 0;
+    transform: scale(0.8);
+  }
