@@ -98,7 +98,7 @@ input[type="checkbox"]:checked {
     flex-direction: column;
     height: 100%;
     width: 100%;
-    padding-right: 20rem;
+    padding-right: 2rem;
 
 }
 

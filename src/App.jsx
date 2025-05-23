@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Medications from './pages/Medications/Medications';
 import Medicine from "./pages/Medications/Show/Medicine.jsx";
 import Calendar from './pages/Calendar';
-import Schedule from './pages/Agendamento/Schedule.jsx';
+import Schedule from './pages/Schedule/Schedule.jsx';
 import ResetPassword from './pages/Forgot_Password/index.jsx';
 
 function App() {
