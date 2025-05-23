@@ -8,7 +8,7 @@ import Select from "../../components/Select/Select.jsx";
 import ModalRegisterMedicine from "./Register/ModalRegisterMedicine.jsx";
 import {getMedicines, saveMedication} from "../../api/medication.jsx";
 import {toast} from "react-toastify";
-import ModalRegisterScheduling from "../Agendamento/Register/ModalRegisterScheduling.jsx";
+import ModalRegisterScheduling from "../Schedule/Register/ModalRegisterScheduling.jsx";
 
 export default function Medications() {
     const [medications, setMedications] = useState([]);

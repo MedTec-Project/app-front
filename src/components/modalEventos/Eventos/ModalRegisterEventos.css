@@ -1,11 +1,11 @@
-.modal-register-form form {
+.modal-register-events form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 3rem 5rem;
 }
 
-.modal-register-form {
+.modal-register-events {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,12 +63,12 @@ textarea {
     border-radius: 13px;
 }
 
-.modal-register-form .multi-select-container, .modal-register-form .select-container {
+.modal-register-events .multi-select-container, .modal-register-events .select-container {
     width: 20rem;
     height: 2.8rem;
 }
 
-.modal-register-form input {
+.modal-register-events input {
     width: 20rem;
     height: 2.8rem;
 }

@@ -9,7 +9,7 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getMedication} from "../../../api/medication.jsx";
 import {toast} from "react-toastify";
-import ModalRegisterScheduling from "../../Agendamento/Register/ModalRegisterScheduling.jsx";
+import ModalRegisterScheduling from "../../Schedule/Register/ModalRegisterScheduling.jsx";
 
 export default function Medicine() {
     const { oid} = useParams()

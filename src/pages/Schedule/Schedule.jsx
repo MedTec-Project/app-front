@@ -20,7 +20,8 @@ export default function Schedule() {
 
     const [animatingId, setAnimatingId] = useState(null);
 
-    const toggleCardStatus = (id) => {
+    const toggleCardStatus = (e, id) => {
+        e.stopPropagation();
         setAnimatingId(id);
 
         setTimeout(() => {
@@ -38,7 +39,7 @@ export default function Schedule() {
         }, 200);
     };
 
-    const handleOpenModalScheduling = () => {
+    const handleOpenModalScheduling = (e) => {
         setIsOpenSchedulingModal(true);
     };
 
@@ -75,8 +76,8 @@ export default function Schedule() {
             <div className="pos-shadow" style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
                 <div className="nav-top">
                     <h2 style={{ color: "#48735F", fontWeight: "100" }}>Agenda de Medicamentos</h2>
-                    <div style={{ marginLeft: "auto" }} onClick={handleOpenModalScheduling}>
-                        <button className="but-scheduler">+ Criar Agendamento</button>
+                    <div style={{ marginLeft: "auto" }}>
+                        <button className="but-scheduler" onClick={handleOpenModalScheduling}>+ Criar Agendamento</button>
                     </div>
                 </div>
                 <div className="navegacao">
@@ -86,13 +87,13 @@ export default function Schedule() {
                     </div>
                 </div>
             </div>
-            <div className="cards" onClick={handleOpenModal}>
+            <div className="cards">
                 {cards.map((card) => (
                     <CardAgenda
                         key={card.id}
                         id={card.id}
                         isOn={card.isOn}
-                        toggle={() => toggleCardStatus(card.id)} />
+                        toggle={(e) => toggleCardStatus(e ,card.id)} />
                 ))}
             </div>
         </div>
