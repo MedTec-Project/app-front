@@ -2,7 +2,7 @@ import { FaCircleCheck } from "react-icons/fa6";
 import "./styles.css";
 import {useEffect, useMemo} from "react";
 
-export default function CardAgenda({ id, schedule, toggle, isAnimating }) {
+export default function CardAgenda({ id, schedule, toggle, isAnimating, onClick }) {
 
     const dataFormatada = useMemo(() => {
         if (!schedule?.scheduleDate) return "";
@@ -22,8 +22,7 @@ export default function CardAgenda({ id, schedule, toggle, isAnimating }) {
     }, [schedule]);
 
   return schedule ? (
-      <div
-          className={`card-scheduling ${schedule.dateTaken ? "inactive-card" : ""} ${isAnimating ? "card-animating" : ""}`}>
+      <div className={`card-scheduling ${schedule.taken ? "inactive-card" : ""} ${isAnimating ? "card-animating" : ""}`} onClick={onClick}>
           <div className="horario">
               {dataFormatada  + "h"}
           </div>
@@ -43,39 +42,39 @@ export default function CardAgenda({ id, schedule, toggle, isAnimating }) {
           </div>
 
           <div className="switch-container">
-              <div className={`switch ${schedule.dateTaken ? "on" : "off"}`} onClick={toggle}
+              <div className={`switch ${schedule.taken ? "on" : "off"}`} onClick={toggle}
                    style={{
                        width: "230px",
                        height: "44px",
                        borderStyle: "solid",
-                       borderWidth: schedule.dateTaken ? "0px" : "2px",
-                       borderColor: schedule.dateTaken ? "#fff" : "#48735F",
-                       backgroundColor: schedule.dateTaken ? "#48735F" : "#FAFAFA",
+                       borderWidth: schedule.taken ? "0px" : "2px",
+                       borderColor: schedule.taken ? "#fff" : "#48735F",
+                       backgroundColor: schedule.taken ? "#48735F" : "#FAFAFA",
                        borderRadius: "30px",
                        position: "relative",
                        cursor: "pointer",
                        userSelect: "none",
                    }}>
           <span className="txt" style={{
-              color: schedule.dateTaken ? "#fcfcfc" : "#48735F",
+              color: schedule.taken ? "#fcfcfc" : "#48735F",
               padding: "20px",
-              marginLeft: schedule.dateTaken ? "-20px" : "20px",
+              marginLeft: schedule.taken ? "-20px" : "20px",
               fontWeight: "800",
               fontSize: "11px",
-              zIndex: schedule.dateTaken ? "-10" : "100"
+              zIndex: schedule.taken ? "-10" : "100"
           }}>
             CLIQUE PARA CONFIRMAR
           </span>
 
-                  <FaCircleCheck className={`slider ${schedule.dateTaken ? "slider-on" : "slider-off"}`}
+                  <FaCircleCheck className={`slider ${schedule.taken ? "slider-on" : "slider-off"}`}
                                  style={{
                                      width: "36px",
                                      height: "36px",
-                                     borderRadius: schedule.dateTaken ? "30px" : "50%",
-                                     color: schedule.dateTaken ? "#FAFAFA" : "#48735F",
-                                     backgroundColor: schedule.dateTaken ? "#48735F" : "#FAFAFA",
-                                     top: schedule.dateTaken ? "4px" : "2px",
-                                     left: schedule.dateTaken ? "160px" : "2px",
+                                     borderRadius: schedule.taken ? "30px" : "50%",
+                                     color: schedule.taken ? "#FAFAFA" : "#48735F",
+                                     backgroundColor: schedule.taken ? "#48735F" : "#FAFAFA",
+                                     top: schedule.taken ? "4px" : "2px",
+                                     left: schedule.taken ? "160px" : "2px",
                                      transition: "transform 0.10s ease",
                                  }}/>
               </div>

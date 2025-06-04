@@ -30,7 +30,7 @@ export const deleteSchedule = async (id) => {
     return response.data;
 };
 
-export const markScheduleTaken = async (id, dateTaken) => {
-    const response = await api.put(`/api/schedule/${id}/mark`, { dateTaken });
+export const markScheduleTaken = async (id, taken) => {
+    const response = await api.put(`/api/schedule/${id}/mark`, { taken });
     return response.data;
 };

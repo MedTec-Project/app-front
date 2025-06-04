@@ -1,10 +1,13 @@
 import './ModalMedication.css';
 import {AiOutlineClose} from "react-icons/ai";
-import {TbCheck, TbTrashOff} from "react-icons/tb";
+import {TbCheck, TbPencil, TbTrashOff} from "react-icons/tb";
+import {useEffect, useMemo} from "react";
 
-export default function ModalMedication({isOpen, handleClose, handleClean, labelSubmit, labelCancel, handleSubmit}) {
+export default function ModalMedication({isOpen, handleClose, handleClean, labelSubmit, labelCancel, handleSubmit, schedule}) {
+
     return(
-        <div className='mod-medice' style={{display: isOpen ? "block" : "none"}}>
+        <div className="modal-overlay" style={{display: isOpen ? "block" : "none"}} onClick={handleClose}>
+        <div className='mod-medice' style={{display: isOpen ? "block" : "none"}} onClick={(e) => e.stopPropagation()}>
             <div className='mod-tittle'>
                 <div className='mod-cnt-tit'>
                     <h4 style={{letterSpacing: "2px", color: "rgb(102, 131, 102)", textAlign: "center"}}>Medicamento Agendado</h4>
@@ -14,7 +17,7 @@ export default function ModalMedication({isOpen, handleClose, handleClean, label
                 </button>
             </div>
             <div className='sub-tit'>
-                <h5 style={{letterSpacing: "1px", color: "rgb(102, 131, 102)", marginLeft: "35px"}}>Paracetamol (20mg/ml)</h5>
+                <h5 style={{letterSpacing: "1px", color: "rgb(102, 131, 102)", marginLeft: "35px"}}>{schedule.nameMedicine} ({schedule.dosageMedicine}{schedule.dosageTypeMedicine})</h5>
             </div>
             <div className='cnt-medice'>
                 <div className='img-medice'>
@@ -26,17 +29,18 @@ export default function ModalMedication({isOpen, handleClose, handleClean, label
             </div>
             <div className='cnt-buttons'>
                 <div className='buttons'>
-                    <button className='item-button'>Quantidade: 2</button>
-                    <button className='item-button'>Responsável: Usuário teste</button>
-                    <button className='item-button'>Data de Inicio: 21/12/2024</button>
-                    <button className='item-button'>Data Final: 21/12/2024</button>
-                    <button className='item-button'>Lembrete</button>
+                    <button className='item-button'>Quantidade: {schedule.quantity}</button>
+                    <button className='item-button'>Médico Responsável: Usuário teste</button>
+                    <button className='item-button'>Data de Inicio: {schedule.initialDate}</button>
+                    <button className='item-button'>Data Final: {schedule.finalDate}</button>
+                    <button className='item-button'>Lembrete: {schedule.reminder}</button>
                 </div>
             </div>
             <div className="modal-register-footer">
-                <button className="cancel-btn" onClick={handleClean}>{labelCancel}<TbTrashOff style={{marginLeft: "1rem", fontSize: "1.7rem"}}/></button>
-                <button className="register-btn" onClick={handleSubmit}>{labelSubmit}<TbCheck style={{marginLeft: "0.7rem", fontSize: "2rem"}}/></button>
+                <button className="cancel-btn" onClick={() => handleClean(schedule.oidSchedule)}>{labelCancel}</button>
+                <button className="edit-btn" onClick={handleSubmit}>{labelSubmit}</button>
             </div>
+        </div>
         </div>
     );
 }
