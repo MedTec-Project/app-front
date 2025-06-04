@@ -136,20 +136,8 @@ export default function Medicine() {
                     </div>
 
                     <div className="medicine-details-content">
-                        <h3>Modo de uso:</h3>
-                        {/*<h4>Crianças:</h4>*/}
-                        {/*<ul>*/}
-                        {/*    {medication.usage.children.map((child, index) => (*/}
-                        {/*        <li key={index}>{child}</li>*/}
-                        {/*    ))}*/}
-                        {/*</ul>*/}
-
-                        {/*<h4>Adultos:</h4>*/}
-                        {/*<ul>*/}
-                        {/*    {medication.usage.adults.map((adult, index) => (*/}
-                        {/*        <li key={index}>{adult}</li>*/}
-                        {/*    ))}*/}
-                        {/*</ul>*/}
+                        <h3>Descrição:</h3>
+                        <p>{medication.description}</p>
                     </div>
                 </div>
             </div>
