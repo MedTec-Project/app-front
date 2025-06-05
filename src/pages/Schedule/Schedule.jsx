@@ -28,28 +28,23 @@ export default function Schedule() {
         e.stopPropagation();
         setAnimatingId(oid);
 
-        setCards((prevCards) =>
-            prevCards.map((card) =>
-                card.oid === oid ? {...card, taken: !card.taken} : card
-            )
-        );
+        setCards((prevCards) => prevCards.map((card) => (card.oid === oid ? {...card, taken: !card.taken} : card)));
 
-        if (debounceTimers.current[oid]) {
-            clearTimeout(debounceTimers.current[oid]);
+        var card = cards.find(card => card.oid === oid);
+
+        if (card.taken === true) {
+            markScheduleTaken(card.oid, false).then((data) => {
+                if (data) {
+                    fetchSchedules();
+                }
+            });
+        } else {
+            markScheduleTaken(card.oid, true).then((data) => {
+                if (data) {
+                    fetchSchedules();
+                }
+            });
         }
-
-        debounceTimers.current[oid] = setTimeout(() => {
-            const card = cards.find((c) => c.oid === oid);
-            if (card) {
-                markScheduleTaken(oid, !card.taken)
-                    .then(() => {
-                        toast.success("Status salvo com sucesso");
-                    })
-                    .catch(() => {
-                        toast.error("Erro ao salvar o status");
-                    });
-            }
-        }, 3000);
     };
 
     const handleOpenModalScheduling = () => {
@@ -78,33 +73,31 @@ export default function Schedule() {
         });
     };
 
-    const transformCards = (data) => {
-        return data.map((schedule) => ({
-            id: schedule.oid,
-            isOn: false,
-        }));
+    const fetchSchedules = async () => {
+        const schedules = tab === 1 ? await getTodaySchedule() : await getGeneralSchedule();
+        setCards(schedules.map((schedule) => ({
+            oid: schedule.oid,
+            dateTaken: schedule.dateTaken,
+            taken: schedule.taken,
+            scheduleStatus: schedule.status,
+            scheduleDate: schedule.scheduleDate,
+            name: schedule.medicineName,
+            imageBase64: schedule.imageBase64,
+            dosage: schedule.dosage,
+            dosageType: schedule.dosageType,
+            pharmaceuticalForm: schedule.pharmaceuticalForm,
+            content: schedule.content,
+            medicineCategory: schedule.medicineCategory,
+            oidSchedule: schedule.oidSchedule
+        })));
     };
 
     useEffect(() => {
-        const fetchSchedules = tab === 1 ? getTodaySchedule : getGeneralSchedule;
+        const fetchData = async () => {
+            await fetchSchedules();
+        };
 
-        fetchSchedules().then((data) => {
-            setCards(data.map((schedule) => ({
-                oid: schedule.oid,
-                dateTaken: schedule.dateTaken,
-                taken: schedule.taken,
-                scheduleStatus: schedule.status,
-                scheduleDate: schedule.scheduleDate,
-                name: schedule.medicineName,
-                imageBase64: schedule.imageBase64,
-                dosage: schedule.dosage,
-                dosageType: schedule.dosageType,
-                pharmaceuticalForm: schedule.pharmaceuticalForm,
-                content: schedule.content,
-                medicineCategory: schedule.medicineCategory,
-                oidSchedule: schedule.oidSchedule
-            })));
-        });
+        fetchData();
     }, [tab]);
 
     const handleDelete = () => {
@@ -139,7 +132,8 @@ export default function Schedule() {
     return (
         <div className="agendamento-container">
             <ModalMedication isOpen={isOpenMedicationModal} labelCancel={"Excluir"} labelSubmit={"Editar"}
-                             handleClose={handleCloseMedicationModal} schedule={scheduleShow} handleClean={handleDelete}/>
+                             handleClose={handleCloseMedicationModal} schedule={scheduleShow}
+                             handleClean={handleDelete}/>
             <ModalRegisterScheduling isOpen={isOpenSchedulingModal} handleClose={handleCloseScheduling}
                                      handleSubmit={handleSaveScheduling}
                                      handleClean={handleClean}/>
@@ -166,7 +160,7 @@ export default function Schedule() {
                 {cards.map((card) => (
                     <CardAgenda
                         key={card.oid}
-                         id={card.oid}
+                        id={card.oid}
                         schedule={card}
                         onClick={() => handleOpenMedicationModal(card.oidSchedule)}
                         toggle={(e) => toggleCardStatus(e, card.oid)}/>
