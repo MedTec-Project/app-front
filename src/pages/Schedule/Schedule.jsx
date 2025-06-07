@@ -13,6 +13,7 @@ import {
     getScheduleById, deleteSchedule
 } from "../../api/schedule.jsx";
 import ModalMedication from "../../components/ModalMedication/ModalMedication.jsx";
+import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal.jsx";
 
 export default function Schedule() {
 
@@ -23,6 +24,9 @@ export default function Schedule() {
     const debounceTimers = useRef({});
     const [isOpenMedicationModal, setIsOpenMedicationModal] = useState(false);
     const [scheduleShow, setScheduleShow] = useState({});
+    const [isOpenConfirmationModal, setIsOpenConfirmationModal] = useState(false);
+    const [confirmationModalOid, setConfirmationModalOid] = useState(null);
+    const [selectedCard, setSelectedCard] = useState(null);
 
     const toggleCardStatus = (e, oid) => {
         e.stopPropagation();
@@ -32,20 +36,31 @@ export default function Schedule() {
 
         var card = cards.find(card => card.oid === oid);
 
-        if (card.taken === true) {
-            markScheduleTaken(card.oid, false).then((data) => {
-                if (data) {
-                    fetchSchedules();
-                }
-            });
+        setSelectedCard(card);
+
+        const date = new Date(card.scheduleDate.replace('[UTC]', ''));
+        const now = new Date();
+
+        const minDiff = Math.abs((now - date) / 1000 / 60);
+
+        if (minDiff > 20 && card.taken !== true) {
+            handleModalConfirmation(oid);
         } else {
-            markScheduleTaken(card.oid, true).then((data) => {
-                if (data) {
-                    fetchSchedules();
-                }
-            });
+            handleMarkScheduleTaken(oid, card.taken);
         }
     };
+
+    const handleMarkScheduleTaken = (oid, taken) => {
+        markScheduleTaken(oid, !taken).then(onSucessMarkScheduleTaken);
+    }
+
+    const onSucessMarkScheduleTaken = (data) => {
+        setTimeout(() => {
+        if (data) {
+            fetchSchedules();
+        }
+        }, 1000);
+    }
 
     const handleOpenModalScheduling = () => {
         setIsOpenSchedulingModal(true);
@@ -73,6 +88,11 @@ export default function Schedule() {
         });
     };
 
+    const handleModalConfirmation = (oid) => {
+        setIsOpenConfirmationModal(true);
+        setConfirmationModalOid(oid);
+    };
+
     const fetchSchedules = async () => {
         const schedules = tab === 1 ? await getTodaySchedule() : await getGeneralSchedule();
         setCards(schedules.map((schedule) => ({
@@ -96,7 +116,6 @@ export default function Schedule() {
         const fetchData = async () => {
             await fetchSchedules();
         };
-
         fetchData();
     }, [tab]);
 
@@ -129,8 +148,21 @@ export default function Schedule() {
         setScheduleShow(null);
     };
 
+    const handleConfirmSchedule = (oid, taken) => {
+        handleMarkScheduleTaken(oid, taken);
+        setIsOpenConfirmationModal(false);
+    };
+
+    const handleCloseConfirmationModal = () => {
+        setIsOpenConfirmationModal(false);
+        setCards((prevCards) => prevCards.map((card) => (card.oid === confirmationModalOid ? {...card, taken: false} : card)));
+    };
     return (
         <div className="agendamento-container">
+            <ConfirmationModal isOpen={isOpenConfirmationModal} onClose={() => handleCloseConfirmationModal()}
+                               onConfirm={() => handleConfirmSchedule(confirmationModalOid, false)}>
+                Tem certeza que deseja confirmar um agendamento com mais de 20 minutos de diferença?
+            </ConfirmationModal>
             <ModalMedication isOpen={isOpenMedicationModal} labelCancel={"Excluir"} labelSubmit={"Editar"}
                              handleClose={handleCloseMedicationModal} schedule={scheduleShow}
                              handleClean={handleDelete}/>
