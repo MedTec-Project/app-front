@@ -1,5 +1,5 @@
 import "./ModalRegisterScheduling.css";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ModalRegister from "../../../components/ModalRegister/ModalRegister.jsx";
 import TextInput from "../../../components/TextInput/TextInput.jsx";
 import Select from "../../../components/Select/Select.jsx";
@@ -10,7 +10,7 @@ import CustomNumberInput from "../../../components/CustomNumberInput/CustomNumbe
 import IncrementSvg from "../../../assets/icons/increment-arrow.svg";
 import DecrementSvg from "../../../assets/icons/decrement-arrow.svg";
 
-export default function ModalRegisterScheduling({isOpen, handleClose, handleSubmit, handleClean}) {
+export default function ModalRegisterScheduling({isOpen, handleClose, handleSubmit, schedule}) {
     const [oidMedicine, setOidMedicine] = useState(null);
     const [oidDoctor, setOidDoctor] = useState(null);
     const [initialDate, setInitialDate] = useState(new Date());
@@ -47,6 +47,31 @@ export default function ModalRegisterScheduling({isOpen, handleClose, handleSubm
             interval
         };
     };
+
+    const handleClean = () => {
+        setOidMedicine(null);
+        setOidDoctor(null);
+        setInitialDate(new Date());
+        setFinalDate(new Date());
+        setQuantity(1);
+        setInterval(1);
+        setReminder('');
+        setReceipt('');
+        setNextHour(null);
+    };
+
+    useEffect(() => {
+        if (schedule) {
+            setOidMedicine(schedule.oidMedicine);
+            setOidDoctor(schedule.oidDoctor);
+            setInitialDate(new Date(schedule.initialDate));
+            setFinalDate(new Date(schedule.finalDate));
+            setQuantity(schedule.quantity);
+            setInterval(schedule.interval);
+            setReminder(schedule.reminder);
+            setReceipt(schedule.receipt);
+        }
+    }, [schedule]);
 
     return (
         <ModalRegister title={"Agendar Medicamento"} isOpen={isOpen} handleClose={handleClose}

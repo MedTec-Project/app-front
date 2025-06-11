@@ -49,7 +49,20 @@ export default function MedicineInput({name, label, required, value, setValue}) 
         if (isFocused) {
             fetchMedicines();
         }
-    }, [isFocused]);
+        if (value) {
+            if (!medications.length) {
+                fetchMedicines().then(() => {
+                    var medication = medications.find(medication => medication.oid === value);
+                    setNameMedication(medication.name);
+                });
+            } else {
+                var medication = medications.find(medication => medication.oid === value);
+                setNameMedication(medication.name);
+            }
+        } else {
+            setNameMedication("");
+        }
+    }, [value, medications]);
 
 
     return (

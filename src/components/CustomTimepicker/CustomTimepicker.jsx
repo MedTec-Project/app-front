@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import DatePicker from "react-datepicker";
 import './CustomTimepicker.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,6 +8,13 @@ const CustomTimePicker = ({ value, onChange, disabled }) => {
     const handleChange = (date) => {
         onChange(date);  // Passando o valor de volta para o componente pai
     };
+
+    useEffect(() => {
+        console.log(value);
+        if (value) {
+            handleChange(value);
+        }
+    }, [value]);
 
     return (
         <div>

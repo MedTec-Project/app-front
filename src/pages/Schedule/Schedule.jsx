@@ -144,8 +144,9 @@ export default function Schedule() {
         });
     };
 
-    const handleClean = () => {
+    const handleCleanScheduling = () => {
         setScheduleShow(null);
+
     };
 
     const handleConfirmSchedule = (oid, taken) => {
@@ -157,6 +158,10 @@ export default function Schedule() {
         setIsOpenConfirmationModal(false);
         setCards((prevCards) => prevCards.map((card) => (card.oid === confirmationModalOid ? {...card, taken: false} : card)));
     };
+
+    const handleEditSchedule = () => {
+        setIsOpenSchedulingModal(true);
+    }
     return (
         <div className="agendamento-container">
             <ConfirmationModal isOpen={isOpenConfirmationModal} onClose={() => handleCloseConfirmationModal()}
@@ -165,10 +170,10 @@ export default function Schedule() {
             </ConfirmationModal>
             <ModalMedication isOpen={isOpenMedicationModal} labelCancel={"Excluir"} labelSubmit={"Editar"}
                              handleClose={handleCloseMedicationModal} schedule={scheduleShow}
-                             handleClean={handleDelete}/>
+                             handleClean={handleDelete} handleSubmit={handleEditSchedule}/>
             <ModalRegisterScheduling isOpen={isOpenSchedulingModal} handleClose={handleCloseScheduling}
                                      handleSubmit={handleSaveScheduling}
-                                     handleClean={handleClean}/>
+                                     handleClean={handleCleanScheduling} schedule={scheduleShow}/>
             <div className="pos-shadow" style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
                 <div className="nav-top">
                     <h2 style={{color: "#48735F", fontWeight: "100"}}>Agendamento de Medicamentos</h2>
