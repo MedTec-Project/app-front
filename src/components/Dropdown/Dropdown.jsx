@@ -9,9 +9,11 @@ import Configuracoes from '../../assets/images/Configuracoes.png';
 import Sair from '../../assets/images/Sair.png';
 import {AuthContext} from "../../auth/Context.jsx";
 import {useNavigate} from "react-router-dom";
+import ModalPerfil from '../ModalPerfil/ModalPerfil.jsx';
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [modalOpen, setmodalOpen] = useState(false);
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -22,14 +24,22 @@ const Dropdown = () => {
     navigate('/login');
   }
 
+  const handleOpenModal = () => {
+    setmodalOpen(true);
+  };
+  const handleClose = () => {
+    setmodalOpen(false);
+  };
+
   return (
     <div style={{ position: 'relative' }}>
       <FaRegUser className='icone' onClick={toggleMenu}/>
+      <ModalPerfil modalOpen={modalOpen} handleClose={handleClose}/>
       {isOpen && (
         <div className={`menu ${isOpen ? 'open' : ''}`}>
           <div className='menu-itens'>  
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                <div className='conjunto-menu'>
+                <div className='conjunto-menu' onClick={handleOpenModal}>
                   <img className='imagem' src={Perfil} /><li className='itens-menu'>Meu Perfil</li>
                 </div>
                 <div className='conjunto-menu'>
