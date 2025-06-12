@@ -5,14 +5,32 @@ export const saveSchedule = async (schedule) => {
     return response.data;
 };
 
-export const getSchedules = async () => {
-    const apiUrl = `/api/schedule`;
-    const response = await api.get(apiUrl);
+export const getTodaySchedule = async () => {
+    const response = await api.get('/api/schedule/today');
+    return response.data;
+}
+
+export const getGeneralSchedule = async () => {
+    const response = await api.get('/api/schedule/general');
+    return response.data;
+}
+
+export const getScheduleById = async (id) => {
+    const response = await api.get(`/api/schedule/${id}`);
     return response.data;
 };
 
-export const getSchedule = async (oid) => {
-    const apiUrl = `/api/schedule/${oid}`;
-    const response = await api.get(apiUrl);
+export const updateSchedule = async (id, schedule) => {
+    const response = await api.put(`/api/schedule/${id}`, schedule);
+    return response.data;
+};
+
+export const deleteSchedule = async (id) => {
+    const response = await api.delete(`/api/schedule/${id}`);
+    return response.data;
+};
+
+export const markScheduleTaken = async (id, taken) => {
+    const response = await api.put(`/api/schedule/${id}/mark`, { taken });
     return response.data;
 };

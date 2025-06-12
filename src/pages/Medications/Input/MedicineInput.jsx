@@ -2,8 +2,8 @@ import "./MedicineInput.css";
 import {useEffect, useState} from "react";
 import {getMedicines} from "../../../api/medication.jsx";
 
-export default function MedicineInput({ name, label, required, value, setValue }) {
-    const [isFocused, setIsFocused] = useState(true);
+export default function MedicineInput({name, label, required, value, setValue}) {
+    const [isFocused, setIsFocused] = useState(false);
     const [medications, setMedications] = useState([]);
     const [medicationsFiltered, setMedicationsFiltered] = useState([]);
     const [medication, setMedication] = useState(null);
@@ -15,14 +15,8 @@ export default function MedicineInput({ name, label, required, value, setValue }
 
     const handleBlur = (e) => {
         if (e.target.value !== "" && medication === null) {
-            if (medicationsFiltered.length > 0) {
-                setMedication(medicationsFiltered[0]);
-                setNameMedication(medicationsFiltered[0].name);
-                setValue(medicationsFiltered[0].oid);
-            } else {
-                setMedication(null);
-                setNameMedication("");
-            }
+            setMedication(null);
+            setNameMedication("");
         }
         if (medication !== null && e.target.value !== medication.name) {
             setMedication(null);
@@ -36,7 +30,7 @@ export default function MedicineInput({ name, label, required, value, setValue }
         setMedications(medicines);
         setMedicationsFiltered(medicines);
     };
-                                                      
+
     const onChange = (e) => {
         const valueKey = e.target.value;
         setNameMedication(valueKey);
@@ -53,10 +47,25 @@ export default function MedicineInput({ name, label, required, value, setValue }
 
     useEffect(() => {
         if (isFocused) {
-            fetchMedicines();
+            fetchMedicines().then(() => {
+                var medication = medications.find(medication => medication.oid === value);
+                setNameMedication(medication.name);
+            });
         }
-    }, [isFocused]);
-
+        if (value) {
+            if (!medications.length) {
+                fetchMedicines().then(() => {
+                    var medication = medications.find(medication => medication.oid === value);
+                    setNameMedication(medication.name);
+                });
+            } else {
+                var medication = medications.find(medication => medication.oid === value);
+                setNameMedication(medication.name);
+            }
+        } else {
+            setNameMedication("");
+        }
+    }, [value, medications, isFocused]);
 
 
     return (
@@ -64,17 +73,20 @@ export default function MedicineInput({ name, label, required, value, setValue }
             <div className="medication-input-label">
                 <label htmlFor={name}>{label}</label>
             </div>
-            <div className="medication-input" style={{ width: "100%", height: "100%" }}>
-                <input type="text" name={name} value={nameMedication} onChange={onChange} onFocus={handleFocus} onBlur={handleBlur} required={required} style={{width: "100%", height: "100%"}}/>
-                { isFocused && (
-                        <div className="medication-input-options-container">
+            <div className="medication-input" style={{width: "100%", height: "100%"}}>
+                <input type="text" name={name} value={nameMedication} onChange={onChange} onFocus={handleFocus}
+                       onBlur={handleBlur} required={required} style={{width: "100%", height: "100%"}}/>
+                {isFocused && (
+                    <div className="medication-input-options-container">
                         <div className="medication-input-options" style={{width: "100%", height: "100%"}}>
-                        {medicationsFiltered.map((medication) => (
-                            <div key={medication.oid} className="medication-input-option" onMouseDown={() => onSelect(medication)}>
-                                <img src={`data:image/jpeg;base64,${medication.imageBase64}`} alt={medication.name}/>
-                                <p>{medication.name}</p>
-                            </div>
-                        ))}
+                            {medicationsFiltered.map((medication) => (
+                                <div key={medication.oid} className="medication-input-option"
+                                     onMouseDown={() => onSelect(medication)}>
+                                    <img src={`data:image/jpeg;base64,${medication.imageBase64}`}
+                                         alt={medication.name}/>
+                                    <p>{medication.name}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 )}

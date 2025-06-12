@@ -5,21 +5,24 @@ import calendar from "../../../assets/icons/calendar-green.png";
 import share from "../../../assets/icons/share.png";
 import arrowRight from "../../../assets/icons/arrow-right.png";
 import arrowLeft from "../../../assets/icons/arrow-left.png";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getMedication} from "../../../api/medication.jsx";
 import {toast} from "react-toastify";
 import ModalRegisterScheduling from "../../Schedule/Register/ModalRegisterScheduling.jsx";
+import {saveSchedule} from "../../../api/schedule.jsx";
 
 export default function Medicine() {
     const { oid} = useParams()
     const [medication, setMedication] = useState(null);
     const [isOpenSchedulingModal, setIsOpenSchedulingModal] = useState(false);
+    const [scheduleShow, setScheduleShow] = useState(null);
     const similarMedications = [
         {id: 1, name: "Paracetamol - 20mg", image: paracetamol},
         {id: 2, name: "Paracetamol - 20mg", image: paracetamol},
         {id: 3, name: "Paracetamol - 20mg", image: paracetamol},
     ];
+    const navigate = useNavigate();
 
     useEffect(() => {
         getMedication(oid).then((data) => {
@@ -39,15 +42,43 @@ export default function Medicine() {
     }, [oid]);
 
     const handleOpenModalScheduling = () => {
-        setIsOpenSchedulingModal(true);
+        if (medication) {
+            setScheduleShow({
+                oidMedicine: medication.oid,
+                quantity: 1,
+                interval: 1,
+                initialDate: new Date(),
+                finalDate: new Date(),
+                reminder: '',
+                receipt: '',
+                oidDoctor: null,
+            });
+            setIsOpenSchedulingModal(true);
+        }
     };
 
     const handleCloseScheduling = () => {
+        setScheduleShow(null);
         setIsOpenSchedulingModal(false);
     };
 
-    const handleSaveScheduling = (medicamento) => {
-        return;
+    const handleSaveScheduling = (schedule) => {
+        saveSchedule(schedule).then((data) => {
+            if (data) {
+                toast.success("Agendamento cadastrado com sucesso!");
+                handleCloseScheduling();
+                navigate('/medicamentos');
+            }
+        }).catch((error) => {
+            if (error && error.response && error.response.data) {
+                if (error.response.data.mensagem instanceof Array) {
+                    var mensagem = error.response.data.mensagem.join(", ");
+                    toast.error(mensagem);
+                } else {
+                    toast.error(error.response.data.mensagem);
+                }
+            }
+        });
     }
 
     const handleClean = () => {
@@ -56,8 +87,13 @@ export default function Medicine() {
 
     return medication ? (
         <div className="medicine-container">
-            <ModalRegisterScheduling isOpen={isOpenSchedulingModal} handleClose={handleCloseScheduling} handleSubmit={handleSaveScheduling}
-                                     handleClean={handleClean} />
+            <ModalRegisterScheduling
+                isOpen={isOpenSchedulingModal}
+                handleClose={handleCloseScheduling}
+                handleSubmit={handleSaveScheduling}
+                handleClean={handleClean}
+                schedule={scheduleShow}
+            />
             <div className="medicine-header">
                 <div className="medicine-image-section">
                     <div className="medicine-arrow-container">

@@ -50,13 +50,17 @@
     color: #48735F;
     cursor: pointer;
 }
-.botao-navegacao:hover{
+.botao-navegacao:hover, .botao-navegacao-active{
     border-style: solid;
     border-color: #48735F;
     border-width: 2.5px;
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
+}
+.botao-navegacao-active{
+    background-color: #48735F;
+    color: white;
 }
 .botao-agendar{
     background-color: #48735F;
