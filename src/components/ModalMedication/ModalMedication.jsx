@@ -13,7 +13,7 @@ export default function ModalMedication({
                                             schedule
                                         }) {
 
-    return (
+    return schedule ? (
         <div className="modal-overlay" style={{display: isOpen ? "block" : "none"}} onClick={handleClose}>
             <div className='mod-medice' style={{display: isOpen ? "block" : "none"}}
                  onClick={(e) => e.stopPropagation()}>
@@ -57,5 +57,5 @@ export default function ModalMedication({
                 </div>
             </div>
         </div>
-    );
+    ) : null;
 }

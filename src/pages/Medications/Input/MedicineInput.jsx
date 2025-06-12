@@ -47,7 +47,10 @@ export default function MedicineInput({name, label, required, value, setValue}) 
 
     useEffect(() => {
         if (isFocused) {
-            fetchMedicines();
+            fetchMedicines().then(() => {
+                var medication = medications.find(medication => medication.oid === value);
+                setNameMedication(medication.name);
+            });
         }
         if (value) {
             if (!medications.length) {
@@ -62,7 +65,7 @@ export default function MedicineInput({name, label, required, value, setValue}) 
         } else {
             setNameMedication("");
         }
-    }, [value, medications]);
+    }, [value, medications, isFocused]);
 
 
     return (

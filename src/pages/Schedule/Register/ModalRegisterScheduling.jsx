@@ -1,5 +1,5 @@
 import "./ModalRegisterScheduling.css";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import ModalRegister from "../../../components/ModalRegister/ModalRegister.jsx";
 import TextInput from "../../../components/TextInput/TextInput.jsx";
 import Select from "../../../components/Select/Select.jsx";
@@ -10,109 +10,157 @@ import CustomNumberInput from "../../../components/CustomNumberInput/CustomNumbe
 import IncrementSvg from "../../../assets/icons/increment-arrow.svg";
 import DecrementSvg from "../../../assets/icons/decrement-arrow.svg";
 
-export default function ModalRegisterScheduling({isOpen, handleClose, handleSubmit, schedule}) {
-    const [oidMedicine, setOidMedicine] = useState(null);
-    const [oidDoctor, setOidDoctor] = useState(null);
-    const [initialDate, setInitialDate] = useState(new Date());
-    const [finalDate, setFinalDate] = useState(new Date());
-    const [quantity, setQuantity] = useState(1);
-    const [interval, setInterval] = useState(1);
-    const [reminder, setReminder] = useState(null);
-    const [doctorOptions, setDoctorOptions] = useState([]);
-    const [receipt, setReceipt] = useState(null);
-    const [nextHour, setNextHour] = useState(null);
-
-    const changeInterval = (e) => {
-        const interval = parseInt(e);
-        const nextHour = new Date(initialDate);
-        nextHour.setHours(nextHour.getHours() + interval);
-        setNextHour(nextHour);
-        setInterval(interval);
+export default function ModalRegisterScheduling({ isOpen, handleClose, handleSubmit, handleClean, schedule, medicine }) {
+    const initialState = {
+        oid: null,
+        oidMedicine: null,
+        oidDoctor: null,
+        initialDate: new Date(),
+        finalDate: new Date(),
+        quantity: 1,
+        interval: 1,
+        reminder: '',
+        receipt: '',
+        nextHour: null,
     };
 
+    const [formData, setFormData] = useState(initialState);
+    const [doctorOptions, setDoctorOptions] = useState([]);
+
+    const handleChange = (field, value) => {
+        setFormData(prev => {
+            const updated = { ...prev, [field]: value };
+
+            if (field === 'interval') {
+                const next = new Date(updated.initialDate);
+                next.setHours(next.getHours() + parseInt(value));
+                updated.nextHour = next;
+            }
+
+            if (field === 'initialDate' && updated.interval) {
+                const next = new Date(value);
+                next.setHours(next.getHours() + parseInt(updated.interval));
+                updated.nextHour = next;
+            }
+
+            return updated;
+        });
+    };
 
     const handleFormSubmit = () => {
-        const schedule = transformFormToObject();
-        handleSubmit(schedule);
+        const scheduleData = { ...formData };
+        handleSubmit(scheduleData);
     };
 
-    const transformFormToObject = () => {
-        return {
-            oidMedicine,
-            reminder,
-            oidDoctor,
-            initialDate,
-            finalDate,
-            quantity,
-            interval
-        };
-    };
-
-    const handleClean = () => {
-        setOidMedicine(null);
-        setOidDoctor(null);
-        setInitialDate(new Date());
-        setFinalDate(new Date());
-        setQuantity(1);
-        setInterval(1);
-        setReminder('');
-        setReceipt('');
-        setNextHour(null);
+    const clearForm = () => {
+        setFormData(initialState);
     };
 
     useEffect(() => {
-        if (schedule) {
-            setOidMedicine(schedule.oidMedicine);
-            setOidDoctor(schedule.oidDoctor);
-            setInitialDate(new Date(schedule.initialDate));
-            setFinalDate(new Date(schedule.finalDate));
-            setQuantity(schedule.quantity);
-            setInterval(schedule.interval);
-            setReminder(schedule.reminder);
-            setReceipt(schedule.receipt);
+        if (isOpen && !schedule) {
+            setFormData(initialState);
+            return;
         }
-    }, [schedule]);
+
+        if (isOpen && schedule) {
+            const parseDate = (input) =>
+                typeof input === 'string' && input.includes('/')
+                    ? parsePtBRDateString(input)
+                    : new Date(input);
+
+            const newInitial = parseDate(schedule.initialDate);
+            const newFinal = parseDate(schedule.finalDate);
+            const newNext = new Date(newInitial);
+            newNext.setHours(newNext.getHours() + schedule.interval);
+
+            setFormData({
+                ...schedule,
+                initialDate: newInitial,
+                finalDate: newFinal,
+                nextHour: newNext,
+            });
+        }
+    }, [isOpen, schedule]);
+
+    const parsePtBRDateString = (str) => {
+        const [day, month, year] = str.split('/');
+        return new Date(Number(year), Number(month) - 1, Number(day));
+    };
 
     return (
-        <ModalRegister title={"Agendar Medicamento"} isOpen={isOpen} handleClose={handleClose}
-                       handleSubmit={handleFormSubmit} handleClean={handleClean} width={"60rem"} labelSubmit={"Agendar"}
-                       labelCancel={"Limpar"} height={"35rem"}>
+        <ModalRegister
+            title={"Agendar Medicamento"}
+            isOpen={isOpen}
+            handleClose={handleClose}
+            handleSubmit={handleFormSubmit}
+            handleClean={() => {
+                clearForm();
+                handleClean();
+            }}
+            width={"60rem"}
+            labelSubmit={"Agendar"}
+            labelCancel={"Limpar"}
+            height={"35rem"}
+        >
             <div className="modal-register-schedule">
                 <div className="left-side">
                     <div className="form-group">
-                        <MedicineInput width={"30rem"} name="medicine" label="Medicamento:" required={true} value={oidMedicine} setValue={setOidMedicine}/>
-
+                        <MedicineInput
+                            width={"30rem"}
+                            name="medicine"
+                            label="Medicamento:"
+                            required={true}
+                            value={formData.oidMedicine}
+                            setValue={(val) => handleChange('oidMedicine', val)}
+                        />
                     </div>
                     <div className="form-group">
-                        <TextInput label="Lembrete:" value={reminder} onChange={(e) => setReminder(e.target.value)}/>
+                        <TextInput
+                            label="Lembrete:"
+                            value={formData.reminder}
+                            onChange={(e) => handleChange('reminder', e.target.value)}
+                        />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="doctor">Médico Responsável:</label>
-                        <Select options={doctorOptions} placeholder={"Selecione um médico..."}
-                                onSelect={(e) => setOidDoctor(e.oid)}/>
+                        <label>Médico Responsável:</label>
+                        <Select
+                            options={doctorOptions}
+                            placeholder={"Selecione um médico..."}
+                            onSelect={(e) => handleChange('oidDoctor', e.oid)}
+                        />
                     </div>
                 </div>
+
                 <div className="right-side">
                     <div className="section section-date">
                         <div className="form-group">
-                            <label htmlFor="doctor">Data de Início:</label>
-                            <CustomDatepicker value={initialDate} onChange={(e) => setInitialDate(e)}/>
+                            <label>Data de Início:</label>
+                            <CustomDatepicker
+                                value={formData.initialDate}
+                                onChange={(e) => handleChange('initialDate', e)}
+                            />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="doctor">Data de Término:</label>
-                            <CustomDatepicker showMonthYearDropdown={true} showYearDropdown={true} selected={finalDate}
-                                              onChange={(e) => setFinalDate(e)}/>
+                            <label>Data de Término:</label>
+                            <CustomDatepicker
+                                value={formData.finalDate}
+                                onChange={(e) => handleChange('finalDate', e)}
+                            />
                         </div>
                     </div>
+
                     <div className="section section-time">
                         <div className="form-group">
-                            <label htmlFor="horaInicio">Hora de Início:</label>
-                            <CustomTimepicker value={initialDate} onChange={(e) => setInitialDate(e)}/>
+                            <label>Hora de Início:</label>
+                            <CustomTimepicker
+                                value={formData.initialDate}
+                                onChange={(e) => handleChange('initialDate', e)}
+                            />
                         </div>
                         <div className="form-group">
                             <CustomNumberInput
-                                value={interval}
-                                onChange={(e) => changeInterval(e)}
+                                value={formData.interval}
+                                onChange={(e) => handleChange('interval', e)}
                                 min={0}
                                 max={100}
                                 step={1}
@@ -123,17 +171,22 @@ export default function ModalRegisterScheduling({isOpen, handleClose, handleSubm
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="proxHora">Proximo horário:</label>
-                            <CustomTimepicker value={nextHour} disabled={true}/>
+                            <label>Próximo horário:</label>
+                            <CustomTimepicker
+                                value={formData.nextHour}
+                                disabled={true}
+                                onChange={(e) => handleChange('nextHour', e)}
+                            />
                         </div>
                     </div>
+
                     <div className="form-group quantity-input">
                         <CustomNumberInput
-                            value={quantity}
-                            onChange={(e) => setQuantity(e)}
+                            value={formData.quantity}
+                            onChange={(e) => handleChange('quantity', e)}
                             min={0}
                             max={100}
-                            step={0}
+                            step={1}
                             label="Quantidade:"
                             required={true}
                             incrementSvg={IncrementSvg}

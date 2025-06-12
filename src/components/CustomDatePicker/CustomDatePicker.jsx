@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './CustomDatePicker.css';
@@ -23,48 +23,31 @@ const MaskedInput = forwardRef(({ value, onClick, onChange }, ref) => (
     </InputMask>
 ));
 
-const CustomDatepicker = () => {
-    const [startDate, setStartDate] = useState(null);
-    const [inputValue, setInputValue] = useState('');
+const CustomDatepicker = ({ value, onChange }) => {
+    const formattedValue = value ? value.toLocaleDateString('pt-BR') : '';
 
     const handleInputChange = (e) => {
-        const value = e.target.value;
-        setInputValue(value);
-
-        const [day, month, year] = value.split('/');
-        if (day && month && year && value.length === 10) {
+        const input = e.target.value;
+        const [day, month, year] = input.split('/');
+        if (day && month && year && input.length === 10) {
             const parsedDate = new Date(Number(year), Number(month) - 1, Number(day));
-            if (!isNaN(parsedDate.getTime())) {
-                setStartDate(parsedDate);
-            } else {
-                setStartDate(null);
+            if (!isNaN(parsedDate)) {
+                onChange(parsedDate);
             }
-        } else {
-            setStartDate(null);
         }
     };
 
     return (
         <DatePicker
-            selected={startDate}
-            onChange={(date) => {
-                setStartDate(date);
-                if (date) {
-                    setInputValue(date.toLocaleDateString('pt-BR'));
-                } else {
-                    setInputValue('');
-                }
-            }}
+            selected={value}
+            onChange={(date) => onChange(date)}
             dateFormat="dd/MM/yyyy"
             minDate={new Date()}
             maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
             todayButton="Hoje"
             locale={ptBR}
-            showYearDropdown={false}
-            scrollableYearDropdown
-            showWeekNumbers={false}
             customInput={
-                <MaskedInput value={inputValue} onChange={handleInputChange} />
+                <MaskedInput value={formattedValue} onChange={handleInputChange} />
             }
         />
     );

@@ -1,35 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import DatePicker from "react-datepicker";
 import './CustomTimepicker.css';
 import "react-datepicker/dist/react-datepicker.css";
-import { ptBR } from 'date-fns/locale'; // Localização em português, caso deseje
+import { ptBR } from 'date-fns/locale';
 
 const CustomTimePicker = ({ value, onChange, disabled }) => {
-    const handleChange = (date) => {
-        onChange(date);  // Passando o valor de volta para o componente pai
-    };
-
-    useEffect(() => {
-        console.log(value);
-        if (value) {
-            handleChange(value);
-        }
-    }, [value]);
-
     return (
-        <div>
-            <DatePicker
-                selected={value}    // Usando o valor passado para o componente
-                onChange={handleChange}
-                disabled={disabled}  // Controlando se o TimePicker está desabilitado
-                showTimeSelect
-                showTimeSelectOnly
-                timeIntervals={15}  // Intervalo de 15 minutos
-                timeCaption="Hora"
-                dateFormat="HH:mm"  // Formato de 24 horas
-                locale={ptBR}  // Localização em português (Brasil)
-            />
-        </div>
+        <DatePicker
+            selected={value}
+            onChange={onChange}
+            disabled={disabled}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={15}
+            timeCaption="Hora"
+            dateFormat="HH:mm"
+            locale={ptBR}
+        />
     );
 };
 

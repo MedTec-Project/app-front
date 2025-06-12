@@ -10,7 +10,7 @@ import {
     getTodaySchedule,
     saveSchedule,
     markScheduleTaken,
-    getScheduleById, deleteSchedule
+    getScheduleById, deleteSchedule, updateSchedule
 } from "../../api/schedule.jsx";
 import ModalMedication from "../../components/ModalMedication/ModalMedication.jsx";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal.jsx";
@@ -63,6 +63,7 @@ export default function Schedule() {
     }
 
     const handleOpenModalScheduling = () => {
+        setScheduleShow(null);
         setIsOpenSchedulingModal(true);
     };
 
@@ -71,21 +72,43 @@ export default function Schedule() {
     };
 
     const handleSaveScheduling = (schedule) => {
-        saveSchedule(schedule).then((data) => {
-            if (data) {
-                toast.success("Agendamento cadastrado com sucesso!");
-                handleCloseScheduling();
-            }
-        }).catch((error) => {
-            if (error && error.response && error.response.data) {
-                if (error.response.data.mensagem instanceof Array) {
-                    var mensagem = error.response.data.mensagem.join(", ");
-                    toast.error(mensagem);
-                } else {
-                    toast.error(error.response.data.mensagem);
+        if (schedule.oid) {
+            updateSchedule(schedule.oid, schedule).then((data) => {
+                if (data) {
+                    toast.success("Agendamento atualizado com sucesso!");
+                    handleCloseScheduling();
+                    handleCloseMedicationModal();
+                    fetchSchedules();
                 }
-            }
-        });
+            }).catch((error) => {
+                if (error && error.response && error.response.data) {
+                    if (error.response.data.mensagem instanceof Array) {
+                        var mensagem = error.response.data.mensagem.join(", ");
+                        toast.error(mensagem);
+                    } else {
+                        toast.error(error.response.data.mensagem);
+                    }
+                }
+            });
+        } else {
+            saveSchedule(schedule).then((data) => {
+                if (data) {
+                    toast.success("Agendamento cadastrado com sucesso!");
+                    handleCloseScheduling()
+                    handleCloseMedicationModal();
+                    fetchSchedules();
+                }
+            }).catch((error) => {
+                if (error && error.response && error.response.data) {
+                    if (error.response.data.mensagem instanceof Array) {
+                        var mensagem = error.response.data.mensagem.join(", ");
+                        toast.error(mensagem);
+                    } else {
+                        toast.error(error.response.data.mensagem);
+                    }
+                }
+            });
+        }
     };
 
     const handleModalConfirmation = (oid) => {
@@ -146,7 +169,6 @@ export default function Schedule() {
 
     const handleCleanScheduling = () => {
         setScheduleShow(null);
-
     };
 
     const handleConfirmSchedule = (oid, taken) => {
@@ -171,9 +193,14 @@ export default function Schedule() {
             <ModalMedication isOpen={isOpenMedicationModal} labelCancel={"Excluir"} labelSubmit={"Editar"}
                              handleClose={handleCloseMedicationModal} schedule={scheduleShow}
                              handleClean={handleDelete} handleSubmit={handleEditSchedule}/>
-            <ModalRegisterScheduling isOpen={isOpenSchedulingModal} handleClose={handleCloseScheduling}
-                                     handleSubmit={handleSaveScheduling}
-                                     handleClean={handleCleanScheduling} schedule={scheduleShow}/>
+            <ModalRegisterScheduling
+                key={scheduleShow?.oid || 'new'}
+                isOpen={isOpenSchedulingModal}
+                handleClose={handleCloseScheduling}
+                handleSubmit={handleSaveScheduling}
+                handleClean={handleCleanScheduling}
+                schedule={scheduleShow}
+            />
             <div className="pos-shadow" style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
                 <div className="nav-top">
                     <h2 style={{color: "#48735F", fontWeight: "100"}}>Agendamento de Medicamentos</h2>

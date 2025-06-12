@@ -9,10 +9,11 @@ import ModalRegisterMedicine from "./Register/ModalRegisterMedicine.jsx";
 import {getMedicines, saveMedication} from "../../api/medication.jsx";
 import {toast} from "react-toastify";
 import ModalRegisterScheduling from "../Schedule/Register/ModalRegisterScheduling.jsx";
+import {saveSchedule} from "../../api/schedule.jsx";
 
 export default function Medications() {
     const [medications, setMedications] = useState([]);
-    const [medication, setMedication] = useState(null);
+    const [scheduleShow, setScheduleShow] = useState(null);
     const [tab, setTab] = useState(1);
     const [selected, setSelected] = useState(null);
     const [sortOptions, setSortOptions] = useState([
@@ -67,7 +68,6 @@ export default function Medications() {
     };
 
     const handleSaveMedication = (medicamento) => {
-        setMedication(medicamento);
         saveMedication(medicamento).then((data) => {
             if (data) {
                 toast.success("Medicamento cadastrado com sucesso!");
@@ -99,22 +99,49 @@ export default function Medications() {
         setMedications(medicines);
     };
 
-    const handleOpenModalScheduling = () => {
-        setIsOpenSchedulingModal(true);
+    const handleOpenModalScheduling = (medication) => {
+        if (medication) {
+            setScheduleShow({
+                oidMedicine: medication.oid,
+                quantity: 1,
+                interval: 1,
+                initialDate: new Date(),
+                finalDate: new Date(),
+                reminder: '',
+                receipt: '',
+                oidDoctor: null,
+            });
+            setIsOpenSchedulingModal(true);
+        }
     };
 
     const handleCloseScheduling = () => {
         setIsOpenSchedulingModal(false);
     };
 
-    const handleSaveScheduling = (medicamento) => {
-        return;
+    const handleSaveScheduling = (schedule) => {
+        saveSchedule(schedule).then((data) => {
+            if (data) {
+                toast.success("Agendamento cadastrado com sucesso!");
+                handleCloseScheduling();
+                fetchMedicines();
+            }
+        }).catch((error) => {
+            if (error && error.response && error.response.data) {
+                if (error.response.data.mensagem instanceof Array) {
+                    var mensagem = error.response.data.mensagem.join(", ");
+                    toast.error(mensagem);
+                } else {
+                    toast.error(error.response.data.mensagem);
+                }
+            }
+        });
     }
 
     return (
         <div className="medications-container">
             <ModalRegisterScheduling isOpen={isOpenSchedulingModal} handleClose={handleCloseScheduling} handleSubmit={handleSaveScheduling}
-                                     handleClean={handleClean} />
+                                     handleClean={handleClean} schedule={scheduleShow}/>
             <ModalRegisterMedicine isOpen={isOpenMedicineModal} handleClose={handleCloseMedicine} handleSubmit={handleSaveMedication}
                                    handleClean={handleClean}/>
             <div className="medications-filter-container">
@@ -155,7 +182,8 @@ export default function Medications() {
                                 med={med}
                                 selected={selected}
                                 setSelected={setSelected}
-                                handleOpenModal={handleOpenModalMedicine}
+                                schedule={scheduleShow}
+                                handleOpenModal={() => handleOpenModalScheduling(med)}
                             />
                         ))}
                     </div>
