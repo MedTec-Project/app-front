@@ -1,0 +1,17 @@
+.notification{
+    margin: 10px;
+    width: 100%;
+    height: 42px;
+    display: flex;
+}
+.pos-notification{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-notification{
+    color: rgb(221, 18, 18);
+    height: 12px;
+    width: 12px;
+}

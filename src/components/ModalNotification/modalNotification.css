@@ -1,0 +1,15 @@
+.mod-notification{
+    float: right;
+    top: 6.5%;
+    left: 82.3%;
+    min-height: 260px;
+    min-width: 400px;
+    background-color: var(--color-light);
+    padding: 5px;
+    z-index: 100;
+    box-shadow: 10px 10px 8px 10px black;
+}
+.menu-notification{
+    height: 100%;
+    width: 100%;
+}
