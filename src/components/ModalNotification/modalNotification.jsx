@@ -1,23 +1,31 @@
 import '../ModalNotification/ModalNotification.css';
 import Notification from '../Notification/notification';
-import React, {forwardRef, useEffect} from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 
 const ModalNotification = forwardRef(({ modalOpen }, ref) => {
-    const [messages, setMessages] = React.useState([]);
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:9001/ws/notification');
+        const socket = new WebSocket("ws://localhost:5173/ws/notification");
 
         socket.onmessage = (event) => {
-            console.log(event.data);
             const data = JSON.parse(event.data);
-            setMessages([...messages, data]);
+            setMessages(prevMessages => [...prevMessages, data]);
         };
 
         return () => {
             socket.close();
         };
-    }, [messages]);
+    }, []);
+
+    const handleClickNotification = (notification) => {
+        messages.forEach((message) => {
+            if (message.id === notification.id) {
+                message.new = !message.new;
+            }
+        });
+        setMessages([...messages]);
+    }
 
     return (
         <div
@@ -26,7 +34,7 @@ const ModalNotification = forwardRef(({ modalOpen }, ref) => {
             style={{
                 display: modalOpen ? "block" : "none",
                 position: "absolute",
-                Top: "10%",
+                top: "10%", // ✅ corrigido
                 right: "100px",
                 backgroundColor: "#fff",
                 padding: "20px",
@@ -37,7 +45,7 @@ const ModalNotification = forwardRef(({ modalOpen }, ref) => {
             }}>
             <div className='menu-notification'>
                 {messages.map((message, index) => (
-                    <Notification key={index} notification={message} />
+                    <Notification key={index} notification={message} handleClickNotification={handleClickNotification}/>
                 ))}
             </div>
         </div>
