@@ -10,10 +10,12 @@ import Sair from '../../assets/images/Sair.png';
 import {AuthContext} from "../../auth/Context.jsx";
 import {useNavigate} from "react-router-dom";
 import ModalPerfil from '../ModalPerfil/ModalPerfil.jsx';
+import ModalHistory from '../ModalHistory/modalHistory.jsx';
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [modalOpen, setmodalOpen] = useState(false);
+  const [modalPerfilOpen, setModalPerfilOpen] = useState(false);
+  const [modalHistoryOpen, setModalHistoryOpen] = useState(false);
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -24,22 +26,30 @@ const Dropdown = () => {
     navigate('/login');
   }
 
-  const handleOpenModal = () => {
-    setmodalOpen(true);
+  const handleOpenModalPerfil = () => {
+    setModalPerfilOpen(true);
   };
-  const handleClose = () => {
-    setmodalOpen(false);
+  const handleClosePerfil = () => {
+    setModalPerfilOpen(false);
+  };
+
+  const handleOpenModalHistory = () => {
+    setModalHistoryOpen(true);
+  };
+  const handleCloseHistory = () => {
+    setModalHistoryOpen(false);
   };
 
   return (
     <div style={{ position: 'relative' }}>
       <FaRegUser className='icone' onClick={toggleMenu}/>
-      <ModalPerfil modalOpen={modalOpen} handleClose={handleClose}/>
+      <ModalPerfil modalOpen={modalPerfilOpen} handleClose={handleClosePerfil} />
+      <ModalHistory modalOpen={modalHistoryOpen} handleClose={handleCloseHistory}/>
       {isOpen && (
         <div className={`menu ${isOpen ? 'open' : ''}`}>
           <div className='menu-itens'>  
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                <div className='conjunto-menu' onClick={handleOpenModal}>
+                <div className='conjunto-menu' onClick={handleOpenModalPerfil}>
                   <img className='imagem' src={Perfil} /><li className='itens-menu'>Meu Perfil</li>
                 </div>
                 <div className='conjunto-menu'>
@@ -48,7 +58,7 @@ const Dropdown = () => {
                 <div className='conjunto-menu'>
                   <img className='imagem' src={Favoritos} /><li className='itens-menu'>Favoritos</li>
                 </div>
-                <div className='conjunto-menu'>
+                <div className='conjunto-menu' onClick={handleOpenModalHistory}>
                   <img className='imagem' src={Historico} /><li className='itens-menu'>Histórico</li>
                 </div>
                 <div className='conjunto-menu'>
