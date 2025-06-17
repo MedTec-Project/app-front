@@ -41,6 +41,7 @@ export default function Header() {
                 <div className="mid">
                     <Link to="/medicamentos">Medicamentos</Link>
                     <Link to="/agendamento">Agendamentos</Link>
+                    <Link to="/consultas">Consultas</Link>
                     <Link to="/calendario">Calendário</Link>
                 </div>
                 <div className="right">
