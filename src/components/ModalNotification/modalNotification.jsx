@@ -1,4 +1,4 @@
-import '../ModalNotification/ModalNotification.css';
+import '../ModalNotification/modalNotification.css';
 import Notification from '../Notification/notification';
 import React, { forwardRef, useEffect, useState } from 'react';
 
@@ -10,6 +10,9 @@ const ModalNotification = forwardRef(({ modalOpen }, ref) => {
 
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
+            data.map(function (message) {
+                message.new = true;
+            })
             setMessages(prevMessages => [...prevMessages, data]);
         };
 
@@ -20,7 +23,7 @@ const ModalNotification = forwardRef(({ modalOpen }, ref) => {
 
     const handleClickNotification = (notification) => {
         messages.forEach((message) => {
-            if (message.id === notification.id) {
+            if (message.oid === notification.oid) {
                 message.new = !message.new;
             }
         });

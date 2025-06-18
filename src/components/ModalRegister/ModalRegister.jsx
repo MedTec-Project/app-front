@@ -42,7 +42,7 @@ export default function ModalRegister({
                         <div className="modal-register-title">
                             <h2>{title}</h2>
                         </div>
-                        <button className="close-btn" onClick={handleClose  }>
+                        <button className="close-btn" onClick={handleClose}>
                             <AiOutlineClose/>
                         </button>
                     </div>
