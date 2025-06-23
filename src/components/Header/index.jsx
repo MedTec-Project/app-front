@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './styles.css';
 import SearchInput from '../SearchInput';
 import Logo_MedTec from '../../assets/images/logo-medtec.png';
 import Dropdown from "../Dropdown/Dropdown.jsx";
-import { IoNotificationsOutline } from "react-icons/io5";
+import {IoNotificationsOutline} from "react-icons/io5";
 import ModalNotification from '../ModalNotification/modalNotification.jsx';
-import { useState, useEffect, useRef } from 'react';
+import {useState, useEffect, useRef} from 'react';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const notifRef = useRef(null);
+    const [newMessages, setNewMessages] = useState(false);
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -34,7 +35,8 @@ export default function Header() {
     return (
         <header>
             <nav>
-                <ModalNotification modalOpen={isOpen} ref={notifRef} />
+                <ModalNotification modalOpen={isOpen} ref={notifRef} newMessages={newMessages}
+                                   setNewMessages={setNewMessages}/>
                 <div className="left">
                     <img src={Logo_MedTec} alt='logo_medtec' className='logo-header'/>
                 </div>
@@ -45,18 +47,21 @@ export default function Header() {
                     <Link to="/calendario">Calendário</Link>
                 </div>
                 <div className="right">
-                    <SearchInput />
-                    <IoNotificationsOutline
-                        style={{
-                            marginLeft: "50px",
-                            paddingBottom: "5px",
-                            color: "white",
-                            width: "35px",
-                            height: "35px",
-                            cursor: "pointer"
-                        }}
-                        onClick={toggleMenu}/>
-                    <Dropdown />
+                    <SearchInput/>
+                    <div className="notification">
+                        <IoNotificationsOutline
+                            style={{
+                                marginLeft: "50px",
+                                paddingBottom: "5px",
+                                color: "white",
+                                width: "35px",
+                                height: "35px",
+                                cursor: "pointer"
+                            }}
+                            onClick={toggleMenu}/>
+                        {newMessages && <span className="notification-dot"></span>}
+                    </div>
+                    <Dropdown/>
                 </div>
             </nav>
         </header>

@@ -1,13 +1,13 @@
 import '../Notification/notification.css'
 import { FaCircle } from "react-icons/fa";
 
-export default function Notification({key, notification}) {
-    const activated = false;
+export default function Notification({key, notification, handleClickNotification}) {
+
 
     return notification ? (
-        <div className='notification' key={key}>
+        <div className='notification' key={key} onClick={() => handleClickNotification(notification)}>
             <div className='pos-notification'>
-                <FaCircle className='icon-notification' style={{color: activated ? "red" : "grey"}}/>
+                <FaCircle className='icon-notification' style={{color: notification.new ? "red" : "grey"}}/>
             </div>
             <div className='pos-txt'>
                 <label style={{fontSize: "13px"}}>{ notification.timestamp }</label>

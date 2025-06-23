@@ -1,22 +1,41 @@
-import '../ModalNotification/ModalNotification.css';
+import '../ModalNotification/modalNotification.css';
 import Notification from '../Notification/notification';
-import React, {forwardRef, useEffect} from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 
-const ModalNotification = forwardRef(({ modalOpen }, ref) => {
-    const [messages, setMessages] = React.useState([]);
+const ModalNotification = forwardRef(({ modalOpen, newMessages, setNewMessages  }, ref) => {
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:9001/ws/notification');
+        const socket = new WebSocket("ws://localhost:5173/ws/notification");
 
         socket.onmessage = (event) => {
-            console.log(event.data);
             const data = JSON.parse(event.data);
-            setMessages([...messages, data]);
+            data.map(function (message) {
+                message.new = true
+            })
+            setMessages([...data]);
         };
 
         return () => {
             socket.close();
         };
+    }, []);
+
+    const handleClickNotification = (notification) => {
+        messages.forEach((message) => {
+            if (message.oid === notification.oid) {
+                message.new = !message.new;
+            }
+        });
+        setMessages([...messages]);
+    }
+
+    useEffect(() => {
+        if (messages.some((message) => message.new)) {
+            setNewMessages(true);
+        } else {
+            setNewMessages(false);
+        }
     }, [messages]);
 
     return (
@@ -26,7 +45,7 @@ const ModalNotification = forwardRef(({ modalOpen }, ref) => {
             style={{
                 display: modalOpen ? "block" : "none",
                 position: "absolute",
-                Top: "10%",
+                top: "10%", // ✅ corrigido
                 right: "100px",
                 backgroundColor: "#fff",
                 padding: "20px",
@@ -37,7 +56,7 @@ const ModalNotification = forwardRef(({ modalOpen }, ref) => {
             }}>
             <div className='menu-notification'>
                 {messages.map((message, index) => (
-                    <Notification key={index} notification={message} />
+                    <Notification key={index} notification={message} handleClickNotification={handleClickNotification}/>
                 ))}
             </div>
         </div>

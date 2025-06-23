@@ -44,3 +44,23 @@ header {
     width: 3.5rem;
     height: 3rem;
 }
+
+.notification {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-dot {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 1.6rem;
+    right: 4rem;
+    z-index: 1;
+}
+
