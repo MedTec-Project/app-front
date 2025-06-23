@@ -191,7 +191,7 @@ export default function Schedule() {
                 Tem certeza que deseja confirmar um agendamento com mais de 20 minutos de diferença?
             </ConfirmationModal>
             <ModalMedication isOpen={isOpenMedicationModal} labelCancel={"Excluir"} labelSubmit={"Editar"}
-                             handleClose={handleCloseMedicationModal} schedule={scheduleShow}
+                             handleClose={handleCloseMedicationModal} schedule={scheduleShow} title={"Medicamento Agendamento"}
                              handleClean={handleDelete} handleSubmit={handleEditSchedule}/>
             <ModalRegisterScheduling
                 key={scheduleShow?.oid || 'new'}

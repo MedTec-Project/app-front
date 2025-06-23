@@ -10,7 +10,8 @@ export default function ModalMedication({
                                             labelSubmit,
                                             labelCancel,
                                             handleSubmit,
-                                            schedule
+                                            schedule,
+                                            title
                                         }) {
 
     return schedule ? (
@@ -19,8 +20,7 @@ export default function ModalMedication({
                  onClick={(e) => e.stopPropagation()}>
                 <div className='mod-tittle'>
                     <div className='mod-cnt-tit'>
-                        <h4 style={{letterSpacing: "2px", color: "rgb(102, 131, 102)", textAlign: "center"}}>Medicamento
-                            Agendado</h4>
+                        <h4 style={{letterSpacing: "2px", color: "rgb(102, 131, 102)", textAlign: "center"}}>{title}</h4>
                     </div>
                     <button className="close-btn" onClick={handleClose}>
                         <AiOutlineClose/>
