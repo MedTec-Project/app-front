@@ -10,6 +10,7 @@ import Medications from './pages/Medications/Medications';
 import Medicine from "./pages/Medications/Show/Medicine.jsx";
 import Calendar from './pages/Calendar';
 import Schedule from './pages/Schedule/Schedule.jsx';
+import Queries from './pages/Queries/Queries.jsx';
 import ResetPassword from './pages/Forgot_Password/index.jsx';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                     <Route path='/medicamentos/:oid' element={<Medicine/>}/>
                     <Route path='/calendario' element={<Calendar />} />
                     <Route path='/agendamento' element={<Schedule />} />
+                    <Route path='/consultas' element={<Queries />} />
                 </Route>
                 {user ? '' : <Route path="/login" element={<Login/>}/>}
                 <Route path='/resetpassword' element={<ResetPassword/>}/>

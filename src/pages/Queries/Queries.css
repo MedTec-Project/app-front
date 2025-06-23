@@ -1,0 +1,78 @@
+.agendamento-container {
+    background-color: var(--var-bg-primary);
+    color: var(--var-text-primary);
+}
+.pos-shadow{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.nav-top{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    height: 100px;
+    width: 80%;
+}
+.but-scheduler{
+    width: 250px;
+    height: 40px;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: none;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1;
+    color: #48735F;
+    border-color: #48735F;
+    cursor: pointer;
+}
+.but-scheduler:hover{
+    background-color: #48735F;
+    color: white;
+}
+.navegacao{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-top: 20px;
+}
+.nav-itens{
+    width: 60%;
+    display: flex;
+}
+.botao-navegacao{
+    width: 250px;
+    height: 40px;
+    background-color: none;
+    border-width: 0;
+    font-weight: 550;
+    font-size: 18px;
+    color: #48735F;
+    cursor: pointer;
+}
+.botao-navegacao:hover{
+    border-style: solid;
+    border-color: #48735F;
+    border-width: 2.5px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+}
+.botao-agendar{
+    background-color: #48735F;
+    color: white;
+    border-radius: 5px;
+    width: 150px;
+    height: 45px;
+    border-width: 0;
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.2);
+}
+.cards{
+    height: 700px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px;
+}
