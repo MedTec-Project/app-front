@@ -10,7 +10,7 @@ import Sair from '../../assets/images/Sair.png';
 import {AuthContext} from "../../auth/Context.jsx";
 import {useNavigate} from "react-router-dom";
 import ModalPerfil from '../ModalPerfil/ModalPerfil.jsx';
-import ModalHistory from '../ModalHistory/modalHistory.jsx';
+import ModalHistory from '../ModalHistory/ModalHistory.jsx';
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
