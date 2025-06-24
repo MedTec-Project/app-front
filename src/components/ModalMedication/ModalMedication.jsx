@@ -2,6 +2,7 @@ import './ModalMedication.css';
 import {AiOutlineClose} from "react-icons/ai";
 import {TbCheck, TbPencil, TbTrashOff} from "react-icons/tb";
 import {useEffect, useMemo} from "react";
+import CalendarScheduling from "../CalendarScheduling/calendarScheduling"
 
 export default function ModalMedication({
                                             isOpen,
@@ -38,7 +39,23 @@ export default function ModalMedication({
                         <a>teste</a>
                     </div>
                     <div className='calendar'>
-
+                        <div className='pos-calendar'>
+                            <CalendarScheduling initialDate={schedule.initialDate} finalDate={schedule.finalDate} />
+                            <div className='pos-infos'>
+                                <div className='combination'>
+                                    <div style={{height: "8px", width: "8px", backgroundColor: "#149D4B", borderRadius: "5px"}} />
+                                    <a style={{marginLeft: "5px"}}>Consumido</a>
+                                </div>
+                                <div className='combination'>
+                                    <div style={{height: "8px", width: "8px", backgroundColor: "#3d6aff", borderRadius: "5px"}} />
+                                    <a style={{marginLeft: "5px"}}>À consumir</a>
+                                </div>
+                                <div className='combination'>
+                                    <div style={{height: "8px", width: "8px", backgroundColor: "#91D7B5", borderRadius: "5px"}} />
+                                    <a style={{marginLeft: "5px"}}>Não consumido</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='cnt-buttons'>
