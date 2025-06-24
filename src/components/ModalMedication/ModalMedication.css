@@ -56,8 +56,10 @@
 .img-medice{
     width: 50%;
     height: 500px;
-    background-color: red;
-    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
 }
 .calendar{
     width: 50%;
@@ -118,4 +120,9 @@
 .edit-btn {
     background-color: #999999 !important;
     color: white;
+}
+.remed-img-modal{
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
 }
