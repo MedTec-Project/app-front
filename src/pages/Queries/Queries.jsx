@@ -5,21 +5,23 @@ import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {saveSchedule} from "../../api/schedule.jsx";
 import {
-    getAllAppointments,
+    getAllAppointments, getAppointmentById,
     getTodayAppointments,
     markAppointmentDone,
     saveAppointment
 } from "../../api/appointment.jsx";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal.jsx";
+import ModalShowAppointment from "./Show/ModalShowAppointment.jsx";
 
 export default function Queries() {
     const [isOpenAppointmentModal, setIsOpenAppointmentModal] = useState(false);
     const [animatingId, setAnimatingId] = useState(null);
     const [appointments, setAppointments] = useState(null);
     const [activeTab, setActiveTab] = useState(1);
-    const [selectedCard, setSelectedCard] = useState(null);
+    const [selectedAppointment, setSelectedAppointment] = useState(null);
     const [isOpenConfirmationModal, setIsOpenConfirmationModal] = useState(false);
     const [confirmationModalOid, setConfirmationModalOid] = useState(null);
+    const [isOpenAppointmentShow, setIsOpenAppointmentShow] = useState(false);
 
     const handleOpenModalAppointment = () => setIsOpenAppointmentModal(true);
     const handleCloseAppointment = () => setIsOpenAppointmentModal(false);
@@ -82,8 +84,6 @@ export default function Queries() {
 
         var card = appointments.find(card => card.oid === oid);
 
-        setSelectedCard(card);
-
         const dateStr = card.scheduleDate;
         if (!dateStr) return;
         const [datePart, timePart] = dateStr.split(" ");
@@ -111,8 +111,28 @@ export default function Queries() {
             console.log(r));
     }, [activeTab]);
 
+    const handleOpenModalShowAppointment = (oid) => {
+        getAppointmentById(oid).then((data) => {
+            setSelectedAppointment(data);
+            setIsOpenAppointmentShow(true);
+        }).catch((error) => {
+            toast.error("Erro ao carregar o agendamento");
+        });
+    };
+
+    const handleCloseAppointmentShow = () => {
+        setIsOpenAppointmentShow(false);
+        setSelectedAppointment(null);
+    };
+
+    const handleEditAppointment = () => {
+        setIsOpenAppointmentModal(true);
+    };
+
+
     return (
         <div className="agendamento-container">
+            <ModalShowAppointment isOpen={isOpenAppointmentShow} handleClose={handleCloseAppointmentShow} handleClean={handleClean} handleSubmit={handleEditAppointment} appointment={selectedAppointment} />
             <ConfirmationModal
                 isOpen={isOpenConfirmationModal}
                 onClose={handleCloseConfirmationModal}
@@ -125,6 +145,7 @@ export default function Queries() {
                 handleClose={handleCloseAppointment}
                 handleSubmit={handleSaveAppointment}
                 handleClean={handleClean}
+                appointment={selectedAppointment}
             />
             <div className="pos-shadow" style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
                 <div className="nav-top">
@@ -150,6 +171,7 @@ export default function Queries() {
                         isOn={card.isOn}
                         toggle={(e) => toggleCardStatus(e, card.oid)}
                         isAnimating={animatingId === card.id}
+                        onClick={() => handleOpenModalShowAppointment(card.oid)}
                     />
                 ))}
             </div>

@@ -2,9 +2,9 @@ import '../CardConsulta/cardConsulta.css';
 import image from '../../assets/images/doctor.png';
 import { FaCheck } from "react-icons/fa6";
 
-export default function CardConsulta({ id, card, isOn, toggle, isAnimating }) {
+export default function CardConsulta({ id, card, isOn, toggle, isAnimating, onClick }) {
     return (
-        <div className={`card-main ${isOn ? "inactive-card" : ""} ${isAnimating ? "card-animating" : ""}`}>
+        <div className={`card-main ${isOn ? "inactive-card" : ""} ${isAnimating ? "card-animating" : ""}`} onClick={onClick}>
             <div style={{ margin: "40px" }}>
                 <div className='pos-foto'>
                     <div className='foto'>

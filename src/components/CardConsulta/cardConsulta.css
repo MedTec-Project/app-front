@@ -50,7 +50,6 @@
 }
 .inactive-card {
     opacity: 0.6;
-    pointer-events: none;
     transition: all 0.3s ease;
 }
 

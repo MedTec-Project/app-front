@@ -12,8 +12,9 @@ import {
     markScheduleTaken,
     getScheduleById, deleteSchedule, updateSchedule
 } from "../../api/schedule.jsx";
-import ModalMedication from "../../components/ModalMedication/ModalMedication.jsx";
+import ModalMedication from "../../components/ModalShow/ModalMedication.jsx";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal.jsx";
+import ModalShowSchedule from "./Show/ModalShowSchedule.jsx";
 
 export default function Schedule() {
 
@@ -190,8 +191,8 @@ export default function Schedule() {
                                onConfirm={() => handleConfirmSchedule(confirmationModalOid, false)}>
                 Tem certeza que deseja confirmar um agendamento com mais de 20 minutos de diferença?
             </ConfirmationModal>
-            <ModalMedication isOpen={isOpenMedicationModal} labelCancel={"Excluir"} labelSubmit={"Editar"}
-                             handleClose={handleCloseMedicationModal} schedule={scheduleShow} title={"Medicamento Agendamento"}
+            <ModalShowSchedule isOpen={isOpenMedicationModal}
+                             handleClose={handleCloseMedicationModal} schedule={scheduleShow}
                              handleClean={handleDelete} handleSubmit={handleEditSchedule}/>
             <ModalRegisterScheduling
                 key={scheduleShow?.oid || 'new'}
