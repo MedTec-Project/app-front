@@ -192,7 +192,7 @@ export default function Schedule() {
                 Tem certeza que deseja confirmar um agendamento com mais de 20 minutos de diferença?
             </ConfirmationModal>
             <ModalShowSchedule isOpen={isOpenMedicationModal}
-                             handleClose={handleCloseMedicationModal} schedule={scheduleShow}
+                             handleClose={handleCloseMedicationModal} schedule={scheduleShow} allCards={cards}
                              handleClean={handleDelete} handleSubmit={handleEditSchedule}/>
             <ModalRegisterScheduling
                 key={scheduleShow?.oid || 'new'}
@@ -217,8 +217,7 @@ export default function Schedule() {
                         </button>
                         <button className={`botao-navegacao ${tab === 2 ? "botao-navegacao-active" : ""}`}
                                 onClick={() => setTab(2)}>Geral
-                        </button>,
-
+                        </button>
                     </div>
                 </div>
             </div>

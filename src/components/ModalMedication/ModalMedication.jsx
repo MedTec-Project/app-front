@@ -1,0 +1,88 @@
+import './ModalMedication.css';
+import {AiOutlineClose} from "react-icons/ai";
+import {TbCheck, TbPencil, TbTrashOff} from "react-icons/tb";
+import {useEffect, useMemo} from "react";
+import CalendarScheduling from "../CalendarScheduling/calendarScheduling"
+
+export default function ModalMedication({
+                                            isOpen,
+                                            handleClose,
+                                            handleClean,
+                                            labelSubmit,
+                                            labelCancel,
+                                            handleSubmit,
+                                            schedule,
+                                            allCards
+                                        }) {
+    if (!schedule) return null;
+
+    const imageBase64 = schedule?.imageBase64 ?? allCards?.find(c => c.oidSchedule === schedule?.oid || c.oid === schedule?.oid)?.imageBase64;
+                                            
+    return schedule ? (
+        <div className="modal-overlay" style={{display: isOpen ? "block" : "none"}} onClick={handleClose}>
+            <div className='mod-medice' style={{display: isOpen ? "block" : "none"}}
+                 onClick={(e) => e.stopPropagation()}>
+                <div className='mod-tittle'>
+                    <div className='mod-cnt-tit'>
+                        <h4 style={{letterSpacing: "2px", color: "rgb(102, 131, 102)", textAlign: "center"}}>Medicamento
+                            Agendado</h4>
+                    </div>
+                    <button className="close-btn" onClick={handleClose}>
+                        <AiOutlineClose/>
+                    </button>
+                </div>
+                <div className='sub-tit'>
+                    <h5 style={{
+                        letterSpacing: "1px",
+                        color: "rgb(102, 131, 102)",
+                        marginLeft: "35px"
+                    }}>{schedule.nameMedicine} ({schedule.dosageMedicine}{schedule.dosageTypeMedicine})</h5>
+                </div>
+                <div className='cnt-medice'>
+                    <div className='img-medice'>
+                        <img src={`data:image/png;base64,${imageBase64}`} className="remed-img-modal" alt="Imagem do remédio"/>
+                    </div>
+                    <div className='calendar'>
+                        <div className='pos-calendar'>
+                            <CalendarScheduling initialDate={schedule.initialDate} finalDate={schedule.finalDate} />
+                            <div className='pos-infos'>
+                                <div className='combination'>
+                                    <div style={{height: "8px", width: "8px", backgroundColor: "#3d6aff", borderRadius: "5px"}} />
+                                    <a style={{marginLeft: "5px"}}>Dia Atual</a>
+                                </div>
+                                <div className='combination'>
+                                    <div style={{height: "8px", width: "8px", backgroundColor: "yellow", borderRadius: "5px"}} />
+                                    <a style={{marginLeft: "5px"}}>Não consumido</a>
+                                </div>
+                                <div className='combination'>
+                                    <div style={{height: "8px", width: "8px", backgroundColor: "#149D4B", borderRadius: "5px"}} />
+                                    <a style={{marginLeft: "5px"}}>Consumido</a>
+                                </div>
+                            </div>
+                            <div>
+                                <div className='combination'>
+                                    <div style={{height: "8px", width: "8px", backgroundColor: "#91D7B5", borderRadius: "5px"}} />
+                                    <a style={{marginLeft: "5px"}}>Aguardando consumo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='cnt-buttons'>
+                    <div className='buttons'>
+                        <button className='item-button'>Quantidade: {schedule.quantity}</button>
+                        <button className='item-button'>Médico Responsável: Usuário teste</button>
+                        <button className='item-button'>Data de Inicio: {schedule.initialDate}</button>
+                        <button className='item-button'>Data Final: {schedule.finalDate}</button>
+                        <button className='item-button'>Lembrete: {schedule.reminder}</button>
+                    </div>
+                </div>
+                <div className="modal-register-footer">
+                    <button className="cancel-btn"
+                            onClick={() => handleClean(schedule.oidSchedule)}>{labelCancel}</button>
+                    <button className="edit-btn" onClick={() => handleSubmit(schedule.oid)}>{labelSubmit}</button>
+                </div>
+            </div>
+        </div>
+    ) : null;
+}
