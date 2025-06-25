@@ -146,7 +146,7 @@ export default function Queries() {
 
     return (
         <div className="agendamento-container">
-            <ModalShowAppointment isOpen={isOpenAppointmentShow} handleClose={handleCloseAppointmentShow} handleClean={handleClean} handleSubmit={handleEditAppointment} appointment={selectedAppointment} />
+            <ModalShowAppointment isOpen={isOpenAppointmentShow} handleClose={handleCloseAppointmentShow} handleClean={handleClean} handleSubmit={handleEditAppointment} appointment={selectedAppointment} allCards={appointments}/>
             <ConfirmationModal
                 isOpen={isOpenConfirmationModal}
                 onClose={handleCloseConfirmationModal}

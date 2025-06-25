@@ -5,9 +5,9 @@ import './calendarScheduling.css';
 
 function isSameDay(a, b) {
   return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
+      a.getFullYear() === b.getFullYear() &&
+      a.getMonth() === b.getMonth() &&
+      a.getDate() === b.getDate()
   );
 }
 
@@ -17,7 +17,6 @@ function normalizeDate(date) {
 
 function parseDate(dateStr) {
   if (!dateStr) return null;
-
   let parsed = new Date(dateStr);
   if (!isNaN(parsed)) return parsed;
 
@@ -30,7 +29,7 @@ function parseDate(dateStr) {
   return null;
 }
 
-const CalendarScheduling = ({ initialDate, finalDate }) => {
+const CalendarScheduling = ({ initialDate, finalDate, daysTaken = [], daysMissed = [] }) => {
   const [value, setValue] = useState(new Date());
   const today = useMemo(() => normalizeDate(new Date()), []);
 
@@ -44,38 +43,27 @@ const CalendarScheduling = ({ initialDate, finalDate }) => {
     return d ? normalizeDate(d) : null;
   }, [finalDate]);
 
-  console.log('[CalendarScheduling] Parsed Start:', start, 'Parsed End:', end);
-
-  const handleDateChange = (newDate) => {
-    setValue(newDate);
-  };
+  const parsedTaken = useMemo(() => daysTaken.map(d => normalizeDate(parseDate(d))), [daysTaken]);
+  const parsedMissed = useMemo(() => daysMissed.map(d => normalizeDate(parseDate(d))), [daysMissed]);
 
   const tileClassName = ({ date, view }) => {
     if (view !== 'month') return null;
     const normalized = normalizeDate(date);
 
-    if (isSameDay(normalized, today)) {
-      return 'current-day';
-    }
-
-    if (start && end) {
-      if (normalized >= start && normalized <= today) {
-        return 'range-start-to-today';
-      }
-      if (normalized > today && normalized <= end) {
-        return 'range-today-to-end';
-      }
-    }
+    if (isSameDay(normalized, today)) return 'current-day';
+    if (parsedTaken.some(d => isSameDay(d, normalized))) return 'taken-day';
+    if (parsedMissed.some(d => isSameDay(d, normalized))) return 'missed-day';
+    if (start && end && normalized > today && normalized >= start && normalized <= end) return 'future-day';
 
     return null;
   };
 
   return (
-    <Calendar
-      onChange={handleDateChange}
-      value={value}
-      tileClassName={tileClassName}
-    />
+      <Calendar
+          onChange={setValue}
+          value={value}
+          tileClassName={tileClassName}
+      />
   );
 };
 

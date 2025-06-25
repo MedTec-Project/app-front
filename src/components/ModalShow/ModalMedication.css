@@ -53,14 +53,14 @@
     border-top-width: 0;
     border-color: rgb(102, 131, 102);
 }
-.img-medice{
-    width: 50%;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px;
-}
+/*.img-medice{*/
+/*    width: 50%;*/
+/*    height: 500px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    padding: 60px;*/
+/*}*/
 .calendar{
     width: 50%;
     display: flex;

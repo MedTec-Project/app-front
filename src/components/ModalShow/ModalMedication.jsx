@@ -12,7 +12,8 @@ export default function ModalShow({
                                       handleSubmit,
                                       sub,
                                       title,
-                                      children
+                                      children,
+                                      content
                                   }) {
 
     return (
@@ -41,11 +42,7 @@ export default function ModalShow({
                     </div>
                 )}
                 <div className='cnt-medice'>
-                    <div className='img-medice'>
-                        <a>teste</a>
-                    </div>
-                    <div className='calendar'>
-                    </div>
+                    {content}
                 </div>
                 <div className='cnt-buttons'>
                     <div className='buttons'>

@@ -16,8 +16,7 @@ export default function ModalMedication({
                                         }) {
     if (!schedule) return null;
 
-    const imageBase64 = schedule?.imageBase64 ?? allCards?.find(c => c.oidSchedule === schedule?.oid || c.oid === schedule?.oid)?.imageBase64;
-                                            
+
     return schedule ? (
         <div className="modal-overlay" style={{display: isOpen ? "block" : "none"}} onClick={handleClose}>
             <div className='mod-medice' style={{display: isOpen ? "block" : "none"}}
@@ -38,36 +37,7 @@ export default function ModalMedication({
                         marginLeft: "35px"
                     }}>{schedule.nameMedicine} ({schedule.dosageMedicine}{schedule.dosageTypeMedicine})</h5>
                 </div>
-                <div className='cnt-medice'>
-                    <div className='img-medice'>
-                        <img src={`data:image/png;base64,${imageBase64}`} className="remed-img-modal" alt="Imagem do remédio"/>
-                    </div>
-                    <div className='calendar'>
-                        <div className='pos-calendar'>
-                            <CalendarScheduling initialDate={schedule.initialDate} finalDate={schedule.finalDate} />
-                            <div className='pos-infos'>
-                                <div className='combination'>
-                                    <div style={{height: "8px", width: "8px", backgroundColor: "#3d6aff", borderRadius: "5px"}} />
-                                    <a style={{marginLeft: "5px"}}>Dia Atual</a>
-                                </div>
-                                <div className='combination'>
-                                    <div style={{height: "8px", width: "8px", backgroundColor: "yellow", borderRadius: "5px"}} />
-                                    <a style={{marginLeft: "5px"}}>Não consumido</a>
-                                </div>
-                                <div className='combination'>
-                                    <div style={{height: "8px", width: "8px", backgroundColor: "#149D4B", borderRadius: "5px"}} />
-                                    <a style={{marginLeft: "5px"}}>Consumido</a>
-                                </div>
-                            </div>
-                            <div>
-                                <div className='combination'>
-                                    <div style={{height: "8px", width: "8px", backgroundColor: "#91D7B5", borderRadius: "5px"}} />
-                                    <a style={{marginLeft: "5px"}}>Aguardando consumo</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div className='cnt-buttons'>
                     <div className='buttons'>
                         <button className='item-button'>Quantidade: {schedule.quantity}</button>
