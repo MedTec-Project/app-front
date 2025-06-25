@@ -6,24 +6,34 @@ import Select from "../../../components/Select/Select.jsx";
 import CustomDatepicker from "../../../components/CustomDatePicker/CustomDatePicker.jsx";
 import CustomTimepicker from "../../../components/CustomTimepicker/CustomTimepicker.jsx";
 import {getDoctors} from "../../../api/doctor.jsx";
+import {UtilDate} from "../../../utils/UtilDate.jsx";
 
-export default function ModalRegisterAppointment({isOpen, handleClose, handleSubmit, handleClean, appointment}) {
+export function ModalRegisterAppointment({isOpen, handleClose, handleSubmit, handleClean, appointment}) {
     const initialState = {
+        oid: appointment?.oid,
         oidDoctor: appointment?.oidDoctor,
         scheduleDate: appointment?.scheduleDate,
         reminder: appointment?.reminder
     };
     const [formData, setFormData] = useState(initialState);
     const [doctorOptions, setDoctorOptions] = useState([]);
-
     useEffect(() => {
+        if (isOpen) {
+
+            setFormData({
+                oid: appointment?.oid,
+                oidDoctor: appointment?.oidDoctor,
+                scheduleDate: appointment?.scheduleDate ? UtilDate.parseDate(appointment.scheduleDate) : null,
+                reminder: appointment?.reminder
+            });
+        }
         getDoctors().then((data) => {
             if (data) {
                 const options = data.map((doctor) => ({oid: doctor.oid, label: doctor.name}));
                 setDoctorOptions(options);
             }
         });
-    }, []);
+    }, [isOpen]);
 
     const handleChange = (field, value) => {
         setFormData(prev => {
@@ -62,7 +72,7 @@ export default function ModalRegisterAppointment({isOpen, handleClose, handleSub
                     </div>
                     <div className="form-group">
                         <label htmlFor="doctor">Médico:</label>
-                        <Select options={doctorOptions} placeholder={"Selecione um médico..."}
+                        <Select options={doctorOptions} placeholder={"Selecione um médico..."} value={formData.oidDoctor}
                                 onSelect={(e) => handleChange('oidDoctor', e.oid)}/>
                     </div>
                 </div>
@@ -70,13 +80,15 @@ export default function ModalRegisterAppointment({isOpen, handleClose, handleSub
                     <div className="section section-date">
                         <div className="form-group">
                             <label htmlFor="doctor">Data:</label>
-                            <CustomDatepicker value={formData.scheduleDate} onChange={(e) => handleChange('scheduleDate', e)}/>
+                            <CustomDatepicker value={formData.scheduleDate}
+                                              onChange={(e) => handleChange('scheduleDate', e)}/>
                         </div>
                     </div>
                     <div className="section section-time">
                         <div className="form-group">
                             <label htmlFor="horaInicio">Hora de Início:</label>
-                            <CustomTimepicker value={formData.scheduleDate} onChange={(e) => handleChange('scheduleDate', e)}/>
+                            <CustomTimepicker value={formData.scheduleDate}
+                                              onChange={(e) => handleChange('scheduleDate', e)}/>
                         </div>
                     </div>
                 </div>

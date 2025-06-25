@@ -1,6 +1,6 @@
 import '../Queries/Queries.css';
 import CardConsulta from "../../components/CardConsulta/cardConsulta.jsx";
-import ModalRegisterAppointment from "./Register/ModalRegisterAppointment.jsx";
+import {ModalRegisterAppointment} from "./Register/ModalRegisterAppointment.jsx";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {saveSchedule} from "../../api/schedule.jsx";
@@ -8,10 +8,11 @@ import {
     getAllAppointments, getAppointmentById,
     getTodayAppointments,
     markAppointmentDone,
-    saveAppointment
+    saveAppointment, updateAppointment
 } from "../../api/appointment.jsx";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal.jsx";
 import ModalShowAppointment from "./Show/ModalShowAppointment.jsx";
+import {UtilDate} from "../../utils/UtilDate.jsx";
 
 export default function Queries() {
     const [isOpenAppointmentModal, setIsOpenAppointmentModal] = useState(false);
@@ -36,21 +37,38 @@ export default function Queries() {
         setIsOpenConfirmationModal(true);
     };
 
-    const handleSaveAppointment = (schedule) => {
-        saveAppointment(schedule).then((data) => {
-            if (data) {
-                toast.success("Agendamento cadastrado com sucesso!");
-                handleCloseAppointment();
-                fetchAppointments();
-            }
-        }).catch((error) => {
-            if (error && error.response && error.response.data) {
-                const mensagem = Array.isArray(error.response.data.mensagem)
-                    ? error.response.data.mensagem.join(", ")
-                    : error.response.data.mensagem;
-                toast.error(mensagem);
-            }
-        });
+    const handleSaveAppointment = (appointment) => {
+        if (appointment.oid) {
+            updateAppointment(appointment.oid, appointment).then((data) => {
+                if (data) {
+                    toast.success("Agendamento atualizado com sucesso!");
+                    handleCloseAppointment();
+                    fetchAppointments();
+                }
+            }).catch((error) => {
+                if (error && error.response && error.response.data) {
+                    const mensagem = Array.isArray(error.response.data.mensagem)
+                        ? error.response.data.mensagem.join(", ")
+                        : error.response.data.mensagem;
+                    toast.error(mensagem);
+                }
+            });
+        } else {
+            saveAppointment(appointment).then((data) => {
+                if (data) {
+                    toast.success("Agendamento cadastrado com sucesso!");
+                    handleCloseAppointment();
+                    fetchAppointments();
+                }
+            }).catch((error) => {
+                if (error && error.response && error.response.data) {
+                    const mensagem = Array.isArray(error.response.data.mensagem)
+                        ? error.response.data.mensagem.join(", ")
+                        : error.response.data.mensagem;
+                    toast.error(mensagem);
+                }
+            });
+        }
     };
 
     const handleClean = () => {
@@ -84,12 +102,7 @@ export default function Queries() {
 
         var card = appointments.find(card => card.oid === oid);
 
-        const dateStr = card.scheduleDate;
-        if (!dateStr) return;
-        const [datePart, timePart] = dateStr.split(" ");
-        const [day, month, year] = datePart.split("/").map(Number);
-        const [hours, minutes, seconds] = timePart.split(":").map(Number);
-        const date = new Date(year, month - 1, day, hours, minutes, seconds);
+        const date = UtilDate.parseDate(card.scheduleDate);
         const now = new Date();
 
         const minDiff = Math.abs((now - date) / 1000 / 60);
@@ -128,6 +141,7 @@ export default function Queries() {
     const handleEditAppointment = () => {
         setIsOpenAppointmentModal(true);
     };
+
 
 
     return (

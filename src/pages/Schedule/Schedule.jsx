@@ -217,7 +217,8 @@ export default function Schedule() {
                         </button>
                         <button className={`botao-navegacao ${tab === 2 ? "botao-navegacao-active" : ""}`}
                                 onClick={() => setTab(2)}>Geral
-                        </button>
+                        </button>,
+
                     </div>
                 </div>
             </div>
