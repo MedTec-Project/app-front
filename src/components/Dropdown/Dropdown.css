@@ -8,7 +8,7 @@
     position: absolute;
     top: 50px;
     right: -80%;
-    height: 260px;
+    height: 230px;
     width: 230px;
     background-color: var(--color-light);
     border-radius: 0;
@@ -30,10 +30,11 @@
     color: #48735F;
     font-weight: 100;
 }
+
 .conjunto-menu{
     display: flex;
     align-items: center;
-    margin: -5px;
+    margin-top: 5px;
 }
 
 .imagem{
