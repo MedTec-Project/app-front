@@ -104,7 +104,7 @@ export default function Login() {
                         </div>
                     </div>
                     <div className="form sign-up">
-                        <h2>Sign Up</h2>
+                        <h2>CADASTRO</h2>
                         <div className='sign-in-content'>
                             <FloatLabel label="Nome" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                             <FloatLabel label="Email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />

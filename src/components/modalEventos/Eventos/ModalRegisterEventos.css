@@ -1,78 +1,67 @@
-.modal-register-events form {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 3rem 5rem;
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20rem;
+}
+
+.left-side input, .left-side .select-box {
+    height: 3rem !important;
+    width: 100%;
 }
 
 .modal-register-events {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50rem;
+}
+
+.right-side {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    width: 25rem;
     height: 100%;
-    width: 100%;
 }
 
-.image {
-    grid-row: span 2;
+.form-group {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-}
-
-textarea {
-    resize: none;
-    height: 12rem;
-}
-
-.form-group label {
-    font-size: 1rem;
-    color: var(--color-secondary);
-    margin-bottom: 0.5rem;
-    width: 100%;
-    display: flex;
-}
-.modal-register-events .image img {
-    width: 50px;
-    height: 50px;
-}
-
-.upload-btn {
-    border: none !important;
-    box-shadow: 0 4px 2px #00000029;
     margin-bottom: 1rem;
-    color: var(--color-secondary);
-    font-size: 1.2rem;
-    border-radius: 12px;
-    padding: 0.5rem;
-    width: 10rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0
+}
+
+.section {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1rem;
-    height: 1rem;
-    border: 2px dashed var(--color-secondary);
-    border-radius: 13px;
+
+.section-time .react-datepicker__input-container, .section-time input {
+    width: 6rem;
+    height: 3.5rem !important;
 }
 
-.modal-register-events .multi-select-container, .modal-register-events .select-container {
-    width: 20rem;
-    height: 2.8rem;
+.section-time .custom-number-input-container {
+    width: 6rem !important;
+    height: 3.5rem !important;
 }
 
-.modal-register-events input {
-    width: 20rem;
-    height: 2.8rem;
-}
-
-.input-numeric input {
+.section-date .react-datepicker__input-container, .section-date input {
     width: 10rem;
+}
+
+.quantity-input .custom-number-input-container {
+    width: 8rem !important;
+    height: 3.5rem !important;
+}
+
+.quantity-input .custom-number-input-container input {
+    text-align: left;
+    padding-left: 0.5rem;
 }
