@@ -10,24 +10,10 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
 const columns = [
-  { id: 'nome', label: 'Nome', minWidth: 170 },
-  { id: 'acao', label: 'Ação', minWidth: 100, align: 'center' },
+  { id: 'title', label: 'Titulo', minWidth: 170 },
+  { id: 'typeString', label: 'Ação', minWidth: 100, align: 'center' },
   {
-    id: 'tipo',
-    label: 'Tipo',
-    minWidth: 170,
-    align: 'center',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'editor',
-    label: 'Editor',
-    minWidth: 170,
-    align: 'center',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'data',
+    id: 'date',
     label: 'Data',
     minWidth: 170,
     align: 'center',
@@ -39,25 +25,7 @@ function createData(nome, acao, tipo, editor, data) {
   return { nome, acao, tipo, editor, data };
 }
 
-const rows = [
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-  createData('Richard P.', 'Deletar', "-----", "richardp@gmail.com", "17/10/2024, 18:22:20"),
-];
-
-export default function LabelHistory() {
+export default function LabelHistory({rows}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

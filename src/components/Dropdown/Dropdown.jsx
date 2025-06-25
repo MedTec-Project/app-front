@@ -52,12 +52,12 @@ const Dropdown = () => {
                 <div className='conjunto-menu' onClick={handleOpenModalPerfil}>
                   <img className='imagem' src={Perfil} /><li className='itens-menu'>Meu Perfil</li>
                 </div>
-                <div className='conjunto-menu'>
-                  <img className='imagem' src={Pacientes} /><li className='itens-menu'>Pacientes</li>
-                </div>
-                <div className='conjunto-menu'>
-                  <img className='imagem' src={Favoritos} /><li className='itens-menu'>Favoritos</li>
-                </div>
+                {/*<div className='conjunto-menu'>*/}
+                {/*  <img className='imagem' src={Pacientes} /><li className='itens-menu'>Pacientes</li>*/}
+                {/*</div>*/}
+                {/*<div className='conjunto-menu'>*/}
+                {/*  <img className='imagem' src={Favoritos} /><li className='itens-menu'>Favoritos</li>*/}
+                {/*</div>*/}
                 <div className='conjunto-menu' onClick={handleOpenModalHistory}>
                   <img className='imagem' src={Historico} /><li className='itens-menu'>Histórico</li>
                 </div>

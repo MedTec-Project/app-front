@@ -14,11 +14,11 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
     const [symptoms, setSymptoms] = useState([]);
     const [dosage, setDosage] = useState(0.0);
     const [description, setDescription] = useState("");
-    const [medicineCategory, setMedicineCategory] = useState(1);
+    const [medicineCategory, setMedicineCategory] = useState('ANALGESIC');
     const [imageBase64, setImageBase64] = useState(null);
     const [registrationNumber, setRegistrationNumber] = useState("");
     const [dosageType, setDosageType] = useState(1);
-    const [pharmaceuticalForm, setPharmaceuticalForm] = useState(1);
+    const [pharmaceuticalForm, setPharmaceuticalForm] = useState('TABLET');
     const [previewImage, setPreviewImage] = useState(null);
     const [content, setContent] = useState(null);
 
@@ -33,28 +33,56 @@ export default function ModalRegisterMedicine({ isOpen, handleClose, handleSubmi
         });
     }, []);
 
+    /*      TABLET(1, "Comprimido"),
+            CAPSULE(2, "Cápsula"),
+            ORAL_DROPS(3, "Gotas Orais"),
+            INJECTION(4, "Injeção"),
+            OINTMENT(5, "Pomada"),
+            CREAM(6, "Creme"),
+            GEL(7, "Gel"),
+            SYRUP(8, "Xarope"),
+            SUPPOSITORY(9, "Supositório"),
+            SPRAY(10, "Spray"),
+            PATCH(11, "Adesivo"),
+            POWDER(12, "Pó"),
+            SOLUTION(13, "Solução"),
+            SUSPENSION(14, "Suspensão");*/
+
+
     const [medicineCategoryOptions] = useState([
-        { id: 1, label: "Analgésico" },
-        { id: 2, label: "Anti-inflamatório" },
-        { id: 3, label: "Antialérgico" },
-        { id: 4, label: "Anti-inflamatório" },
+        {id: 'ANALGESIC', label: 'Analgésico'},
+        {id: 'ANTIBIOTIC', label: 'Antibiótico'},
+        {id: 'ANTIALERGIC', label: 'Antialérgico'},
+        {id: 'ANTIINFLAMMATORY', label: 'Antiinflamatório'},
+        {id: 'ANTIVIRAL', label: 'Antiviral'},
+        {id: 'ANXIOLYTIC', label: 'Ansiolítico'},
+        {id: 'HYPNOTIC', label: 'Hipnótico / Sedativo'},
+        {id: 'ANTIDEPRESSANT', label: 'Antidepressivo'},
+        {id: 'ANTIHYPERTENSIVE', label: 'Antihipertensivo'},
+        {id: 'ANTIDIABETIC', label: 'Antidiabetto'},
+        {id: 'ANTICOAGULANT', label: 'Anticoagulante / Antiagregante'},
+        {id: 'ANTIEMETIC', label: 'Antiemético'},
+        {id: 'LAXATIVE', label: 'Laxante'},
+        {id: 'ANTIPSYCHOTIC', label: 'Antipsicótico'},
+        {id: 'CONTRACEPTIVE', label: 'Anticoncepcional'},
+        {id: 'ANTINEOPLASTIC', label: 'Antineoplásico / Quimioterápico'},
     ]);
 
     const [pharmaceuticalFormOptions] = useState([
-        { id: 1, label: "Comprimido" },
-        { id: 2, label: "Cápsula" },
-        { id: 3, label: "Gotas Orais" },
-        { id: 4, label: "Injeção" },
-        { id: 5, label: "Pomada" },
-        { id: 6, label: "Creme" },
-        { id: 7, label: "Gel" },
-        { id: 8, label: "Xarope" },
-        { id: 9, label: "Supositório" },
-        { id: 10, label: "Spray" },
-        { id: 11, label: "Adesivo" },
-        { id: 12, label: "Pó" },
-        { id: 13, label: "Solução" },
-        { id: 14, label: "Suspensão" },
+        {id: 'TABLET', label: 'Comprimido'},
+        {id: 'CAPSULE', label: 'Cápsula'},
+        {id: 'ORAL_DROPS', label: 'Gotas Orais'},
+        {id: 'INJECTION', label: 'Injeção'},
+        {id: 'OINTMENT', label: 'Pomada'},
+        {id: 'CREAM', label: 'Creme'},
+        {id: 'GEL', label: 'Gel'},
+        {id: 'SYRUP', label: 'Xarope'},
+        {id: 'SUPPOSITORY', label: 'Supositório'},
+        {id: 'SPRAY', label: 'Spray'},
+        {id: 'PATCH', label: 'Adesivo'},
+        {id: 'POWDER', label: 'Pó'},
+        {id: 'SOLUTION', label: 'Solução'},
+        {id: 'SUSPENSION', label: 'Suspensão'},
     ]);
 
     const [dosageTypeOptions] = useState([

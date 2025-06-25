@@ -1,18 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './LoginForm.scss'
-import { useState, useContext } from 'react';
+import {useState, useContext} from 'react';
 import FloatLabel from '../../components/FloatLabel';
 import SubmitButton from '../../components/SubmitButton';
-import { FaFacebookSquare, FaApple } from 'react-icons/fa';
-import { FcGoogle } from "react-icons/fc";
+import {FaFacebookSquare, FaApple} from 'react-icons/fa';
+import {FcGoogle} from "react-icons/fc";
 import {loginUser, createUser} from '../../api/user';
-import { AuthContext } from '../../auth/Context';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import {AuthContext} from '../../auth/Context';
+import {toast} from 'react-toastify';
+import {useNavigate} from 'react-router-dom';
 
 export default function Login() {
-    const { login } = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -42,13 +42,13 @@ export default function Login() {
         try {
             setIsLoading(true);
             const response = await loginUser(email, password)
-            if(response && response.data) {
+            if (response && response.data) {
                 navigate('/')
                 login(response.data.mensagem);
                 limparFormulario();
             }
         } catch (error) {
-            toast(error.response.data.mensagem);
+            toast.error(error.response.data.mensagem);
         } finally {
             setIsLoading(false);
         }
@@ -64,13 +64,14 @@ export default function Login() {
         try {
             setIsLoading(true);
             const response = await createUser(user);
-             if(response.status === 201){
-                toast('Usuário cadastrado com sucesso!')
-                logar()
-             }
+            if (response.status === 201) {
+                toast.success('Usuário cadastrado com sucesso!')
+                navigate('/')
+                login(response.data.mensagem);
+            }
         } catch (error) {
-            console.log(error)
-            toast(error)
+            console.log(error);
+            toast.error(error.response.data.mensagem);
         } finally {
             setIsLoading(false);
         }
@@ -82,13 +83,16 @@ export default function Login() {
                 <div className="form sign-in">
                     <h2>LOGIN</h2>
                     <div className='sign-in-content'>
-                        <FloatLabel label="Email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <FloatLabel label="Senha" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <FloatLabel label="Email" name="email" type="email" value={email}
+                                    onChange={(e) => setEmail(e.target.value)}/>
+                        <FloatLabel label="Senha" name="password" type="password" value={password}
+                                    onChange={(e) => setPassword(e.target.value)}/>
                         <div className="forgot-pass">
                             <Link to="/resetpassword">Esqueci minha senha</Link>
                         </div>
-                        <span className="m-up">Não possui uma conta? <a className='loginCad' onClick={alterLoginRegister}>Cadastre-se</a></span>
-                        <SubmitButton label="Login" onClick={logar} />
+                        <span className="m-up">Não possui uma conta? <a className='loginCad'
+                                                                        onClick={alterLoginRegister}>Cadastre-se</a></span>
+                        <SubmitButton label="Login" onClick={logar}/>
                     </div>
                 </div>
                 <div className="sub-cont">
@@ -97,21 +101,26 @@ export default function Login() {
                         <div className="img-text">
                             <p>Faça login facilmente!</p>
                             <div className='singin-social-media'>
-                                <a style={{ paddingTop: 8 + 'px' }}><FaFacebookSquare size={30}
-                                    color='blue' /></a>
-                                <a style={{ paddingTop: 8 + 'px' }}><FcGoogle size={30} /></a>
-                                <a><FaApple size={30} /></a></div>
+                                <a style={{paddingTop: 8 + 'px'}}><FaFacebookSquare size={30}
+                                                                                    color='blue'/></a>
+                                <a style={{paddingTop: 8 + 'px'}}><FcGoogle size={30}/></a>
+                                <a><FaApple size={30}/></a></div>
                         </div>
                     </div>
                     <div className="form sign-up">
                         <h2>CADASTRO</h2>
                         <div className='sign-in-content'>
-                            <FloatLabel label="Nome" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                            <FloatLabel label="Email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <FloatLabel label="Telefone" name="phone" type="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                            <FloatLabel label="Senha" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <span className="m-up">Já possui uma conta? <a className='loginCad' onClick={alterLoginRegister}>Login</a></span>
-                            <SubmitButton label="Criar" onClick={criarConta} />
+                            <FloatLabel label="Nome" name="name" type="text" value={name}
+                                        onChange={(e) => setName(e.target.value)}/>
+                            <FloatLabel label="Email" name="email" type="email" value={email}
+                                        onChange={(e) => setEmail(e.target.value)}/>
+                            <FloatLabel label="Telefone" name="phone" type="phone" value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}/>
+                            <FloatLabel label="Senha" name="password" type="password" value={password}
+                                        onChange={(e) => setPassword(e.target.value)}/>
+                            <span className="m-up">Já possui uma conta? <a className='loginCad'
+                                                                           onClick={alterLoginRegister}>Login</a></span>
+                            <SubmitButton label="Criar" onClick={criarConta}/>
                         </div>
                     </div>
                 </div>

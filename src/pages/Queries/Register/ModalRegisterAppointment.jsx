@@ -41,7 +41,7 @@ export function ModalRegisterAppointment({isOpen, handleClose, handleSubmit, han
 
             if (field === 'scheduleDate') {
                 const next = new Date(updated.scheduleDate);
-                next.setHours(next.getHours() + 1);
+                next.setHours(next.getHours());
                 updated.scheduleDate = next;
             }
 
