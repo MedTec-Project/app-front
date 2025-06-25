@@ -1,0 +1,25 @@
+.react-calendar{
+    width: 100%;
+    height: 80%;
+}
+.current-day {
+  background-color: #3d6aff !important;
+  color: white !important;
+}
+
+.range-start-to-today {
+  background-color: #149D4B !important;
+  color: white !important;
+}
+
+.range-today-to-end {
+  background-color: #91D7B5 !important;
+  color: white !important;
+}
+.react-calendar{
+    border-width: 0px;
+    border-radius: 30px;
+}
+.react-calendar__month-view__days__day--weekend{
+    color: #1f965c !important;
+}
