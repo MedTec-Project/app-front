@@ -1,0 +1,14 @@
+.img-medice{
+    width: 50%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+}
+
+.remed-img-modal{
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}

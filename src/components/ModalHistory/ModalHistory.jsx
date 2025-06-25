@@ -1,6 +1,6 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import '../ModalHistory/ModalHistory.css';
-import LabelHistory from '../LabelHistory/labelHistory';
+import LabelHistory from '../LabelHistory/LabelHistory.jsx';
 
 
 export default function ModalHistory({ modalOpen, handleClose }) {

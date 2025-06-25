@@ -2,9 +2,9 @@ import '../CardConsulta/cardConsulta.css';
 import image from '../../assets/images/doctor.png';
 import { FaCheck } from "react-icons/fa6";
 
-export default function CardConsulta({ id, isOn, toggle, isAnimating }) {
+export default function CardConsulta({ id, card, isOn, toggle, isAnimating, onClick }) {
     return (
-        <div className={`card-main ${isOn ? "inactive-card" : ""} ${isAnimating ? "card-animating" : ""}`}>
+        <div className={`card-main ${isOn ? "inactive-card" : ""} ${isAnimating ? "card-animating" : ""}`} onClick={onClick}>
             <div style={{ margin: "40px" }}>
                 <div className='pos-foto'>
                     <div className='foto'>
@@ -12,12 +12,13 @@ export default function CardConsulta({ id, isOn, toggle, isAnimating }) {
                     </div>
                 </div>
                 <div className='tittle'>
-                    <label>Médico: Maicon Douglas</label>
+                    <label>Médico: {card.nameDoctor}</label>
                 </div>
                 <div className='pos-information'>
                     <h4 style={{ textAlign: "center", paddingBottom: "10px", fontWeight: "100" }}>INFORMAÇÕES</h4>
-                    <label>Horário: 15:00h</label><br />
-                    <label>Data: 12/12/2024</label>
+                    <label>Horário: {card.scheduleDate ? card.scheduleDate.slice(11, 16) : ""}</label><br />
+                    <label>Data: {card.scheduleDate ? card.scheduleDate.slice(0, 10) : ""}</label><br />
+                    <label>{card.reminder ? "Lembrete: " + card.reminder : ""}</label><br />
                 </div>
             </div>
             <div className='div-but'>

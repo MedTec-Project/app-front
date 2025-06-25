@@ -1,8 +1,8 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import "./Select.css";
 import arrow from "../../assets/icons/arrow-down.png";
 
-export default function Select({ options, placeholder, onSelect }) {
+export default function Select({ options, placeholder, onSelect, value }) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -11,6 +11,14 @@ export default function Select({ options, placeholder, onSelect }) {
         setIsOpen(false);
         if (onSelect) onSelect(option);
     };
+
+    useEffect(() => {
+        if (!value) {
+            setSelectedOption(null);
+            return;
+        }
+        setSelectedOption(options.find((option) => option.oid === value));
+    }, [value]);
 
     return (
         <div className="select-container" style={{width: "100%", height: "100%"}}>

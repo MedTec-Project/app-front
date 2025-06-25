@@ -3,6 +3,7 @@
     width: 100%;
     height: 42px;
     display: flex;
+    cursor: pointer;
 }
 .pos-notification{
     width: 15%;

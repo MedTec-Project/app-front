@@ -1,0 +1,60 @@
+import './ModalMedication.css';
+import {AiOutlineClose} from "react-icons/ai";
+import {TbCheck, TbPencil, TbTrashOff} from "react-icons/tb";
+import {useEffect, useMemo} from "react";
+
+export default function ModalShow({
+                                      isOpen,
+                                      handleClose,
+                                      handleClean,
+                                      labelSubmit,
+                                      labelCancel,
+                                      handleSubmit,
+                                      sub,
+                                      title,
+                                      children,
+                                      content
+                                  }) {
+
+    return (
+        <div className="modal-overlay" style={{display: isOpen ? "block" : "none"}} onClick={handleClose}>
+            <div className='mod-medice' style={{display: isOpen ? "block" : "none"}}
+                 onClick={(e) => e.stopPropagation()}>
+                <div className='mod-tittle'>
+                    <div className='mod-cnt-tit'>
+                        <h4 style={{
+                            letterSpacing: "2px",
+                            color: "rgb(102, 131, 102)",
+                            textAlign: "center"
+                        }}>{title}</h4>
+                    </div>
+                    <button className="close-btn" onClick={handleClose}>
+                        <AiOutlineClose/>
+                    </button>
+                </div>
+                {sub && (
+                    <div className='sub-tit'>
+                        <h5 style={{
+                            letterSpacing: "1px",
+                            color: "rgb(102, 131, 102)",
+                            marginLeft: "35px"
+                        }}>{sub}</h5>
+                    </div>
+                )}
+                <div className='cnt-medice'>
+                    {content}
+                </div>
+                <div className='cnt-buttons'>
+                    <div className='buttons'>
+                        {children}
+                    </div>
+                </div>
+                <div className="modal-register-footer">
+                    <button className="cancel-btn"
+                            onClick={handleClean}>{labelCancel}</button>
+                    <button className="edit-btn" onClick={handleSubmit}>{labelSubmit}</button>
+                </div>
+            </div>
+        </div>
+    )
+}
