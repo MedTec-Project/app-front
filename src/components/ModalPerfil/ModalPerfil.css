@@ -1,9 +1,9 @@
-.mod-perfil{
+.mod-perfil {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    min-width: 35%;
+    min-width: 40%;
     z-index: 2;
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
@@ -14,10 +14,10 @@
     border-bottom-width: 8px;
     border-color: rgb(102, 131, 102);
 }
-.mod-tittle{
+.mod-tittle {
     display: flex;
 }
-.mod-cnt-tit{
+.mod-cnt-tit {
     width: 320px;
     height: 30px;
     margin: 20px;
@@ -43,60 +43,55 @@
     border: none;
     cursor: pointer;
 }
-.conteudo{
+.conteudo {
     display: flex;
     width: 100%;
 }
-.cnt-perfil{
+.cnt-perfil {
     width: 70%;
 }
-.pos-info{
+.pos-info {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
 }
-.pos-foto{
+.pos-foto {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 250px;
+    margin-right: 20px;
 }
-.foto-perfil{
-    height: 150px;
-    width: 150px;
-    border-radius: 100%;
-    border-style: solid;
+.foto {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-width: 3px;
     border-color: rgb(102, 131, 102);
-    display: flex;
-    align-items: center;
+    border-style: solid;
 }
-.foto{
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #48735f8c;
-    width: 91%;
-    height: 91%;
-    border-radius: 100%;
-}
-.pos-dados{
+
+.pos-dados {
     width: 70%;
     height: 100%;
     color: #48735F;
 }
-.pos-tit{
+.pos-tit {
     margin-top: 20px;
     font-size: 18px;
 }
 
-.cnt-button{
+.cnt-button {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 40%;
 }
-.but-edit{
+.but-edit {
     width: 120px;
     height: 35px;
     background-color: #48735F;
@@ -107,7 +102,7 @@
     font-size: 15px;
     cursor: pointer;
 }
-.nav-modal{
+.nav-modal {
     display: flex;
     height: 50px;
     border-style: solid;
@@ -121,7 +116,7 @@
     display: flex;
     align-items: end;
 }
-.iten-button{
+.iten-button {
     margin-left: 10px;
     background-color: white;
     width: 200px;
@@ -135,7 +130,7 @@
     border-top-width: 0;
     border-color: #48735F;
 }
-.iten-button:hover{
+.iten-button:hover, .iten-button-active {
     border-style: solid;
     border-width: 2px;
     border-left-width: 0;
@@ -143,28 +138,33 @@
     border-top-width: 0;
     border-color: #48735F;
 }
-.cnt-iten{
+
+.iten-button:hover {
+    cursor: pointer;
+}
+
+.cnt-iten {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     height: 400px;
     padding: 10px;
 }
-.cnt-position{
+.cnt-position {
     display: flex;
     flex-wrap: wrap;
     width: 95%;
     height: 10%;
 }
-.div-button{
+.div-button {
     height: 80px;
     display: flex;
     justify-content: right;
 }
-.pos-button{
+.pos-button {
     margin-right: 5%;
 }
-.button-add{
+.button-add {
     width: 120px;
     height: 35px;
     background-color: #48735F;
@@ -175,14 +175,14 @@
     font-size: 15px;
     cursor: pointer;
 }
-.button-edt{
+.button-del {
     width: 120px;
     height: 35px;
-    background-color: white;
-    color: #48735F;
+    background-color: var(--color-danger);
+    color: white;
     border-style: solid;
     border-width: 2px;
-    border-color: #48735F;
+    border-color: var(--color-danger);
     margin: 5px;
     border-radius: 8px;
     font-size: 15px;

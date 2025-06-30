@@ -4,10 +4,10 @@ import { FaCheck } from "react-icons/fa6";
 
 export default function CardConsulta({ id, card, isOn, toggle, isAnimating, onClick }) {
     return (
-        <div className={`card-main ${isOn ? "inactive-card" : ""} ${isAnimating ? "card-animating" : ""}`} onClick={onClick}>
-            <div style={{ margin: "40px" }}>
+        <div className={`card-main ${isOn ? "inactive-card" : ""} ${isAnimating ? "card-animating" : ""}`} onClick={onClick} style={{ margin: "10px" }}>
+            <div style={{ padding: "15px" }}>
                 <div className='pos-foto'>
-                    <div className='foto'>
+                    <div className='foto-doctor'>
                         <img src={image} className="foto-perfil" alt="Foto do médico" />
                     </div>
                 </div>

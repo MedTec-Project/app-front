@@ -5,7 +5,6 @@
     border-radius: 8px;
     border-style: solid;
     border-width: 2px;
-    border-color: #5F8C96;
 }
 .but-pos{
     display: flex;
@@ -14,7 +13,6 @@
     border-radius: 8px;
     border-style: solid;
     border-width: 2px;
-    border-color: #5F8C96;
 }
 .pos-image{
     width: 26%;
@@ -30,11 +28,9 @@
     border-radius: 8px;
     border-style: solid;
     border-width: 1px;
-    border-color: #5F8C96;
     background-color: white;
 }
 .icon{
-    color: #5F8C96;
     height: 25px;
     width: 25px;
 }
@@ -44,5 +40,4 @@
     align-items: center;
     width: 69%;
     height: 50px;
-    color: #5F8C96;
 }

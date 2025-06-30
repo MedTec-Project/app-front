@@ -1,12 +1,9 @@
 import api from './api';
 
-export const getUsers = async () => {
- 
+export const getUser = async () => {
+  const response = await api.get('/api/user');
+  return response.data;
 };
-
-export const getAllUsers = async () => {
- 
-}
 
 export const getContext = async () => {
   const response = await api.get(`/api/v1/user/context`);
@@ -30,5 +27,10 @@ export const deleteUser = async (id) => {
 export const loginUser = async (email, password) => {
   const body = { email, password };
   const response = await api.post('/api/login', body)
+  return response;
+};
+
+export const uploadUserPhoto = async (formData) => {
+  const response = await api.post('/api/user/photo', formData);
   return response;
 };

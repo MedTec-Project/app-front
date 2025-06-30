@@ -9,14 +9,22 @@ import CustomTimepicker from "../../../components/CustomTimepicker/CustomTimepic
 import CustomNumberInput from "../../../components/CustomNumberInput/CustomNumberInput.jsx";
 import IncrementSvg from "../../../assets/icons/increment-arrow.svg";
 import DecrementSvg from "../../../assets/icons/decrement-arrow.svg";
+import {getDoctors} from "../../../api/doctor.jsx";
 
 export default function ModalRegisterScheduling({ isOpen, handleClose, handleSubmit, handleClean, schedule, medicine }) {
+
+    const getInitialDate = () => {
+        const now = new Date();
+        now.setMonth(now.getMonth() + 1);
+        return now;
+    };
+
     const initialState = {
         oid: null,
         oidMedicine: null,
         oidDoctor: null,
         initialDate: new Date(),
-        finalDate: new Date(),
+        finalDate: getInitialDate(),
         quantity: 1,
         interval: 1,
         reminder: '',
@@ -26,6 +34,8 @@ export default function ModalRegisterScheduling({ isOpen, handleClose, handleSub
 
     const [formData, setFormData] = useState(initialState);
     const [doctorOptions, setDoctorOptions] = useState([]);
+
+
 
     const handleChange = (field, value) => {
         setFormData(prev => {
@@ -55,6 +65,18 @@ export default function ModalRegisterScheduling({ isOpen, handleClose, handleSub
     const clearForm = () => {
         setFormData(initialState);
     };
+
+    const fetchDoctors = async () => {
+        const data = await getDoctors();
+        const options = data.map((doctor) => ({oid: doctor.oid, label: doctor.name}));
+        setDoctorOptions(options);
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            fetchDoctors();
+        }
+    }, [isOpen]);
 
     useEffect(() => {
         if (isOpen && !schedule) {

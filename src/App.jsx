@@ -35,7 +35,7 @@ function App() {
                     <Route path='/agendamento' element={<Schedule />} />
                     <Route path='/consultas' element={<Queries />} />
                 </Route>
-                {user ? '' : <Route path="/login" element={<Login/>}/>}
+                <Route path="/login" element={<Login/>}/>
                 <Route path='/resetpassword' element={<ResetPassword/>}/>
             </Routes>
             <ToastContainer

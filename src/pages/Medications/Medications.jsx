@@ -14,7 +14,6 @@ import {saveSchedule} from "../../api/schedule.jsx";
 export default function Medications() {
     const [medications, setMedications] = useState([]);
     const [scheduleShow, setScheduleShow] = useState(null);
-    const [tab, setTab] = useState(1);
     const [selected, setSelected] = useState(null);
     const [sortOptions, setSortOptions] = useState([
         {id: "none", label: "Ordenar"},
@@ -45,6 +44,7 @@ export default function Medications() {
         {id: "antiInflamatorio", label: "Anti-inflamatório", checked: filters.types.antiInflamatorio},
         {id: "antialergico", label: "Antialérgico", checked: filters.types.antialergico}
     ];
+
     const handleFilterChange = (category, id) => {
         setFilters(prevFilters => ({
             ...prevFilters,
@@ -106,7 +106,7 @@ export default function Medications() {
                 quantity: 1,
                 interval: 1,
                 initialDate: new Date(),
-                finalDate: new Date(),
+                finalDate: new Date(new Date().setMonth(new Date().getMonth() + 1)),
                 reminder: '',
                 receipt: '',
                 oidDoctor: null,
@@ -151,14 +151,6 @@ export default function Medications() {
             </div>
             <div className="medications-list">
                 <div className="medication-header">
-                    <div className="tab-container">
-                        <div className={`tab-item ${tab === 1 ? "selected" : ""}`} onClick={() => setTab(1)}>
-                            <h3>Todos</h3>
-                        </div>
-                        <div className={`tab-item ${tab === 2 ? "selected" : ""}`} onClick={() => setTab(2)}>
-                            <h3>Favoritos<img src={heart} className="favorite-icon" alt="Favoritos"/></h3>
-                        </div>
-                    </div>
                     <div className="medications-add-button">
                         <button className="add-btn" onClick={handleOpenModalMedicine}>
                             <span>Adicionar Medicamento</span>
