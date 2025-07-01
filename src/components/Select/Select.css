@@ -61,6 +61,8 @@
     margin: 5px 0;
     padding: 0;
     z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .select-option {

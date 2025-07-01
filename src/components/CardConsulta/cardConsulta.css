@@ -2,20 +2,26 @@
     width: 480px;
     border-radius: 40px;
     margin: 30px;
-    height: 520px;
+    height: 515px;
     background-color: #d4d4d4;
 }
-.foto{
+.foto-doctor {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
-    width: 100%;
+    border-width: 3px;
+    border-color: rgb(102, 131, 102);
+    border-style: solid;
 }
-.foto-perfil{
-    width: 250px;
-    height: 250px;
+
+.foto-perfil {
+    width: 100% !important;
+    height: 100% !important;
 }
+
 .tittle{
     margin-top: 30px;
     color: #2F4A3D;

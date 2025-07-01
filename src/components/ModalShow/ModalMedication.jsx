@@ -52,7 +52,9 @@ export default function ModalShow({
                 <div className="modal-register-footer">
                     <button className="cancel-btn"
                             onClick={handleClean}>{labelCancel}</button>
-                    <button className="edit-btn" onClick={handleSubmit}>{labelSubmit}</button>
+                    { handleSubmit && (
+                        <button className="edit-btn" onClick={handleSubmit}>{labelSubmit}</button>
+                    )}
                 </div>
             </div>
         </div>

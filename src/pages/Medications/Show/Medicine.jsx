@@ -13,15 +13,10 @@ import ModalRegisterScheduling from "../../Schedule/Register/ModalRegisterSchedu
 import {saveSchedule} from "../../../api/schedule.jsx";
 
 export default function Medicine() {
-    const { oid} = useParams()
+    const {oid} = useParams()
     const [medication, setMedication] = useState(null);
     const [isOpenSchedulingModal, setIsOpenSchedulingModal] = useState(false);
     const [scheduleShow, setScheduleShow] = useState(null);
-    const similarMedications = [
-        {id: 1, name: "Paracetamol - 20mg", image: paracetamol},
-        {id: 2, name: "Paracetamol - 20mg", image: paracetamol},
-        {id: 3, name: "Paracetamol - 20mg", image: paracetamol},
-    ];
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -48,7 +43,7 @@ export default function Medicine() {
                 quantity: 1,
                 interval: 1,
                 initialDate: new Date(),
-                finalDate: new Date(),
+                finalDate: new Date(new Date().setMonth(new Date().getMonth() + 1)),
                 reminder: '',
                 receipt: '',
                 oidDoctor: null,
@@ -116,34 +111,6 @@ export default function Medicine() {
                         <p className="medicine-code">Código: {medication.code}</p>
                     </div>
                     <button className="schedule-btn" onClick={handleOpenModalScheduling}>Agendar Medicamento <img src={calendar} alt="Agendar"/></button>
-                    <div className="similar-medicines">
-                        <div className="similar-list-container">
-                            <div className="similar-list-title">
-                                <h3>Medicamentos semelhantes...</h3>
-                            </div>
-                            <div className="similar-list-carrousel">
-                                <div className="similar-list-arrow">
-                                    <button className="arrow-btn"><img src={arrowLeft} alt="Avançar"/></button>
-                                </div>
-                                <div className="similar-list">
-                                    {similarMedications.map((med) => (
-                                        <div key={med.id} className="similar-item">
-                                            <img src={med.image} alt={med.name}/>
-                                            <p>{med.name}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="similar-list-arrow">
-                                    <button className="arrow-btn"><img src={arrowRight} alt="Avançar"/></button>
-                                </div>
-                            </div>
-                            <div className="similar-list-carrousel-pagination">
-                                <span className="page-dot active"></span>
-                                <span className="page-dot"></span>
-                                <span className="page-dot"></span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -156,11 +123,11 @@ export default function Medicine() {
                             {medication.details}
                         </p>
                         <ul>
+                            <li>Dosagem: {medication.dosage}</li>
+                            <li>Tipo de Dosagem: {medication.dosageTypeName}</li>
                             <li>Conteúdo: {medication.content}</li>
-                            <li>Categoria: {medication.category}</li>
-                            <li>Fabricante: {medication.manufacturer}</li>
-                            <li>Tipo: {medication.type}</li>
-                            <li>Uso: {medication.usageType}</li>
+                            <li>Categoria: {medication.medicineCategoryName}</li>
+                            <li>Forma Farmacêutica: {medication.pharmaceuticalFormName}</li>
                         </ul>
 
                         <h4>Serve para os Sintomas:</h4>

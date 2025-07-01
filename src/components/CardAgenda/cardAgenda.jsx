@@ -38,10 +38,9 @@ export default function CardAgenda({ id, schedule, toggle, isAnimating, onClick 
                       {" (" + schedule.dosage + (schedule.dosageType != null ? schedule.dosageType.toLowerCase() : null) + ")"}
                   </a>
               </div>
-              <h2 style={{fontSize: "20px", color: "#5F967C"}}>Cimed</h2>
           </div>
 
-          <div className="switch-container">
+          <div className="switch-container" style={{marginTop: "40px"}}>
               <div className={`switch ${schedule.taken ? "on" : "off"}`} onClick={toggle}
                    style={{
                        width: "230px",

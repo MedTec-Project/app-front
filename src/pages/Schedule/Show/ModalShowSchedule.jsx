@@ -18,9 +18,7 @@ export default function ModalShowSchedule({
             isOpen={isOpen}
             handleClose={handleClose}
             handleClean={() => handleClean(schedule.oidSchedule)}
-            labelSubmit={"Editar"}
             labelCancel={"Excluir"}
-            handleSubmit={() => handleSubmit(schedule.oid)}
             sub={schedule.nameMedicine + " (" + schedule.dosageMedicine + schedule.dosageTypeNameMedicine + ")"}
             title={"Medicamento Agendado"}
             content={
