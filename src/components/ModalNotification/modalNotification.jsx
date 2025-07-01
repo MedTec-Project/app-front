@@ -6,7 +6,7 @@ const ModalNotification = forwardRef(({ modalOpen, newMessages, setNewMessages  
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        const socket = new WebSocket("ws://localhost:5173/ws/notification");
+        const socket = new WebSocket(import.meta.env.VITE_WS_URL + "/ws/notification");
 
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
