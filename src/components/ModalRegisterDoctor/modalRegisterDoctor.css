@@ -1,0 +1,67 @@
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20rem;
+}
+
+.left-side input, .left-side .select-box {
+    height: 3rem !important;
+    width: 100%;
+}
+
+.modal-register-events {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50rem;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25rem;
+    height: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0
+}
+
+.section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.section-time .react-datepicker__input-container, .section-time input {
+    width: 6rem;
+    height: 3.5rem !important;
+}
+
+.section-time .custom-number-input-container {
+    width: 6rem !important;
+    height: 3.5rem !important;
+}
+
+.section-date .react-datepicker__input-container, .section-date input {
+    width: 10rem;
+}
+
+.quantity-input .custom-number-input-container {
+    width: 8rem !important;
+    height: 3.5rem !important;
+}
+
+.quantity-input .custom-number-input-container input {
+    text-align: left;
+    padding-left: 0.5rem;
+}
