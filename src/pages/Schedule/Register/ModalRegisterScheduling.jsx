@@ -170,7 +170,6 @@ export default function ModalRegisterScheduling({ isOpen, handleClose, handleSub
                             />
                         </div>
                     </div>
-
                     <div className="section section-time">
                         <div className="form-group">
                             <label>Hora de Início:</label>

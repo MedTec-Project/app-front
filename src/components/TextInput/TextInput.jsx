@@ -1,6 +1,7 @@
 import "./TextInput.css";
 
 export default function TextInput({ label, placeholder, value, onChange, required }) {
+
     return (
         <div className="text-input-container" style={{width: "100%", height: "100%"}}>
             {label && (

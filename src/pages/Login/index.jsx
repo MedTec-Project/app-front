@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './LoginForm.scss'
+import './LoginForm.css'
 import {useState, useContext} from 'react';
 import FloatLabel from '../../components/FloatLabel';
 import SubmitButton from '../../components/SubmitButton';

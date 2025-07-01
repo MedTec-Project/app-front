@@ -52,8 +52,10 @@ export default function ModalRegister({
                         </form>
                     </div>
                     <div className="modal-register-footer">
-                        <button className="cancel-btn" onClick={handleClean}>{labelCancel}<TbTrashOff
-                            style={{marginLeft: "1rem", fontSize: "1.7rem"}}/></button>
+                        {handleClean && (
+                            <button className="cancel-btn" onClick={handleClean}>{labelCancel}<TbTrashOff
+                                style={{marginLeft: "1rem", fontSize: "1.7rem"}}/></button>
+                        )}
                         <button className="register-btn" onClick={handleSubmit}>{labelSubmit}<TbCheck
                             style={{marginLeft: "0.7rem", fontSize: "2rem"}}/></button>
                     </div>

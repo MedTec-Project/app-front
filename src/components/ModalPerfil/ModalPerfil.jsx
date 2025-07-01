@@ -3,12 +3,15 @@ import {AiOutlineClose} from "react-icons/ai";
 import ButtonComorbidade from '../ButtonComorbidade/buttonComorbidade';
 import {useEffect, useRef, useState} from "react";
 
-import foto from "../../assets/images/user.png";
-import {getUser, uploadUserPhoto} from "../../api/user.jsx";
+import foto from "../../assets/images/user.svg";
+import {getUser, updateUser, uploadUserPhoto} from "../../api/user.jsx";
 import {toast} from "react-toastify";
 import {ModalRegisterComorbidity} from "./Comorbidity/ModalRegisterComorbidity.jsx";
 import {deleteComorbidity, getComorbidity, saveComorbidity, updateComorbidity} from "../../api/comorbidity.jsx";
 import ButtonDoctor from "../ButtonDoctor/buttonDoctor.jsx";
+import ModalRegisterDoctor from "./Doctor/modalRegisterDoctor.jsx";
+import {deleteDoctor, getDoctors, saveDoctor, updateDoctor} from "../../api/doctor.jsx";
+import ModalEditProfile from "./Profile/ModalEditProfile.jsx";
 
 
 export default function ModalPerfil({modalOpen, handleClose}) {
@@ -16,26 +19,25 @@ export default function ModalPerfil({modalOpen, handleClose}) {
     const [user, setUser] = useState(null);
     const [tab, setTab] = useState(1);
     const [comorbidities, setComorbidities] = useState([]);
+    const [doctors, setDoctors] = useState([]);
     const [comorbidityShow, setComorbidityShow] = useState(null);
+    const [doctorShow, setDoctorShow] = useState(null);
     const [isOpenComorbidityModal, setIsOpenComorbidityModal] = useState(false);
+    const [isOpenDoctorModal, setIsOpenDoctorModal] = useState(false);
+    const [isOpenProfileModal, setIsOpenProfileModal] = useState(false);
     const inputRef = useRef(null);
 
     useEffect(() => {
-        getUser().then((data) => {
-            if (data) {
-                setUser(data);
-            }
-        }).catch((error) => {
-            if (error && error.response && error.response.data) {
-                if (error.response.data.mensagem instanceof Array) {
-                    var mensagem = error.response.data.mensagem.join(", ");
-                    toast.error(mensagem);
-                } else {
-                    toast.error(error.response.data.mensagem);
-                }
-            }
-        });
+        fetchUser();
+        fetchComorbidity();
+        fetchDoctor();
     }, [modalOpen]);
+
+    const fetchUser = async () => {
+        const user = await getUser();
+        console.log("user", user);
+        setUser(user);
+    };
 
     const selectFoto = () => {
         inputRef.current?.click();
@@ -113,12 +115,9 @@ export default function ModalPerfil({modalOpen, handleClose}) {
     };
 
     const handleOpenComorbidity = () => {
+        setComorbidityShow(null);
         setIsOpenComorbidityModal(true);
     };
-
-    useEffect(() => {
-        fetchComorbidity();
-    }, []);
 
     const handleEditComorbidity = (comorbidity) => {
         setComorbidityShow(comorbidity);
@@ -128,6 +127,9 @@ export default function ModalPerfil({modalOpen, handleClose}) {
     const handleAdd = () => {
         if (tab === 1) {
             handleOpenComorbidity();
+        }
+        if (tab === 2) {
+            handleOpenDoctorModal();
         }
     }
 
@@ -152,18 +154,125 @@ export default function ModalPerfil({modalOpen, handleClose}) {
         }
     }
 
+    const handleSaveDoctor = (doctor) => {
+        if (doctor.oid) {
+            updateDoctor(doctor.oid, doctor).then((data) => {
+                if (data) {
+                    toast.success("Médico atualizado com sucesso!");
+                    handleCloseDoctorModal();
+                    fetchDoctor();
+                }
+            }).catch((error) => {
+                if (error && error.response && error.response.data) {
+                    if (error.response.data.mensagem instanceof Array) {
+                        var mensagem = error.response.data.mensagem.join(", ");
+                        toast.error(mensagem);
+                    } else {
+                        toast.error(error.response.data.mensagem);
+                    }
+                }
+            });
+        } else {
+            saveDoctor(doctor).then((data) => {
+                if (data) {
+                    toast.success("Médico cadastrado com sucesso!");
+                    handleCloseDoctorModal();
+                    fetchDoctor();
+                }
+            }).catch((error) => {
+                if (error && error.response && error.response.data) {
+                    if (error.response.data.mensagem instanceof Array) {
+                        var mensagem = error.response.data.mensagem.join(", ");
+                        toast.error(mensagem);
+                    } else {
+                        toast.error(error.response.data.mensagem);
+                    }
+                }
+            });
+        }
+    }
 
+    const handleCloseDoctorModal = () => {
+        setDoctorShow(null);
+        setIsOpenDoctorModal(false);
+    }
+
+    const fetchDoctor = async () => {
+        const doctor = await getDoctors();
+        setDoctors(doctor);
+    };
+
+    const handleEditDoctor = (doctor) => {
+        setDoctorShow(doctor);
+        setIsOpenDoctorModal(true);
+    }
+
+    const handleOpenDoctorModal = () => {
+        setDoctorShow(null);
+        setIsOpenDoctorModal(true);
+    }
+
+    const handleDeleteDoctor = () => {
+        if (doctorShow) {
+            deleteDoctor(doctorShow.oid).then(() => {
+                toast.success("Médico excluído com sucesso!");
+                handleCloseDoctorModal();
+                fetchDoctor();
+            }).catch((error) => {
+                if (error && error.response && error.response.data) {
+                    if (error.response.data.mensagem instanceof Array) {
+                        var mensagem = error.response.data.mensagem.join(", ");
+                        toast.error(mensagem);
+                    } else {
+                        toast.error(error.response.data.mensagem);
+                    }
+                }
+            });
+        }
+    }
+
+    const handleSaveProfile = (userEdit) => {
+        console.log(userEdit);
+        if (userEdit.oid) {
+            updateUser(userEdit.oid, userEdit).then((data) => {
+                if (data) {
+                    toast.success("Usuário atualizado com sucesso!");
+                }
+            }).catch((error) => {
+                if (error && error.response && error.response.data) {
+                    if (error.response.data.mensagem instanceof Array) {
+                        var mensagem = error.response.data.mensagem.join(", ");
+                        toast.error(mensagem);
+                    } else {
+                        toast.error(error.response.data.mensagem);
+                    }
+                }
+            });
+        }
+    }
+
+    const handleCloseProfileModal = () => {
+        setIsOpenProfileModal(false);
+    }
 
 
     return user ? (
         <div className='mod-perfil' style={{display: modalOpen ? "block" : "none"}}>
             <ModalRegisterComorbidity isOpen={isOpenComorbidityModal} handleClose={handleCloseComorbidity}
-                                      handleSubmit={handleSaveComorbidity} comorbidity={comorbidityShow} handleClean={handleDeleteComorbidity}/>
+                                      handleSubmit={handleSaveComorbidity} comorbidity={comorbidityShow}
+                                      handleClean={handleDeleteComorbidity}/>
             <ModalRegisterDoctor
-                isOpen={isOpen}
-                handleClose={closeInnerModal}
-                handleSubmit={handleSubmit}
-                event={selectedEvent}
+                isOpen={isOpenDoctorModal}
+                handleClose={handleCloseDoctorModal}
+                handleSubmit={handleSaveDoctor}
+                doctor={doctorShow}
+                handleClean={handleDeleteDoctor}
+            />
+            <ModalEditProfile
+                isOpen={isOpenProfileModal}
+                handleClose={handleCloseProfileModal}
+                handleSubmit={handleSaveProfile}
+                user={user}
             />
             <input
                 type="file"
@@ -194,14 +303,17 @@ export default function ModalPerfil({modalOpen, handleClose}) {
                         <div className='pos-dados'>
                             <h3>{user.name}</h3>
                             <div className='pos-tit'>
-                                <p>CPF: {user.cpf}</p>
-                                <p>Telefone: {user.phone}</p>
+                                <p>Email:</p>
+                                <p>{user.email}</p>
+                                <br/>
+                                <p>Telefone:</p>
+                                <p>{user.phone}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='cnt-button'>
-                    <button className='but-edit'>Editar Perfil</button>
+                    <button className='but-edit' onClick={() => setIsOpenProfileModal(true)}>Editar Perfil</button>
                 </div>
             </div>
             <div className='nav-modal'>
@@ -212,7 +324,6 @@ export default function ModalPerfil({modalOpen, handleClose}) {
                     <button className={`iten-button ${tab === 2 ? 'iten-button-active' : ''}`}
                             onClick={() => setTab(2)}>Médicos
                     </button>
-                    {/*<button className={`iten-button ${tab === 3 ? 'iten-button-active' : ''}`} onClick={() => setTab(3)}>Configurações</button>*/}
                 </div>
             </div>
             <div className='cnt-iten'>
@@ -227,7 +338,10 @@ export default function ModalPerfil({modalOpen, handleClose}) {
                     )}
                     {tab === 2 && (
                         <>
-                            <ButtonDoctor />
+                            {doctors && doctors.map((doctor) => (
+                                <ButtonDoctor key={doctor.oid} doctor={doctor}
+                                              onClick={() => handleEditDoctor(doctor)}/>
+                            ))}
                         </>
                     )}
                 </div>
