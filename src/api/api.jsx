@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 2 - Adicionar Axios e criar uma instância do Axios
 const api = axios.create({
-  baseURL: 'https://app-front-2kyc.onrender.com',
+  baseURL: 'https://app-back-ye0w.onrender.com/',
   timeout: 10000,
 });
 
