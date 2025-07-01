@@ -3,7 +3,7 @@ import axios from 'axios';
 // 2 - Adicionar Axios e criar uma instância do Axios
 const api = axios.create({
   baseURL: 'https://app-back-ye0w.onrender.com/',
-  timeout: 10000,
+  timeout: 50000,
 });
 
 api.interceptors.request.use(
