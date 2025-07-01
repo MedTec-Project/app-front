@@ -8,6 +8,7 @@ import {getUser, uploadUserPhoto} from "../../api/user.jsx";
 import {toast} from "react-toastify";
 import {ModalRegisterComorbidity} from "./Comorbidity/ModalRegisterComorbidity.jsx";
 import {deleteComorbidity, getComorbidity, saveComorbidity, updateComorbidity} from "../../api/comorbidity.jsx";
+import ButtonDoctor from "../ButtonDoctor/buttonDoctor.jsx";
 
 
 export default function ModalPerfil({modalOpen, handleClose}) {
@@ -158,6 +159,12 @@ export default function ModalPerfil({modalOpen, handleClose}) {
         <div className='mod-perfil' style={{display: modalOpen ? "block" : "none"}}>
             <ModalRegisterComorbidity isOpen={isOpenComorbidityModal} handleClose={handleCloseComorbidity}
                                       handleSubmit={handleSaveComorbidity} comorbidity={comorbidityShow} handleClean={handleDeleteComorbidity}/>
+            <ModalRegisterDoctor
+                isOpen={isOpen}
+                handleClose={closeInnerModal}
+                handleSubmit={handleSubmit}
+                event={selectedEvent}
+            />
             <input
                 type="file"
                 accept="image/*"
@@ -216,6 +223,11 @@ export default function ModalPerfil({modalOpen, handleClose}) {
                                 <ButtonComorbidade key={comorbidity.oid} comorbidity={comorbidity}
                                                    onClick={() => handleEditComorbidity(comorbidity)}/>
                             ))}
+                        </>
+                    )}
+                    {tab === 2 && (
+                        <>
+                            <ButtonDoctor />
                         </>
                     )}
                 </div>

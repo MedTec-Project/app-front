@@ -41,8 +41,8 @@ export default function ModalRegisterEventos({isOpen, handleClose, handleSubmit,
 
     return (
         <ModalRegister isOpen={isOpen} handleClose={handleClose} handleSubmit={handleFormSubmit}
-                       handleClean={handleClean} width={"80rem"} labelSubmit={"Cadastrar"} labelCancel={"Limpar"}
-                       height={"50rem"} title={"Cadastrar Evento"}>
+                       handleClean={handleClean} width={"60rem"} labelSubmit={"Cadastrar"} labelCancel={"Limpar"}
+                       height={"40rem"} title={"Cadastrar Evento"}>
             <div className="modal-register-events">
                 <div className="left-side">
                     <div className="form-group">

@@ -17,6 +17,10 @@
 .mod-tittle {
     display: flex;
 }
+.perfil-usuar-modal{
+    width: 200px;
+    height: 200px;
+}
 .mod-cnt-tit {
     width: 320px;
     height: 30px;
@@ -89,7 +93,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
+    width: 30%;
 }
 .but-edit {
     width: 120px;
@@ -103,6 +107,7 @@
     cursor: pointer;
 }
 .nav-modal {
+    margin-top: 20px;
     display: flex;
     height: 50px;
     border-style: solid;
